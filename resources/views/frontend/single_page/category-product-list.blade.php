@@ -44,8 +44,8 @@
                                 <div class="option-select">
                                     <select name="pagination" class="options-inner"  onchange="this.form.submit()">
                                         <option value="12">Show: 12 items per page</option>
-                                        <option value="1"> 1 items per page</option>
-                                        <option value="2"> 2 items per page</option>
+                                        <option value="18"> 18 items per page</option>
+                                        <option value="20"> 20 items per page</option>
                                         <option value="24"> 24 items per page</option>
                                     </select>
                                 </div>
