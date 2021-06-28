@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/test', function (){
-    dd(\App\User::where('email', 'admin@gmail.com')->update(['password' => bcrypt('password')]));;
-});
 
 Route::get('/','frontend\FrontendController@index');
 Route::get('/product-list','frontend\FrontendController@productList')->name('product.list');

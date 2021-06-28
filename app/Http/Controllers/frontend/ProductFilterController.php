@@ -11,20 +11,43 @@ use App\Model\Brand;
 use App\Model\ShippingCost;
 use Illuminate\Support\Facades\Artisan;
 class ProductFilterController extends Controller
-{  
-    
+{
+
      public function getShippingCost(Request $request){
-        
+
                 $cost_value = $request->shipping_area;
                 $costs_value = ShippingCost::where('shipping_area' ,  $cost_value)->first();
                return response()->json($costs_value);
     }
+
     public function catProductList($id){
-         
+        if(request()->short == 'new-first'){
+            $cat_products = Product::where('category_id',$id)->orderBy('created_at', 'desc');
+        }else if(request()->short == 'low-to-high'){
+            $cat_products = Product::where('category_id',$id)->orderBy('price', 'asc');
+        }else if(request()->short == 'high-to-low'){
+            $cat_products = Product::where('category_id',$id)->orderBy('price', 'desc');
+        }else{
+            $cat_products = Product::where('category_id',$id)->orderBy('created_at', 'desc');
+        }
+
+        $cat_products = $cat_products->paginate(request()->pagination ?? '20');
+
+         return view('frontend.single_page.category-product-list',[
+            'cat_products' => $cat_products,
+            'categories' => Category::orderBy('id','desc')->get(),
+            'cat_name' => Category::orderBy('id','desc')->where('id',$id)->first(),
+
+            'sub_categories' => SubCategory::orderBy('id','desc')->get(),
+            'brands' => Brand::orderBy('id','desc')->get(),
+         ]);
+    }
+
+    public function catProductListShort(Request $request, $id){
          // return ($cat_product)->toArray();
          return view('frontend.single_page.category-product-list',[
-               
-            'cat_products' => Product::where('category_id',$id)->orderBy('id','desc')->get(),
+
+            'cat_products' => Product::where('category_id',$id)->orderBy('id','desc')->paginate($request->pagination),
             'categories' => Category::orderBy('id','desc')->get(),
             'cat_name' => Category::orderBy('id','desc')->where('id',$id)->first(),
 
@@ -34,10 +57,10 @@ class ProductFilterController extends Controller
     }
 
     public function subCatProductList($id){
-         
+
          // return ($cat_product)->toArray();
          return view('frontend.single_page.sub-category-product-list',[
-               
+
             'sub_cat_products' => Product::where('sub_category_id',$id)->orderBy('id','desc')->get(),
             'sub_categories' => SubCategory::orderBy('id','desc')->get(),
             'cat_name' => SubCategory::orderBy('id','desc')->where('id',$id)->first(),
@@ -46,7 +69,7 @@ class ProductFilterController extends Controller
             'brands' => Brand::orderBy('id','desc')->get(),
          ]);
     }
-  
+
     public function brandProductList($id){
     	    return view('frontend.single_page.brand_product_list',[
     	    'brand_products' => Product::where('brand_id',$id)->orderBy('id','desc')->get(),
@@ -55,20 +78,20 @@ class ProductFilterController extends Controller
 
             'sub_categories' => SubCategory::orderBy('id','desc')->get(),
             'brands' => Brand::orderBy('id','desc')->get(),
-        ]);  
+        ]);
     }
 
      public function  priceProductList (Request $request){
-        
-        // return $request->price_range;    
+
+        // return $request->price_range;
             if($request->price_range == '1'){
                 $products = Product::whereBetween('price' , [ 0 , 1000])->get();
                 return view('frontend.single_page.price-wise-product-list',[
-                        
+
                         'products' => $products,
                         'categories' => Category::orderBy('id','desc')->get(),
                         'sub_categories' => SubCategory::orderBy('id','desc')->get(),
-                        'brands' => Brand::orderBy('id','desc')->get(), 
+                        'brands' => Brand::orderBy('id','desc')->get(),
                 ]);
             }
 
@@ -78,7 +101,7 @@ class ProductFilterController extends Controller
                         'products' => $products,
                         'categories' => Category::orderBy('id','desc')->get(),
                         'sub_categories' => SubCategory::orderBy('id','desc')->get(),
-                        'brands' => Brand::orderBy('id','desc')->get(), 
+                        'brands' => Brand::orderBy('id','desc')->get(),
                 ]);
              }
 
@@ -88,7 +111,7 @@ class ProductFilterController extends Controller
                         'products' => $products,
                         'categories' => Category::orderBy('id','desc')->get(),
                         'sub_categories' => SubCategory::orderBy('id','desc')->get(),
-                        'brands' => Brand::orderBy('id','desc')->get(), 
+                        'brands' => Brand::orderBy('id','desc')->get(),
                 ]);
              }
 
@@ -98,7 +121,7 @@ class ProductFilterController extends Controller
                         'products' => $products,
                         'categories' => Category::orderBy('id','desc')->get(),
                         'sub_categories' => SubCategory::orderBy('id','desc')->get(),
-                        'brands' => Brand::orderBy('id','desc')->get(), 
+                        'brands' => Brand::orderBy('id','desc')->get(),
                 ]);
              }
 
@@ -108,7 +131,7 @@ class ProductFilterController extends Controller
                         'products' => $products,
                         'categories' => Category::orderBy('id','desc')->get(),
                         'sub_categories' => SubCategory::orderBy('id','desc')->get(),
-                        'brands' => Brand::orderBy('id','desc')->get(), 
+                        'brands' => Brand::orderBy('id','desc')->get(),
                 ]);
              }
 
@@ -118,11 +141,11 @@ class ProductFilterController extends Controller
                         'products' => $products,
                         'categories' => Category::orderBy('id','desc')->get(),
                         'sub_categories' => SubCategory::orderBy('id','desc')->get(),
-                        'brands' => Brand::orderBy('id','desc')->get(), 
+                        'brands' => Brand::orderBy('id','desc')->get(),
                 ]);
-             }  
+             }
 
-       
-        
+
+
     }
 }
