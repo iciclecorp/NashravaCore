@@ -24,10 +24,11 @@ class CartController extends Controller
 
     public function addToCart(Request $request){
 
-      /*  $this->validate($request,[
-           'color_id' => 'required',
-           'size_id' => 'required',
-        ]);*/
+        $this->validate($request,[
+           'color' => 'required',
+           'size' => 'required',
+        ]);
+
         $product = Product::find($request->input('id'));
         if($request->input('size_id') && $request->input('color_id')){
         $product_size = Size::where('id',$request->input('size_id'))->first();

@@ -82,8 +82,8 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <span>Size: {{$order->size->size_name}}</span><br/>
-                                    <span>Color: {{$order->color->color_name}}</span>
+                                    <span>Size: {{$order->size->size_name ?? 'No Size'}}</span><br/>
+                                    <span>Color: {{$order->color->color_name ?? 'No Color'}}</span>
                                 </td>
                               
                                 <td>BDT. {{$order->product->price}}</td>

@@ -125,7 +125,7 @@
                                           <input type="hidden" name="pid" id="pid" value="{{$product->id}}">
                                                 <div class="search-cat">
                                                 <select name="size_id" id="size_id" class="form-control form-control-sm" required>
-                                                        <option>Select Size</option>
+                                                        <option value="">Select Size</option>
                                                         @foreach($product_sizes as $size)
                                                             <option value="{{$size->size_id}}">{{$size->size->size_name}}</option>
                                                             @endforeach
@@ -401,7 +401,7 @@ $.ajax({
 },  
    type:"POST",
    url: "{{route('insert.cart')}}",
-   data:{id:pid,color_id:color,size_id:size,quantity:quantity},
+   data:{id:pid,color:color,size:size,quantity:quantity},
 
    success:function(data){
 	Swal.fire({
@@ -416,10 +416,22 @@ $.ajax({
 	
 	  
    },
-   error:function(error){
-	 console.log(error)
-	 alert("not send");
-   },
+   error: function (xhr) {
+                        var errorMessage = '<div class="card bg-danger">\n' +
+                            '                        <div class="card-body text-center p-5">\n' +
+                            '                            <span class="text-white">';
+                        $.each(xhr.responseJSON.errors, function(key,value) {
+                            errorMessage +=(''+value+'<br>');
+                        });
+                        errorMessage +='</span>\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            footer: errorMessage
+                        });
+                    },
 
    
  });
@@ -457,10 +469,22 @@ $.ajax({
 	
 	  
    },
-   error:function(error){
-	 console.log(error)
-	 alert("not send");
-   },
+   error: function (xhr) {
+                        var errorMessage = '<div class="card bg-danger">\n' +
+                            '                        <div class="card-body text-center p-5">\n' +
+                            '                            <span class="text-white">';
+                        $.each(xhr.responseJSON.errors, function(key,value) {
+                            errorMessage +=(''+value+'<br>');
+                        });
+                        errorMessage +='</span>\n' +
+                            '                        </div>\n' +
+                            '                    </div>';
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            footer: errorMessage
+                        });
+                    },
 
    
  });
