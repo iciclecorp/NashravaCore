@@ -2,16 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*    
+/*
 |--------------------------------------------------------------------------
-| Web Routes 
+| Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/ 
+*/
+Route::get('/test', function (){
+    dd(\App\User::where('email', 'admin@gmail.com')->update(['password' => bcrypt('password')]));;
+});
 
 Route::get('/','frontend\FrontendController@index');
 Route::get('/product-list','frontend\FrontendController@productList')->name('product.list');
@@ -63,15 +66,15 @@ Route::group(['middleware'=>['auth','customer']],function(){
    Route::post('/store/edit-account/{id}','frontend\DashboardController@storeAccount')->name('customer.edit.store');
    Route::get('/customer.password.change','frontend\DashboardController@passwordChange')->name('customer.password.change');
    Route::post('/customer.password.update','frontend\DashboardController@passwordUpdate')->name('customer.password.update');
- 
+
 });
 
 
-Auth::routes();	
+Auth::routes();
 
 
 Route::group(['middleware'=>['auth','admin'] , 'prefix' => 'admin'], function(){
-Route::get('/home', 'HomeController@index')->name('home');  
+Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('user','backend\UserController');
 Route::resource('profile','backend\ProfileController');
 Route::get('/view-password','backend\ProfileController@viewPass')->name('view.password');
@@ -126,9 +129,9 @@ Route::get('local/due/report/print','backend\LocalInvoiceController@customerdueR
 //customer route
 Route::get('/customer/index','backend\CustomerController@index')->name('customer.index');
 Route::get('/customer/draft/view','backend\CustomerController@draftView')->name('draft.customer');
-Route::get('/customer/draft/delete/{id}','backend\CustomerController@delete')->name('draft.customer.delete'); 
-Route::get('/local/customer/view','backend\CustomerController@localCustomer')->name('local.customer');  
-Route::get('local/customer/delete/{id}','backend\CustomerController@localDelete')->name('local.customer.delete');  
+Route::get('/customer/draft/delete/{id}','backend\CustomerController@delete')->name('draft.customer.delete');
+Route::get('/local/customer/view','backend\CustomerController@localCustomer')->name('local.customer');
+Route::get('local/customer/delete/{id}','backend\CustomerController@localDelete')->name('local.customer.delete');
 Route::get('/local/customer/due-list','backend\CustomerController@localCustomerDue')->name('local.customer.due.list');
 Route::get('/local/customer/credit/report/pdf','backend\CustomerController@creditCustomerPdf')->name('credit.customer.pdf');
 Route::get('/local/customer/edit/invoice/{invoice_id}','backend\CustomerController@editInvoice')->name('customer.edit.invoice');
@@ -162,9 +165,9 @@ Route::get('slider/changeUpperStatus/{id}', 'backend\SliderController@changeUppe
 Route::get('slider/changeMiddleStatus/{id}', 'backend\SliderController@changeMiddleStatus')->name('change.middle.status');
 Route::get('slider/changeLowerStatus/{id}', 'backend\SliderController@changeLowerStatus')->name('change.lower.status');
 
-Route::resource('size-measurement','backend\SizeMeasurementController'); 
+Route::resource('size-measurement','backend\SizeMeasurementController');
 Route::resource('product-measurement','backend\ProductMeasurementController');
- 
+
 Route::get('category-cart','HomeController@categoryCart')->name('home.category.cart');
 Route::get('customer-cart','HomeController@customerCart')->name('home.customer.cart');
 Route::get('report-cart','HomeController@reportCart')->name('home.report.cart');
@@ -176,7 +179,5 @@ Route::get('/show-cart','backend\CartController@showCart')->name('show.cart');
 Route::post('/update-cart','backend\CartController@updateCart')->name('update.cart');
 Route::get('/delete-cart/{rowId}','backend\CartController@deleteCart')->name('delete.cart');
 Route::resource('cart','backend\CartDeleteController');
-
-
 });
 

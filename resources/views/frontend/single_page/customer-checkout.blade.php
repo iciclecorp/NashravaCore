@@ -41,10 +41,24 @@
 				<div class="container mt-4">
 					<form action="{{route('customer.checkout.store')}}" method="POST" class="form">
 						@csrf	
+						
 						<div class="row gutter-lg">
 							<div class="col-lg-8 mb-6">
 								<h3 class="title title-simple text-left">Billing Details</h3>
 							
+								<div class="row">
+									<div class="col-xs-12">
+									@if ($errors->any())
+										<div class="alert alert-danger">
+											<ul>
+												@foreach ($errors->all() as $error)
+													<li>{{ $error }}</li>
+												@endforeach
+											</ul>
+										</div>
+									@endif
+									</div>
+								</div>
 								<div class="row">
 									<div class="col-xs-6">
 										<label>First Name *</label>

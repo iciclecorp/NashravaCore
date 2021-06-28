@@ -94,8 +94,8 @@
                             style="width:50px;height:55px;border:1px solid #000;"> &nbsp; {{$details->product->purchase->product_name}}
                 </td>
                 <td colspan="2" style="padding-left: 5px;">
-                 {{$details->color->color_name}}&nbsp; & &nbsp;
-                 {{$details->size->size_name}}
+                 {{$details->color->color_name ?? 'No Color'}}&nbsp; & &nbsp;
+                 {{$details->size->size_name ?? 'No Size'}}
                 </td>
                 <td style="padding-left: 5px;">
                    @php

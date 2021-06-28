@@ -116,7 +116,8 @@ class CheckoutController extends Controller
               $this->validate($request,[
               'first_name'=>'required',
               'last_name'=>'required',
-              'mobile_no'=>['required','regex:/(^(\+8801|8801|01|008801))[1|5-9]{1}(\d){8}$/'],
+              //'mobile_no'=>['required','regex:/(^(\+8801|8801|01|008801))[1|5-9]{1}(\d){8}$/'],
+              'mobile_no'=>['required','string'],
               'address'=>'required'
            ]);
 

@@ -20,11 +20,11 @@ use Cart;
 use App\User;
 class DashboardController extends Controller
 {
-    
+
     public function dashboard(){
 
          return view('frontend.single_page.customer.customer-dashboard',[
-            
+
       'categories' => Category::orderBy('id','desc')->get(),
 			'brands' => Brand::orderBy('id','desc')->get(),
 			'products' => Product::orderBy('id','desc')->get(),
@@ -36,17 +36,17 @@ class DashboardController extends Controller
 
 
     public function payment(){
-		 
+
          return view('frontend.single_page.customer.customer-payment',[
                 'categories' => Category::orderBy('id','desc')->get(),
 				'brands' => Brand::orderBy('id','desc')->get(),
 				'products' => Product::orderBy('id','desc')->get(),
 
-         ]);  
+         ]);
     }
 
     public function paymentStore(Request $request){
-           
+
            if($request->product_id == NULL){
             return redirect()->back()->with('message','Please add any product');
            }else{
@@ -82,7 +82,7 @@ class DashboardController extends Controller
                 }
 
                 $order->order_no = $order_no;
-                $order->order_total_amount = $request->order_total; 
+                $order->order_total_amount = $request->order_total;
                 $order->status = '0';
                 if($order->save()){
                   $contents = Cart::content();
@@ -90,8 +90,8 @@ class DashboardController extends Controller
                      $order_details = new OrderDetail();
                      $order_details->order_id = $order->id;
                      $order_details->product_id = $content->id;
-                     $order_details->color_id = $content->options->color_id;
-                     $order_details->size_id = $content->options->size_id;
+                     $order_details->color_id = $content->options->color_id ?? '0';
+                     $order_details->size_id = $content->options->size_id ?? '0';
                      $order_details->quantity= $content->qty;
                      $order_details->save();
                   }
@@ -104,7 +104,7 @@ class DashboardController extends Controller
           }
 
             Cart::destroy();
-             
+
             return redirect()->route('customer.order.list')->with('success','Data save successfully');
 
     }
@@ -117,18 +117,18 @@ class DashboardController extends Controller
             // 'orders' => Order::where('user_id','7')->get(),
             'orders' => Order::where('user_id',Auth::user()->id)->get(),
 
-      ]);  
+      ]);
     }
 
     public function orderDetails($id){
             $order_data = Order::findOrFail($id);
-            $order = Order::where('id',$order_data->id)->where('user_id',Auth::user()->id)->first();  
+            $order = Order::where('id',$order_data->id)->where('user_id',Auth::user()->id)->first();
             if($order == false){
                return redirect()->back()->with('error','Do not try to be oversmart !');
             } else {
-            
-            $order = Order::with(['OrderDetail'])->where('id',$order_data->id)->where('user_id',Auth::user()->id)->first();  
-             
+
+            $order = Order::with(['OrderDetail'])->where('id',$order_data->id)->where('user_id',Auth::user()->id)->first();
+
               return view('frontend.single_page.customer.customer-order-details',[
                     'products' => Product::orderBy('id','desc')->get(),
                     'categories' => Category::orderBy('id','desc')->get(),
@@ -136,10 +136,10 @@ class DashboardController extends Controller
                     'order' =>  $order,
 
 
-              ]); 
+              ]);
             }
 
-           
+
     }
 
      public function editAccount($id){
@@ -154,15 +154,15 @@ class DashboardController extends Controller
      }
 
       public function storeAccount(Request $request,$id){
-         
+
            $this->validate($request, [
-             
+
               'email' => [
                 'required',
                 Rule::unique('users')->ignore($id , 'id'),
               ],
-             
-               
+
+
             ]);
 
           $user = User::findOrFail($id);
@@ -176,13 +176,13 @@ class DashboardController extends Controller
      }
 
      public function passwordChange(){
-                
+
           return view('frontend.single_page.customer.customer-password-change',[
 
                 'categories' => Category::orderBy('id','desc')->get(),
                 'brands' => Brand::orderBy('id','desc')->get(),
                 'products' => Product::orderBy('id','desc')->get(),
-          ]);  
+          ]);
     }
 
     public function passwordUpdate(request $request){
