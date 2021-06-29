@@ -43,19 +43,6 @@ class ProductFilterController extends Controller
          ]);
     }
 
-    public function catProductListShort(Request $request, $id){
-         // return ($cat_product)->toArray();
-         return view('frontend.single_page.category-product-list',[
-
-            'cat_products' => Product::where('category_id',$id)->orderBy('id','desc')->paginate($request->pagination),
-            'categories' => Category::orderBy('id','desc')->get(),
-            'cat_name' => Category::orderBy('id','desc')->where('id',$id)->first(),
-
-            'sub_categories' => SubCategory::orderBy('id','desc')->get(),
-            'brands' => Brand::orderBy('id','desc')->get(),
-         ]);
-    }
-
     public function subCatProductList($id){
 
          // return ($cat_product)->toArray();

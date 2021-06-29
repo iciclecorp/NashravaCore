@@ -60,7 +60,7 @@
                   <p style="color:#faf619;">{{__('sidebar.view_profile')}}</p>
                 </a>
               </li>
-            </ul>  
+            </ul>
               <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{route('view.password')}}" class="nav-link {{ Request::is('admin/view-password') ? 'active' : '' }}">
@@ -97,7 +97,7 @@
               </li>
             </ul>
           </li>
-          
+
           <li class="nav-item has-treeview  @if (Request::is('admin/product') || Request::is('admin/product-measurement') )
            menu-open
           @endif" id="side_product" >
@@ -188,7 +188,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p style="color:#ffffff;">
-               Order Management 
+               Order Management
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -209,7 +209,7 @@
               </li>
             </ul>
           </li>
-          
+
           <li class="nav-item has-treeview @if (Request::is('admin/customer/index') || Request::is('admin/customer/draft/view') || Request::is('admin/local/customer/view') || Request::is('admin/local/customer/due-list'))
            menu-open
           @endif" id="side_customer" >
@@ -271,9 +271,9 @@
                 </a>
               </li>
             </ul>
-            
+
           </li>
-           <li class="nav-item has-treeview @if (Request::is('admin/purchase/daily/report') || Request::is('admin/stock/report') || Request::is('admin/invoice/daily/report') ||  Request::is('admin/local/invoice/daily/report') ) 
+           <li class="nav-item has-treeview @if (Request::is('admin/purchase/daily/report') || Request::is('admin/stock/report') || Request::is('admin/invoice/daily/report') ||  Request::is('admin/local/invoice/daily/report') )
            menu-open
           @endif" id="side_report" >
             <a href="#" class="nav-link">
@@ -391,6 +391,12 @@
               </li>
             </ul>
           </li>
+            <li class="nav-item ">
+                <a href="{{route('application.setting')}}" class="nav-link">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p style="{{ Request::is('*/setting') ? 'color:#faf619;' : '' }}">Local Selling Report</p>
+                </a>
+            </li>
         </ul>
       </nav>
      @endif
@@ -401,7 +407,7 @@
   <script type="text/javascript">
 
       $("#side_order").click(function(){
-          
+
           // $('#profile').hide();
           // $('#category').hide();
           //  $('#product').hide();
@@ -411,7 +417,7 @@
           //     $('#purchase').hide();
 
       });
-     
 
-    
+
+
   </script>
