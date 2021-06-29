@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class ApplicationController extends Controller
 {
+    /*
+        Route::get('setting','backend\ApplicationController@index')->name('application.setting');
+        Route::post('setting','backend\ApplicationController@update');
+     */
     public function index(){
         return view('backend.application-setting.index');
     }
