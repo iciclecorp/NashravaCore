@@ -247,7 +247,7 @@
                                      $price = $cat_product->price - $cat_product->discount;
                                    @endphp
                                 <span class="price">
-                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@endif
+                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@else <span><del>0.00</del></span>@endif
                                 </span>
                                                 <span class="add-to-cart">
                                                     <a href="{{route('product.details', $cat_product->slug)}}"   ><i class="fa fa-eye" aria-hidden="true"></i><span>View Details</span></a>

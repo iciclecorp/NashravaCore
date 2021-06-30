@@ -277,9 +277,10 @@
                                      $price = $singleproduct->price - $singleproduct->discount;
                                    @endphp
                                 <span class="price">
-                                    <span class="amount">BDT. {{ $price }}</span>@if($singleproduct->discount) <span><del>{{$singleproduct->price}}</del></span>@endif
+                                    <span class="amount">BDT. {{ $price }}</span>@if($singleproduct->discount) <span><del>{{$singleproduct->price}}</del></span>@else <span><del>0.00</del></span> @endif
                                 </span>
-                          <span class="add-to-cart"><a href="{{route('product.details',$singleproduct->slug)}}"><i aria-hidden="true" class="fa fa-eye"></i>View Details</a></span>
+                          <span class="add-to-cart"><a href="javascript:void(0)" data-id="{{$singleproduct->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+</span>
                                                     </div>									  
                                                 </div>
                                             </div>
