@@ -44,13 +44,37 @@ class FrontendController extends Controller
     }  
 
     public function newarrivalProductList(){
+     if(request()->short == 'new-first'){
+          $products = Product::where('new_arrival',1)->orderBy('created_at', 'desc');
+      }else if(request()->short == 'low-to-high'){
+          $products = Product::where('new_arrival',1)->orderBy('price', 'asc');
+      }else if(request()->short == 'high-to-low'){
+          $products = Product::where('new_arrival',1)->orderBy('price', 'desc');
+      }else{
+          $products = Product::where('new_arrival',1)->orderBy('created_at', 'desc');
+      }
+
+      $products = $products->paginate(request()->pagination ?? '20');
     	return view('frontend.single_page.newarrivals',[
-                'products' => Product::where('new_arrival',1)->orderBy('id','desc')->paginate(5),
+                'products' => $products,
                 'categories' => Category::orderBy('id','desc')->get(),
                 'sub_categories' => SubCategory::orderBy('id','desc')->get(),
                 'brands' => Brand::orderBy('id','desc')->get(),
     	]);
     }
+
+    public function newarrivalProductListShort(Request $request){
+     // return ($cat_product)->toArray();
+     return view('frontend.single_page.newarrivals',[
+
+        'products' => Product::where('new_arrival',1)->orderBy('id','desc')->paginate($request->pagination),
+        'categories' => Category::orderBy('id','desc')->get(),
+        'cat_name' => Category::orderBy('id','desc')->where('id',$id)->first(),
+
+        'sub_categories' => SubCategory::orderBy('id','desc')->get(),
+        'brands' => Brand::orderBy('id','desc')->get(),
+     ]);
+}
 
     public function productDetails($slug){
 

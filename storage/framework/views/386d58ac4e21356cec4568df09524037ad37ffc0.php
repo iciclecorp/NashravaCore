@@ -146,6 +146,7 @@
                                   <li><a href="<?php echo e(route('brand.wise.product',$brand->id)); ?>"><?php echo e($brand->brand_name); ?></a></li>
                                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </ul></li>
+<li><a href="<?php echo e(url('/newarrivals')); ?>">New Arrivals</a></li>
                                             <!--<li class="drop"><a href="#">Pages</a>
                                                 <ul>
                                                     <li><a href="blog.html">Blog</a></li>
