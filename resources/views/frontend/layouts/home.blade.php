@@ -182,9 +182,11 @@
                                     <!-- Quick View -->
                                     <div class="quick-view">
                                         <a href="{{route('product.details',$product->slug)}}" class="modal-view detail-link quickview" ><i class="fa fa-eye"></i>View Details</a>
+                                        <a href="javascript:void(0)" data-id="{{$product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+
                                     </div>
                                     <!-- End Quick View -->
-
+                                    
                                 </div>
                                 <!-- End Product Hidden Info -->
                             </div>
@@ -252,6 +254,8 @@
                                     <!-- Quick View -->
                                     <div class="quick-view">
                                         <a href="{{route('product.details',$product->slug)}}" class="modal-view detail-link quickview"><i class="fa fa-eye"></i>View Details</a>
+                                        <a href="javascript:void(0)" data-id="{{$product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+
                                     </div>
                                     <!-- End Quick View -->
                                     <!-- Start Wish List  -->

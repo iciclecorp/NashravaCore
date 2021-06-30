@@ -83,16 +83,15 @@
                                         <!-- End Product Image -->
 
                                         <!-- Start Product Hidden Info -->
-                                        <!--<div class="product-hidden-info">
+                                       <div class="product-hidden-info">
                                             <div class="quick-view">
-                                                <a href="#" class="modal-view detail-link quickview" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i>Quick View</a>
+                                                <a href="{{route('product.details', $cat_product->slug)}}" class="modal-view detail-link quickview" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i>Quick View</a>
+                                                <a href="javascript:void(0)" data-id="{{$cat_product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+
                                             </div>
 
-                                            <div class="wish-list-area">
-                                                <a href="#" class="wish-list"><i aria-hidden="true" class="fa fa-heart-o"></i> Wish List</a>
-                                                <a href="#" class="compare"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
-                                            </div>
-                                        </div>-->
+                                            
+                                        </div>
                                         <!-- End Product Hidden Info -->
                                     </div>
                                     <!-- End Product Thumbnail -->
@@ -141,11 +140,14 @@
                                      $price = $cat_product->price - $cat_product->discount;
                                    @endphp
                                 <span class="price">
-                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@endif
+                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@else <span><del>0.00</del></span>@endif
                                 </span>
-                                        <span class="add-to-cart"><a href="{{route('product.details', $cat_product->slug)}}"><i class="fa fa-eye" aria-hidden="true"></i>View Detail</a></span>
-                                    </div>
+                                  
+                                <span class="add-to-cart"><a href="{{route('product.details', $cat_product->slug)}}"><i class="fa fa-eye" aria-hidden="true"></i>View Detail</a></span>
+   
+                            </div>
                                     <!-- End Prodcut Price Area -->
+
                                </div>
                                <!-- End Single Prodcut -->
                             </div>
@@ -250,12 +252,11 @@
                                                 <span class="add-to-cart">
                                                     <a href="{{route('product.details', $cat_product->slug)}}"   ><i class="fa fa-eye" aria-hidden="true"></i><span>View Details</span></a>
                                                 </span>
+
                                                 <!-- Start Wish List  -->
-                                               <!-- <span class="listview-wishlist">
-                                                    <a href="#"><i aria-hidden="true" class="fa fa-heart-o"></i> Wish List</a>
-                                                    <a href="#"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
-                                                </span>-->
-                                                <!-- End Wish List  -->
+                                            <span class="listview-wishlist">
+                                           <a href="javascript:void(0)" data-id="{{$cat_product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+                                                </span>
                                             </div>
                                             <!-- Start Prodcut Price Area -->
                                        </div>

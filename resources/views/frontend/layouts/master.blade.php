@@ -70,5 +70,74 @@
 	<script src="{{asset('public/frontend/js/plugins.js')}}"></script>
 	<!-- main js -->
 	<script src="{{asset('public/frontend/js/main.js')}}"></script>
+	<script>
+			function target_popup(form) {
+    window.open('', 'formpopup', 'width=1200,height=700,resizeable,scrollbars');
+    form.target = 'formpopup';
+}
+		$(function () {
+                    
+                    var id = $(this).data("id");
+                    
+                    var fieldArray = [];
+                    var $this = $(this);
+                    var cpid=JSON.parse(localStorage.getItem('cpids'))
+var  clickCounter = localStorage.getItem('clickCounter')
+   clickCounter = clickCounter ? parseInt(clickCounter) : 0;
+   //clickCounter = clickCounter || 0
+   $('.compare').text(clickCounter);
+   $('#cpid').val(cpid);
+
+    $( ".comp" ).click(function(){
+   //var clickCounter = $this.data('clickCounter') || 0;
+   // here you know how many clicks have happened before the current one
+  
+   clickCounter++;
+   //$(this).data('clickCounter', clickCounter);
+		if(clickCounter>10){
+			Swal.fire({
+        text: 'Already Added to Compare',
+		type: 'success',
+		timer: 2000,
+		showCancelButton: false,
+  showConfirmButton: false
+        
+      })
+
+		}
+		else{
+
+        
+
+		if(!cpid){
+			fieldArray.push($(this).data("id"));
+
+
+		}
+		else{
+			fieldArray.push(cpid);
+			fieldArray.push($(this).data("id"));
+
+
+		}
+		var compare=fieldArray.length;
+
+        $('.compare').text(clickCounter);
+		$('#cpid').val(fieldArray);
+        
+		localStorage.setItem("clickCounter",clickCounter);
+        localStorage.setItem('cpids', JSON.stringify(fieldArray))
+
+
+		}
+        
+
+              
+                      
+                    });
+
+
+		});
+		</script>
     </body>
 </html>

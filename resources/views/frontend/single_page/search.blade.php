@@ -49,8 +49,8 @@
                 <!-- Start Tab Content -->
                 <div class="tab-content"> 
                     <!-- Start Grid products -->
-                    <div id="grid" class="tab-pane" role="tabpanel"> 
-                        <div class="products-gridview-inner"> 
+                    <div id="list" class="tab-pane active in fade" role="tabpanel"> 
+                    <div class="products-listview-inner"> 
                             <?php 
                             if(!$products){
                                 ?>
@@ -60,124 +60,15 @@
                             }
                             else{?>
                             
+
+                 <!-- Start Products List View  -->
+
                         @foreach($products as $cat_product)
-
-                            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                               <!-- Start Single Prodcut -->
-                               <div class="single-product">
-                                    <!-- Start Product Thumbnail -->
-                                    <div class="product-thumb-area">
-                                        <!-- Start Product Image -->
-                                        <div class="product-thumb">
-                                            <a href="{{route('product.details', $cat_product->slug)}}"><img src="{{url($cat_product->image)}}" /></a>
-                                          <!--  <span class="product-new">New</span>
-                                            <span class="product-Sale">Sale</span>-->
-                                        </div>
-                                        <!-- End Product Image -->
-
-                                        <!-- Start Product Hidden Info -->
-                                        <!--<div class="product-hidden-info">
-                                            <div class="quick-view">
-                                                <a href="#" class="modal-view detail-link quickview" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i>Quick View</a>
-                                            </div>
-                                           
-                                            <div class="wish-list-area"> 
-                                                <a href="#" class="wish-list"><i aria-hidden="true" class="fa fa-heart-o"></i> Wish List</a>
-                                                <a href="#" class="compare"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
-                                            </div>
-                                        </div>-->
-                                        <!-- End Product Hidden Info -->
-                                    </div>
-                                    <!-- End Product Thumbnail -->
-                                    <!-- Start Color Buttons -->
-                                    <div class="prodcut-color-btn"> 
-                                    <?php 
+                        <?php 
                                                 $colors=App\Model\ProductColor::where('product_id',$cat_product->id)->get();
 
 
 ?>
-                                                <ul>
-                                                    @foreach($colors as $color)
-                                                    <?php 
-                                 $colorname=App\Model\Color::where('id',$color->color_id)->get();
-
-
-                                                    ?>
-
-                                                    <li><a href="#" class="color-active {{$colorname}}">{{$colorname}}</a></li>	
-                                                    @endforeach	
-                                                    
-                                                </ul>
-                                    </div>
-                                    <!-- End Color Buttons -->
-                                    <!-- Start Product Info -->
-                                    <div class="product-short-info"> 
-                                        <!-- Start product short description -->
-                                        <p class="p-short-des"><a href="#">{{$cat_product->title}}</a></p>
-                                        <!-- End product short description -->
-                                        <!-- Start Star Rating -->
-                                       <!-- <div class="star-rating"> 
-                                            <ul>
-                                                <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                <li class="star"><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            </ul>
-                                        </div>-->
-                                        <!-- End Star Rating -->
-                                    </div>
-                                    <!-- End Product Info -->
-                                    <!-- Start Prodcut Price Area -->
-                                    <div class="product-price-area"> 
-                                    @php
-                                     $price = $cat_product->price - $cat_product->discount;
-                                   @endphp
-                                <span class="price">
-                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@endif
-                                </span>
-                                        <span class="add-to-cart"><a href="{{route('product.details', $cat_product->slug)}}"><i class="fa fa-eye" aria-hidden="true"></i>View Detail</a></span>
-                                    </div>
-                                    <!-- End Prodcut Price Area -->
-                               </div>
-                               <!-- End Single Prodcut -->
-                            </div>
-                           @endforeach					
-                        </div>
-                        <!-- Start Product Paginations -->
-                      <div class="prodcuts-pagination"> 
-                            <div class="col-xs-12 col-sm-12 col-md-12"> 
-                            {!! $products->links('frontend.library.pagination.custom') !!}
-
-                             <!--   <ul class="licuan-pagination">
-                                    <li class="pre-page"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
-                                    <li class="current"><a href="#">1</a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li class="next-page"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                </ul>	-->
-                            </div>					
-                        </div>	
-                        <!-- End Product Paginations -->						
-                    </div>	
-                    <!-- End Grid products -->
-                    <!-- Start List products -->
-
-
-
-
-
-
-
-
-
-                    <div id="list" class="tab-pane active in fade" role="tabpanel"> 
-                        <!-- Start Products List View  -->
-                        <div class="products-listview-inner"> 
-
-                        @foreach($products as $cat_product)
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                <!-- Start Single Prodcut -->
@@ -238,16 +129,15 @@
                                      $price = $cat_product->price - $cat_product->discount;
                                    @endphp
                                 <span class="price">
-                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@endif
+                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@else <span><del>0.00</del></span>@endif
                                 </span>
                                                 <span class="add-to-cart">
                                                     <a href="{{route('product.details', $cat_product->slug)}}"   ><i class="fa fa-eye" aria-hidden="true"></i><span>View Details</span></a>
                                                 </span>
                                                 <!-- Start Wish List  -->
-                                               <!-- <span class="listview-wishlist"> 
-                                                    <a href="#"><i aria-hidden="true" class="fa fa-heart-o"></i> Wish List</a>
-                                                    <a href="#"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
-                                                </span>-->
+                                               <span class="listview-wishlist"> 
+                                                    <a href="javascript:void(0)" data-id="{{$cat_product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+                                                </span>
                                                 <!-- End Wish List  -->
                                             </div>
                                             <!-- Start Prodcut Price Area -->

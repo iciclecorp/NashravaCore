@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcrumbs">
-                        <a href="index.html">Home</a> <span class="separator">&gt;</span> <span> Products</span>
+                        <a href="index.html">Home</a> <span class="separator">&gt;</span> <span>Products</span>
                     </div>
                 </div>
             </div>
@@ -31,27 +31,27 @@
         <div class="container">
             <div class="row">
                 <div class="prodcut-toolbar">
-                    <div class="col-sm-8 col-md-8">
-                        <div class="toolbar-form">
-                            <form action="#" class="option-select">
-                                <select class="options-inner">
-                                    <option value="volvo">Sort by: Default sorting</option>
-                                    <option value="mercedes">Sort by average rating</option>
-                                    <option value="audi">Sort by newness</option>
-                                    <option value="audi">Sort by price: low to high</option>
-                                    <option value="audi">Sort by price: high to low</option>
-                                </select>
-                            </form>
-                            <form action="#" class="option-select">
-                                <select class="options-inner">
-                                    <option value="12">Show: 12 items per page</option>
-                                    <option value="16"> 16 items per page</option>
-                                    <option value="20"> 20 items per page</option>
-                                    <option value="24"> 24 items per page</option>
-                                </select>
-                            </form>
+                    <form action="{{ route('product.list') }}" method="get">
+                        <div class="col-sm-8 col-md-8">
+                            <div class="toolbar-form">
+                                <div class="option-select">
+                                    <select name="short" class="options-inner" onchange="this.form.submit()">
+                                        <option value="new-first">Sort by newness</option>
+                                        <option value="low-to-high">Sort by price: low to high</option>
+                                        <option value="high-to-low">Sort by price: high to low</option>
+                                    </select>
+                                </div>
+                                <div class="option-select">
+                                    <select name="pagination" class="options-inner"  onchange="this.form.submit()">
+                                        <option value="12">Show: 12 items per page</option>
+                                        <option value="18"> 18 items per page</option>
+                                        <option value="20"> 20 items per page</option>
+                                        <option value="24"> 24 items per page</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                     <div class="col-sm-4 col-md-4">
                         <!-- Nav tabs -->
                         <ul role="tablist" class="tab-icons pull-right">
@@ -83,16 +83,15 @@
                                         <!-- End Product Image -->
 
                                         <!-- Start Product Hidden Info -->
-                                        <!--<div class="product-hidden-info">
+                                       <div class="product-hidden-info">
                                             <div class="quick-view">
                                                 <a href="#" class="modal-view detail-link quickview" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i>Quick View</a>
+                                                <a href="javascript:void(0)" data-id="{{$cat_product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+
                                             </div>
 
-                                            <div class="wish-list-area">
-                                                <a href="#" class="wish-list"><i aria-hidden="true" class="fa fa-heart-o"></i> Wish List</a>
-                                                <a href="#" class="compare"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
-                                            </div>
-                                        </div>-->
+                                            
+                                        </div>
                                         <!-- End Product Hidden Info -->
                                     </div>
                                     <!-- End Product Thumbnail -->
@@ -141,20 +140,25 @@
                                      $price = $cat_product->price - $cat_product->discount;
                                    @endphp
                                 <span class="price">
-                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@endif
+                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@else <span><del>0.00</del></span>@endif
                                 </span>
-                                        <span class="add-to-cart"><a href="{{route('product.details', $cat_product->slug)}}"><i class="fa fa-eye" aria-hidden="true"></i>View Detail</a></span>
-                                    </div>
+                                  
+                                <span class="add-to-cart"><a href="{{route('product.details', $cat_product->slug)}}"><i class="fa fa-eye" aria-hidden="true"></i>View Detail</a></span>
+   
+                            </div>
                                     <!-- End Prodcut Price Area -->
+
                                </div>
                                <!-- End Single Prodcut -->
                             </div>
                            @endforeach
                         </div>
                         <!-- Start Product Paginations -->
-                        <!--<div class="prodcuts-pagination">
+                    <div class="prodcuts-pagination">
                             <div class="col-xs-12 col-sm-12 col-md-12">
-                                <ul class="licuan-pagination">
+                            {!! $products->links('frontend.library.pagination.custom') !!}
+
+                                <!--<ul class="licuan-pagination">
                                     <li class="pre-page"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
                                     <li class="current"><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
@@ -162,9 +166,9 @@
                                     <li><a href="#">4</a></li>
                                     <li><a href="#">5</a></li>
                                     <li class="next-page"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                </ul>
+                                </ul>-->
                             </div>
-                        </div>	-->
+                        </div>	
                         <!-- End Product Paginations -->
                     </div>
                     <!-- End Grid products -->
@@ -243,17 +247,16 @@
                                      $price = $cat_product->price - $cat_product->discount;
                                    @endphp
                                 <span class="price">
-                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@endif
+                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@else <span><del>0.00</del></span>@endif
                                 </span>
                                                 <span class="add-to-cart">
                                                     <a href="{{route('product.details', $cat_product->slug)}}"   ><i class="fa fa-eye" aria-hidden="true"></i><span>View Details</span></a>
                                                 </span>
+
                                                 <!-- Start Wish List  -->
-                                               <!-- <span class="listview-wishlist">
-                                                    <a href="#"><i aria-hidden="true" class="fa fa-heart-o"></i> Wish List</a>
-                                                    <a href="#"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
-                                                </span>-->
-                                                <!-- End Wish List  -->
+                                            <span class="listview-wishlist">
+                                           <a href="javascript:void(0)" data-id="{{$cat_product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+                                                </span>
                                             </div>
                                             <!-- Start Prodcut Price Area -->
                                        </div>
@@ -267,9 +270,11 @@
                         </div>
                         <!-- End Product List View -->
                         <!-- Start Pagination -->
-                      <!--<div class="licuan-pagination-area">
+                      <div class="licuan-pagination-area">
                             <div class="col-md-12">
-                                <ul class="licuan-pagination">
+                            {!! $products->links('frontend.library.pagination.custom') !!}
+
+                               <!-- <ul class="licuan-pagination">
                                     <li class="pre-page"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
                                     <li class="current"><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
@@ -277,9 +282,9 @@
                                     <li><a href="#">4</a></li>
                                     <li><a href="#">5</a></li>
                                     <li class="next-page"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                </ul>
+                                </ul>-->
                             </div>
-                        </div>	-->
+                        </div>	
                         <!-- End Pagination -->
                     </div>
                     <!-- End List products -->
