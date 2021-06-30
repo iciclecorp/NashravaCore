@@ -394,7 +394,7 @@
             <li class="nav-item ">
                 <a href="{{route('application.setting')}}" class="nav-link">
                     <i class="nav-icon fas fa-copy"></i>
-                    <p style="{{ Request::is('*/setting') ? 'color:#faf619;' : '' }}">Local Selling Report</p>
+                    <p style="{{ Request::is('*/setting') ? 'color:#faf619;' : '' }}">Application Setting</p>
                 </a>
             </li>
         </ul>
