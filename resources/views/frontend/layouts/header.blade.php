@@ -74,11 +74,11 @@
                         <!-- Start Social Icons -->
                         <div class="social-icons top-sicons">
                             <ul>
-                                <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss-square"></i></a></li>
+                                <li><a href="{{ get_static_option('facebook') }}"><i class="fa fa-facebook-square"></i></a></li>
+                                <li><a href="{{ get_static_option('twitter') }}"><i class="fa fa-twitter-square"></i></a></li>
+                                <li><a href="{{ get_static_option('linkedin') }}"><i class="fa fa-linkedin-square"></i></a></li>
+                                <li><a href="{{ get_static_option('google') }}"><i class="fa fa-google-plus-square"></i></a></li>
+                                <li><a href="{{ get_static_option('rss') }}"><i class="fa fa-rss-square"></i></a></li>
                             </ul>
                         </div>
                         <!-- End Social Icons -->

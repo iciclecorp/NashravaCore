@@ -25,6 +25,8 @@ class ApplicationController extends Controller
             'google' => 'required|string',
             'rss' => 'required|string',
             'banner_image' => 'nullable|image',
+            'newarrival_image' => 'nullable|image',
+
         ]);
 
         update_static_option('mobile', $request->mobile);
@@ -40,6 +42,12 @@ class ApplicationController extends Controller
             $request->file('banner_image')->move($path, $image_name);
             update_static_option('banner_image', $path.$image_name);
       }
+      if($request->hasFile('newarrival_image')){
+        $path = 'public/upload/newarrival_image/';
+        $image_name= str_random(40) . '.' . $request->newarrival_image->extension();
+        $request->file('newarrival_image')->move($path, $image_name);
+        update_static_option('newarrival_image', $path.$image_name);
+  }
 
         return back()->with('success','Successfully updated');
     }

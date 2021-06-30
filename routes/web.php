@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','frontend\FrontendController@index');
-//Route::get('/product-list','frontend\FrontendController@productList')->name('product.list');
+Route::get('/newarrivals','frontend\FrontendController@newarrivalProductList')->name('newarrivalproduct.list');
 Route::get('/product-list','frontend\ProductFilterController@allProductList')->name('product.list');
 
 Route::get('/category-wise-product-list/{id}','frontend\ProductFilterController@catProductList')->name('category.wise.product');
@@ -85,6 +85,9 @@ Route::resource('product','backend\ProductController');
 Route::get('product/changeStatus/{id}', 'backend\ProductController@changeStatus')->name('best.change.status');
 Route::get('feature/product/changeStatus/{id}', 'backend\ProductController@featureChangeStatus')->name('featured.change.status');
 Route::get('offers/product/changeStatus/{id}', 'backend\ProductController@offersChangeStatus')->name('offer.change.status');
+Route::get('/new_arrival/products','backend\ProductController@newarrival_index')->name('newarrival.index');
+
+Route::get('new_arrivals/product/changeStatus/{id}', 'backend\ProductController@newarrivalChangeStatus')->name('newarrival.change.status');
 
 
 Route::resource('category','backend\CategoryController');

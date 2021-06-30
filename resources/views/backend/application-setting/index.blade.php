@@ -96,12 +96,25 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="banner_image">Banner image</label>
+                                            <label for="banner_image">Category Menu Banner image</label>
                                             <input type="file" name="banner_image" value="{{ get_static_option('banner_image') }}" id="banner_image" class="form-control">
                                             <div class="image">
                                                 <img src="{{ asset(get_static_option('banner_image')) }}" width="100" class="img-circle elevation-2">
                                             </div>
                                             @error('banner_image')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="banner_image">New Arrival Banner image</label>
+                                            <input type="file" name="newarrival_image" value="{{ get_static_option('newarrival_image') }}" id="newarrival_image" class="form-control">
+                                            <div class="image">
+                                                <img src="{{ asset(get_static_option('newarrival_image')) }}" width="100" class="img-circle elevation-2">
+                                            </div>
+                                            @error('newarrival_image')
                                             <div class="alert alert-danger" role="alert">
                                                 {{ $message }}
                                             </div>

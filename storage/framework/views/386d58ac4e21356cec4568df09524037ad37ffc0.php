@@ -4,21 +4,21 @@
         <div class="header-top">
             <div class="container">
                 <div class="row">
-                    <div class="hidden-sm hidden-xs col-md-6"> 
+                    <div class="hidden-sm hidden-xs col-md-6">
                         <!-- Topbar Menu -->
-                        <div class="topbar-menu"> 
+                        <div class="topbar-menu">
                             <ul>
                                 <li class="drop">
 
                                      <!--<a data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-globe" aria-hidden="true"></i>English</a>
                                     <ul class="dropdown-menu">
 
-                                        <li><a href="#">Bangla</a></li>								
+                                        <li><a href="#">Bangla</a></li>
                                         <li><a href="#">French</a></li>
                                         <li><a href="#">German</a></li>
                                         <li><a href="#">Spanish</a></li>
                                     </ul> -->
-                                </li>						  
+                                </li>
                                 <li><a href="callto:<?php echo e(get_static_option('mobile')); ?>"><i aria-hidden="true" class="fa fa-phone-square"></i><?php echo e(get_static_option('mobile')); ?></a></li>
                                 <li><a href="mailto:<?php echo e(get_static_option('email')); ?>"><i class="fa fa-envelope-square" aria-hidden="true"></i><?php echo e(get_static_option('email')); ?></a></li>
                             </ul>
@@ -27,14 +27,14 @@
                     </div>
                     <div class="col-xs-12 col-sm-8 col-md-4">
                         <!-- Topbar Menu -->
-                        <div class="topbar-menu"> 
+                        <div class="topbar-menu">
                             <ul>
                                 <li class="drop">
                                     <a data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-cogs" aria-hidden="true"></i>Account</a>
-                                    
-                    
-                                   
-                                   
+
+
+
+
                                     <ul class="dropdown-menu">
                                     <?php if(@Auth::user()->id != Null): ?>
                                         <li><a href="<?php echo e(route('dashboard')); ?>">My Account</a></li>
@@ -50,13 +50,13 @@
                                     </form></li>
                                      <?php else: ?>
                                         <li><a href="<?php echo e(route('customer.login')); ?>">Login</a></li>
-                                        								
+
                                         <li><a href="<?php echo e(route('customer.signup')); ?>">Register</a></li>
                                         <?php endif; ?>
                                     </ul>
-                                </li>	
+                                </li>
                              <li>
-                               
+
                                         <form id="cpform" method="POST" action="<?php echo e(route('cart.compare')); ?>" onsubmit="target_popup(this)">
                                         <?php echo e(csrf_field()); ?>
 
@@ -67,20 +67,20 @@
                                                 </button>
 
 												</form>
-                                </li> 	
+                                </li>
                             </ul>
                         </div>
                         <!-- End Topbar Menu -->
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-2">
                         <!-- Start Social Icons -->
-                        <div class="social-icons top-sicons"> 
+                        <div class="social-icons top-sicons">
                             <ul>
-                                <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-google-plus-square"></i></a></li>
-                                <li><a href="#"><i class="fa fa-rss-square"></i></a></li>
+                                <li><a href="<?php echo e(get_static_option('facebook')); ?>"><i class="fa fa-facebook-square"></i></a></li>
+                                <li><a href="<?php echo e(get_static_option('twitter')); ?>"><i class="fa fa-twitter-square"></i></a></li>
+                                <li><a href="<?php echo e(get_static_option('linkedin')); ?>"><i class="fa fa-linkedin-square"></i></a></li>
+                                <li><a href="<?php echo e(get_static_option('google')); ?>"><i class="fa fa-google-plus-square"></i></a></li>
+                                <li><a href="<?php echo e(get_static_option('rss')); ?>"><i class="fa fa-rss-square"></i></a></li>
                             </ul>
                         </div>
                         <!-- End Social Icons -->
@@ -88,7 +88,7 @@
                 </div>
             </div>
         </div>
-        <!-- End Header Top -->	
+        <!-- End Header Top -->
         <!-- Header Bottom -->
         <div class="header-bottom-area">
             <div class="container">
@@ -97,48 +97,48 @@
                     <div class="col-md-12">
                         <div class="header-bottom-inner">
                             <!-- Start Header Bottom Inner -->
-                            <div class="header-navigation">  
+                            <div class="header-navigation">
                                 <div class="logo-area">
                                     <!-- Start Logo -->
                                     <div class="logo">
-                                        <a href="http://nashrava.co/"><img src="<?php echo e(asset('public/frontend/img/logo/logo-2.png')); ?>" alt="" /></a>
+                                        <a href="<?php echo e(url('/')); ?>"><img src="<?php echo e(asset('public/frontend/img/logo/logo-2.png')); ?>" alt="" /></a>
                                     </div>
                                     <!-- End Logo -->
                                 </div>
-                                <!-- Start Menu Area -->				
-                                <div class="menu-area"> 
+                                <!-- Start Menu Area -->
+                                <div class="menu-area">
                                     <!-- Start Mobile Menu Active Area -->
                                     <div class="mobile-menu-area"></div>
                                     <!-- End Mobile Menu Active Area -->
                                     <!-- Start Main Menu  -->
                                     <nav class="main-menu">
                                         <ul>
-                                            <li class="active home"><a href="<?php echo e(url('/')); ?>">Home</a> 
-                                               										
+                                            <li class="active home"><a href="<?php echo e(url('/')); ?>">Home</a>
+
                                             </li>
                                             <li class="drop mega-menu hidden-xs hidden-sm"><a href="#">Category</a> <!-- Women -->
                                                 <!-- Start Mega Menu -->
-                                                <div class="mega-wrap" style=" background: #fff url("<?php echo e(asset(get_static_option('banner_image'))); ?>") no-repeat scroll right top;">
+                                                <div class="mega-wrap" style=" background: #fff url(<?php echo e(asset(get_static_option('banner_image'))); ?>) no-repeat scroll right top;">
                                                     <ul>
                                                     <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <li>
                                                             <ul>
-                                                            <?php 
+                                                            <?php
                                          $subcategories=App\Model\SubCategory::where('category_id',$category->id)->get();
                                        ?>
                                                                 <li><a href="<?php echo e(route('category.wise.product',$category->id)); ?>"><h3><?php echo e($category->category_name); ?></h3></a></li> <!-- Tops -->
-                                                                <?php $__currentLoopData = $subcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>  
+                                                                <?php $__currentLoopData = $subcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
                                                                 <li><a href="<?php echo e(route('sub.category.wise.product',$subcategory->id)); ?>"><?php echo e($subcategory->sub_category_name); ?></a></li>
                                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </ul>
                                                         </li>
                                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                       
-                                                      														
-                                                    </ul>	
+
+
+                                                    </ul>
                                                 </div>
-                                                <!-- End Mega Menu -->										
+                                                <!-- End Mega Menu -->
                                             </li>
                                             <li class="drop"><a href="#">Brands</a> <!-- Pages -->
                                                 <ul>
@@ -146,7 +146,7 @@
                                   <li><a href="<?php echo e(route('brand.wise.product',$brand->id)); ?>"><?php echo e($brand->brand_name); ?></a></li>
                                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </ul></li>
-                                            <!--<li class="drop"><a href="#">Pages</a> 
+                                            <!--<li class="drop"><a href="#">Pages</a>
                                                 <ul>
                                                     <li><a href="blog.html">Blog</a></li>
                                                     <li><a href="blog-detail.html">Blog Details</a></li>
@@ -168,11 +168,11 @@
                                                     <li><a href="wishlist.html">Wishlist</a></li>
                                                     <li><a href="contact.html">Contact Us</a></li>
                                                 </ul>
-                                            </li>								
+                                            </li>
                                             <li><a href="#">About</a></li>  -->
                                         </ul>
                                     </nav>
-                                    <!-- End Main Menu  -->	
+                                    <!-- End Main Menu  -->
                                 </div>
                                 <!-- End Menu Area -->
                             </div>
@@ -185,4 +185,5 @@
         </div>
         <!-- End Header Bottom -->
     </header>
-    <!--End Start Header<?php /**PATH F:\xampp\htdocs\NashravaCore\resources\views/frontend/layouts/header.blade.php ENDPATH**/ ?>
+    <!--End Start Header
+<?php /**PATH F:\xampp\htdocs\NashravaCore\resources\views/frontend/layouts/header.blade.php ENDPATH**/ ?>

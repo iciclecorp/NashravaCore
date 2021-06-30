@@ -43,9 +43,9 @@ class FrontendController extends Controller
 
     }  
 
-    public function productList(){
-    	return view('frontend.single_page.product-list',[
-                'products' => Product::orderBy('id','desc')->get(),
+    public function newarrivalProductList(){
+    	return view('frontend.single_page.newarrivals',[
+                'products' => Product::where('new_arrival',1)->orderBy('id','desc')->paginate(5),
                 'categories' => Category::orderBy('id','desc')->get(),
                 'sub_categories' => SubCategory::orderBy('id','desc')->get(),
                 'brands' => Brand::orderBy('id','desc')->get(),

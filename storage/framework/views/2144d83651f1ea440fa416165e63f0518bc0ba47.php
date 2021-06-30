@@ -102,6 +102,12 @@
               </li>
             </ul>
           </li>
+          <li class="nav-item">
+                <a href="<?php echo e(route('newarrival.index')); ?>" class="nav-link <?php echo e(Request::is('admin/new_arrival/products') ? 'active' : ''); ?>">
+                  <i class="fas fa-copy nav-icon"></i>
+                  <p style="color:#ffffff;">New Arrivals</p>
+                </a>
+              </li>
           <li class="nav-item has-treeview  <?php if(Request::is('admin/product') || Request::is('admin/product-measurement') ): ?>
            menu-open
           <?php endif; ?>" id="side_product" >
@@ -129,6 +135,7 @@
                 </a>
               </li>
             </ul>
+            
           </li>
            <li class="nav-item has-treeview  <?php if(Request::is('admin/invoice') ): ?>
            menu-open

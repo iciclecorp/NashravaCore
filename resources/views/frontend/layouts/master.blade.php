@@ -33,7 +33,9 @@
 		<link rel="stylesheet" href="{{asset('public/frontend/style.css')}}">
 		<link rel="stylesheet" href="{{asset('public/frontend/css/colors.css')}}">
 		<!-- responsive css -->
-        <link rel="stylesheet" href="{{asset('public/frontend/css/responsive.css')}}">
+		<link rel="stylesheet" href="{{asset('public/frontend/css/responsive.css')}}">
+		<link rel="stylesheet" href="{{ asset('public/backend/plugins/sweetalert2/sweetalert2.min.css') }}">
+
 		<!-- modernizr css -->
         <script src="{{asset('public/frontend/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 
@@ -68,6 +70,8 @@
 	<script src="{{asset('public/frontend/js/wow.min.js')}}"></script>
 	<!-- plugins js -->
 	<script src="{{asset('public/frontend/js/plugins.js')}}"></script>
+	<script src="{{ asset('public/backend/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
 	<!-- main js -->
 	<script src="{{asset('public/frontend/js/main.js')}}"></script>
 	<script>
@@ -94,20 +98,15 @@ var  clickCounter = localStorage.getItem('clickCounter')
   
    clickCounter++;
    //$(this).data('clickCounter', clickCounter);
-		if(clickCounter>10){
+		if(clickCounter){
 			Swal.fire({
-        text: 'Already Added to Compare',
+        text: 'Added to Compare',
 		type: 'success',
 		timer: 2000,
 		showCancelButton: false,
   showConfirmButton: false
         
       })
-
-		}
-		else{
-
-        
 
 		if(!cpid){
 			fieldArray.push($(this).data("id"));
