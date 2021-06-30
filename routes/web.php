@@ -176,5 +176,7 @@ Route::get('/show-cart','backend\CartController@showCart')->name('show.cart');
 Route::post('/update-cart','backend\CartController@updateCart')->name('update.cart');
 Route::get('/delete-cart/{rowId}','backend\CartController@deleteCart')->name('delete.cart');
 Route::resource('cart','backend\CartDeleteController');
+Route::get('setting','backend\ApplicationController@index')->name('application.setting');
+Route::post('setting','backend\ApplicationController@update');
 });
 
