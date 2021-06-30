@@ -52,10 +52,13 @@
                            <font style="color:#e60000">
                                  {{($errors->has('image'))?($errors->first('image')):' '}}
                            </font>
+
+                           <img id="showImage" src="{{url('public/upload/no image found.jpg')}}" style="width:150px;height:160px;border:1px solid #000;">
+
                        </div>
                         <div class="form-group col-md-4">
                            
-                           <img id="showImage" src="{{url('public/upload/no image found.jpg')}}" style="width:150px;height:160px;border:1px solid #000;">
+
                        </div>
                         
                           <div class="form-group col-md-6" style="padding-top: 30px">

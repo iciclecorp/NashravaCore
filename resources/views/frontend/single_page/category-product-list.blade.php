@@ -152,9 +152,11 @@
                            @endforeach
                         </div>
                         <!-- Start Product Paginations -->
-                        <!--<div class="prodcuts-pagination">
+                    <div class="prodcuts-pagination">
                             <div class="col-xs-12 col-sm-12 col-md-12">
-                                <ul class="licuan-pagination">
+                            {!! $cat_products->links('frontend.library.pagination.custom') !!}
+
+                                <!--<ul class="licuan-pagination">
                                     <li class="pre-page"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
                                     <li class="current"><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
@@ -162,9 +164,9 @@
                                     <li><a href="#">4</a></li>
                                     <li><a href="#">5</a></li>
                                     <li class="next-page"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                </ul>
+                                </ul>-->
                             </div>
-                        </div>	-->
+                        </div>	
                         <!-- End Product Paginations -->
                     </div>
                     <!-- End Grid products -->
@@ -267,9 +269,11 @@
                         </div>
                         <!-- End Product List View -->
                         <!-- Start Pagination -->
-                      <!--<div class="licuan-pagination-area">
+                      <div class="licuan-pagination-area">
                             <div class="col-md-12">
-                                <ul class="licuan-pagination">
+                            {!! $cat_products->links('frontend.library.pagination.custom') !!}
+
+                               <!-- <ul class="licuan-pagination">
                                     <li class="pre-page"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
                                     <li class="current"><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
@@ -277,9 +281,9 @@
                                     <li><a href="#">4</a></li>
                                     <li><a href="#">5</a></li>
                                     <li class="next-page"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                </ul>
+                                </ul>-->
                             </div>
-                        </div>	-->
+                        </div>	
                         <!-- End Pagination -->
                     </div>
                     <!-- End List products -->

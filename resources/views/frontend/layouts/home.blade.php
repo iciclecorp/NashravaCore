@@ -39,10 +39,13 @@
                 <div class="col-xm-12 col-sm-8 col-md-6 col-md-offset-3">
                     <!-- Start Serach Box Area -->
                     <div class="search-box-area">
-                        <form action="#">
-                            <input type="search" class="cat-search-box" name="googlesearch" placeholder="Enter search your key" >
+
+                    <form action="{{route('search')}}" method="get" onkeypress="this.form.submit()">
+                            <input type="search" class="cat-search-box" name="search" placeholder="Enter your keyword" >
                             <i class="fa fa-search"></i>
-                        </form>
+                        </form>	
+                        			
+
                     </div>
                     @php
                             $contents = Cart::content();
