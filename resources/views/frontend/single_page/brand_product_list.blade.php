@@ -33,23 +33,27 @@
                 <div class="prodcut-toolbar"> 
                     <div class="col-sm-8 col-md-8">
                         <div class="toolbar-form">
-                            <form action="#" class="option-select">
-                                <select class="options-inner">
-                                    <option value="volvo">Sort by: Default sorting</option>
-                                    <option value="mercedes">Sort by average rating</option>
-                                    <option value="audi">Sort by newness</option>
-                                    <option value="audi">Sort by price: low to high</option>
-                                    <option value="audi">Sort by price: high to low</option>
-                                </select> 
-                            </form>
-                            <form action="#" class="option-select">
-                                <select class="options-inner">
-                                    <option value="12">Show: 12 items per page</option>
-                                    <option value="16"> 16 items per page</option>
-                                    <option value="20"> 20 items per page</option>
-                                    <option value="24"> 24 items per page</option>
-                                </select> 
-                            </form>								
+                        <form action="{{ route('brand.wise.product', $cat_name->id) }}" method="get">
+                        <div class="col-sm-8 col-md-8">
+                            <div class="toolbar-form">
+                                <div class="option-select">
+                                    <select name="short" class="options-inner" onchange="this.form.submit()">
+                                        <option value="new-first">Sort by newness</option>
+                                        <option value="low-to-high">Sort by price: low to high</option>
+                                        <option value="high-to-low">Sort by price: high to low</option>
+                                    </select>
+                                </div>
+                                <div class="option-select">
+                                    <select name="pagination" class="options-inner"  onchange="this.form.submit()">
+                                        <option value="12">Show: 12 items per page</option>
+                                        <option value="18"> 18 items per page</option>
+                                        <option value="20"> 20 items per page</option>
+                                        <option value="24"> 24 items per page</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>								
                         </div>
                     </div>
                     <div class="col-sm-4 col-md-4">
@@ -152,9 +156,12 @@
                            @endforeach					
                         </div>
                         <!-- Start Product Paginations -->
-                        <!--<div class="prodcuts-pagination"> 
+                        <div class="prodcuts-pagination"> 
                             <div class="col-xs-12 col-sm-12 col-md-12"> 
-                                <ul class="licuan-pagination">
+                            {!! $brand_products->links('frontend.library.pagination.custom') !!}
+
+                               <!-- <ul class="licuan-pagination">
+
                                     <li class="pre-page"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
                                     <li class="current"><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
@@ -162,9 +169,9 @@
                                     <li><a href="#">4</a></li>
                                     <li><a href="#">5</a></li>
                                     <li class="next-page"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                </ul>	
+                                </ul>-->
                             </div>					
-                        </div>	-->
+                        </div>	
                         <!-- End Product Paginations -->						
                     </div>	
                     <!-- End Grid products -->
@@ -267,9 +274,11 @@
                         </div>
                         <!-- End Product List View -->
                         <!-- Start Pagination -->
-                      <!--<div class="licuan-pagination-area"> 
+                      <div class="licuan-pagination-area"> 
                             <div class="col-md-12"> 
-                                <ul class="licuan-pagination">
+                            {!! $brand_products->links('frontend.library.pagination.custom') !!}
+
+                              <!--  <ul class="licuan-pagination">
                                     <li class="pre-page"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
                                     <li class="current"><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
@@ -277,9 +286,9 @@
                                     <li><a href="#">4</a></li>
                                     <li><a href="#">5</a></li>
                                     <li class="next-page"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-                                </ul>	
+                                </ul>	-->
                             </div>					
-                        </div>	-->						  
+                        </div>						  
                         <!-- End Pagination -->
                     </div>
                     <!-- End List products -->

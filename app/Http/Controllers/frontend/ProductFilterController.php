@@ -43,12 +43,40 @@ class ProductFilterController extends Controller
          ]);
     }
 
+
+    public function catProductListShort(Request $request, $id){
+         // return ($cat_product)->toArray();
+         return view('frontend.single_page.category-product-list',[
+
+            'cat_products' => Product::where('category_id',$id)->orderBy('id','desc')->paginate($request->pagination),
+            'categories' => Category::orderBy('id','desc')->get(),
+            'cat_name' => Category::orderBy('id','desc')->where('id',$id)->first(),
+
+            'sub_categories' => SubCategory::orderBy('id','desc')->get(),
+            'brands' => Brand::orderBy('id','desc')->get(),
+         ]);
+    }
+
     public function subCatProductList($id){
+        if(request()->short == 'new-first'){
+                $sub_cat_products = Product::where('sub_category_id',$id)->orderBy('created_at', 'desc');
+            }else if(request()->short == 'low-to-high'){
+                $sub_cat_products = Product::where('sub_category_id',$id)->orderBy('price', 'asc');
+            }else if(request()->short == 'high-to-low'){
+                $sub_cat_products = Product::where('sub_category_id',$id)->orderBy('price', 'desc');
+            }else{
+                $sub_cat_products = Product::where('sub_category_id',$id)->orderBy('created_at', 'desc');
+            }
+    
+            $sub_cat_products = $sub_cat_products->paginate(request()->pagination ?? '20');
+
 
          // return ($cat_product)->toArray();
          return view('frontend.single_page.sub-category-product-list',[
 
-            'sub_cat_products' => Product::where('sub_category_id',$id)->orderBy('id','desc')->get(),
+
+            'sub_cat_products' =>  $sub_cat_products,
+
             'sub_categories' => SubCategory::orderBy('id','desc')->get(),
             'cat_name' => SubCategory::orderBy('id','desc')->where('id',$id)->first(),
 
@@ -57,9 +85,35 @@ class ProductFilterController extends Controller
          ]);
     }
 
+
+    public function subcatProductListShort(Request $request, $id){
+        // return ($cat_product)->toArray();
+        return view('frontend.single_page.sub-category-product-list',[
+
+           'sub_cat_products' => Product::where('sub_category_id',$id)->orderBy('id','desc')->paginate($request->pagination),
+           'categories' => Category::orderBy('id','desc')->get(),
+           'cat_name' => SubCategory::orderBy('id','desc')->where('id',$id)->first(),
+
+           'sub_categories' => SubCategory::orderBy('id','desc')->get(),
+           'brands' => Brand::orderBy('id','desc')->get(),
+        ]);
+   }
+
     public function brandProductList($id){
+        if(request()->short == 'new-first'){
+                $brand_products = Product::where('brand_id',$id)->orderBy('created_at', 'desc');
+            }else if(request()->short == 'low-to-high'){
+                $brand_products = Product::where('brand_id',$id)->orderBy('price', 'asc');
+            }else if(request()->short == 'high-to-low'){
+                $brand_products = Product::where('brand_id',$id)->orderBy('price', 'desc');
+            }else{
+                $brand_products = Product::where('brand_id',$id)->orderBy('created_at', 'desc');
+            }
+    
+            $brand_products = $brand_products->paginate(request()->pagination ?? '20');
     	    return view('frontend.single_page.brand_product_list',[
-    	    'brand_products' => Product::where('brand_id',$id)->orderBy('id','desc')->get(),
+    	    'brand_products' => $brand_products,
+
             'categories' => Category::orderBy('id','desc')->get(),
             'cat_name' => Brand::orderBy('id','desc')->where('id',$id)->first(),
 
@@ -67,6 +121,20 @@ class ProductFilterController extends Controller
             'brands' => Brand::orderBy('id','desc')->get(),
         ]);
     }
+
+
+    public function brandProductListShort(Request $request, $id){
+        // return ($cat_product)->toArray();
+        return view('frontend.single_page.brand_product_list',[
+
+           'brand_products' => Product::where('brand_id',$id)->orderBy('id','desc')->paginate($request->pagination),
+           'categories' => Category::orderBy('id','desc')->get(),
+           'cat_name' =>Brand::orderBy('id','desc')->where('id',$id)->first(),
+
+           'sub_categories' => SubCategory::orderBy('id','desc')->get(),
+           'brands' => Brand::orderBy('id','desc')->get(),
+        ]);
+   }
 
      public function  priceProductList (Request $request){
 
