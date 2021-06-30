@@ -54,6 +54,7 @@
                             </div>
                         </div>
                     </form>								
+
                         </div>
                     </div>
                     <div class="col-sm-4 col-md-4">
@@ -161,6 +162,7 @@
                             {!! $sub_cat_products->links('frontend.library.pagination.custom') !!}
 
                                <!-- <ul class="licuan-pagination">
+
                                     <li class="pre-page"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
                                     <li class="current"><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>

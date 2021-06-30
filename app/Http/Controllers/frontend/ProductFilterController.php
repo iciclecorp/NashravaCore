@@ -43,6 +43,7 @@ class ProductFilterController extends Controller
          ]);
     }
 
+
     public function catProductListShort(Request $request, $id){
          // return ($cat_product)->toArray();
          return view('frontend.single_page.category-product-list',[
@@ -69,10 +70,13 @@ class ProductFilterController extends Controller
     
             $sub_cat_products = $sub_cat_products->paginate(request()->pagination ?? '20');
 
+
          // return ($cat_product)->toArray();
          return view('frontend.single_page.sub-category-product-list',[
 
+
             'sub_cat_products' =>  $sub_cat_products,
+
             'sub_categories' => SubCategory::orderBy('id','desc')->get(),
             'cat_name' => SubCategory::orderBy('id','desc')->where('id',$id)->first(),
 
@@ -80,6 +84,7 @@ class ProductFilterController extends Controller
             'brands' => Brand::orderBy('id','desc')->get(),
          ]);
     }
+
 
     public function subcatProductListShort(Request $request, $id){
         // return ($cat_product)->toArray();
@@ -108,6 +113,7 @@ class ProductFilterController extends Controller
             $brand_products = $brand_products->paginate(request()->pagination ?? '20');
     	    return view('frontend.single_page.brand_product_list',[
     	    'brand_products' => $brand_products,
+
             'categories' => Category::orderBy('id','desc')->get(),
             'cat_name' => Brand::orderBy('id','desc')->where('id',$id)->first(),
 
@@ -115,6 +121,7 @@ class ProductFilterController extends Controller
             'brands' => Brand::orderBy('id','desc')->get(),
         ]);
     }
+
 
     public function brandProductListShort(Request $request, $id){
         // return ($cat_product)->toArray();

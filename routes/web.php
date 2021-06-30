@@ -17,7 +17,6 @@ Route::get('/','frontend\FrontendController@index');
 Route::get('/product-list','frontend\FrontendController@productList')->name('product.list');
 Route::get('/category-wise-product-list/{id}','frontend\ProductFilterController@catProductList')->name('category.wise.product');
 
-
 Route::get('/get-shopping-cost','frontend\ProductFilterController@getShippingCost')->name('get-shopping-cost');
 Route::get('/sub-category-wise-product-list/{id}','frontend\ProductFilterController@subCatProductList')->name('sub.category.wise.product');
 

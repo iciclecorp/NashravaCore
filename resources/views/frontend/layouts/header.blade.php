@@ -9,8 +9,10 @@
                         <div class="topbar-menu"> 
                             <ul>
                                 <li class="drop">
+
                                      <!--<a data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-globe" aria-hidden="true"></i>English</a>
                                     <ul class="dropdown-menu">
+
                                         <li><a href="#">Bangla</a></li>								
                                         <li><a href="#">French</a></li>
                                         <li><a href="#">German</a></li>

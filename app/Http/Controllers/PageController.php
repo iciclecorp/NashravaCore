@@ -32,7 +32,6 @@ class PageController extends Controller
            where('title', 'LIKE', '%'.$search_text.'%')
           ->orwhere('price', 'LIKE', '%'.$search_text.'%')
           ->orwhere('details', 'LIKE', '%'.$search_text.'%')->paginate(5);
-
           // $data['opinions'] = Opinion::
           //  where('title', 'LIKE', '%'.$search_text.'%')
           // ->orwhere('name', 'LIKE', '%'.$search_text.'%')
