@@ -19,8 +19,8 @@
                                         <li><a href="#">Spanish</a></li>
                                     </ul> -->
                                 </li>						  
-                                <li><a href="callto:+8801973-833508"><i aria-hidden="true" class="fa fa-phone-square"></i>+88 01973-833508</a></li>
-                                <li><a href="#"><i class="fa fa-envelope-square" aria-hidden="true"></i>info@nashrava.co</a></li>
+                                <li><a href="callto:<?php echo e(get_static_option('mobile')); ?>"><i aria-hidden="true" class="fa fa-phone-square"></i><?php echo e(get_static_option('mobile')); ?></a></li>
+                                <li><a href="mailto:<?php echo e(get_static_option('email')); ?>"><i class="fa fa-envelope-square" aria-hidden="true"></i><?php echo e(get_static_option('email')); ?></a></li>
                             </ul>
                         </div>
                         <!-- End Topbar Menu -->
@@ -118,7 +118,7 @@
                                             </li>
                                             <li class="drop mega-menu hidden-xs hidden-sm"><a href="#">Category</a> <!-- Women -->
                                                 <!-- Start Mega Menu -->
-                                                <div class="mega-wrap">
+                                                <div class="mega-wrap" style=" background: #fff url("<?php echo e(asset(get_static_option('banner_image'))); ?>") no-repeat scroll right top;">
                                                     <ul>
                                                     <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <li>

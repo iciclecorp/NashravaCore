@@ -26,6 +26,7 @@ class ApplicationController extends Controller
             'rss' => 'required|string',
             'banner_image' => 'nullable|image',
         ]);
+
         update_static_option('mobile', $request->mobile);
         update_static_option('email', $request->email);
         update_static_option('facebook', $request->facebook);
@@ -33,7 +34,12 @@ class ApplicationController extends Controller
         update_static_option('linkedin', $request->linkedin);
         update_static_option('google', $request->google);
         update_static_option('rss', $request->rss);
-        update_static_option('banner_image', $request->banner_image);
+        if($request->hasFile('banner_image')){
+            update_static_option('banner_image', $request->file('banner_image')
+            ->move('public/upload/banner_image/', str_random(40) . '.' . $request->banner_image->extension()));
+ 
+      }
+       
         return back()->with('success','Successfully updated');
     }
 }
