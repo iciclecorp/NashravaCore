@@ -62,7 +62,9 @@
                   <p style="color:#faf619;"><?php echo e(__('sidebar.view_profile')); ?></p>
                 </a>
               </li>
-            </ul>  
+
+            </ul>
+
               <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="<?php echo e(route('view.password')); ?>" class="nav-link <?php echo e(Request::is('admin/view-password') ? 'active' : ''); ?>">
@@ -100,7 +102,6 @@
               </li>
             </ul>
           </li>
-          
           <li class="nav-item has-treeview  <?php if(Request::is('admin/product') || Request::is('admin/product-measurement') ): ?>
            menu-open
           <?php endif; ?>" id="side_product" >
@@ -193,7 +194,9 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p style="color:#ffffff;">
-               Order Management 
+
+               Order Management
+
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -214,7 +217,7 @@
               </li>
             </ul>
           </li>
-          
+
           <li class="nav-item has-treeview <?php if(Request::is('admin/customer/index') || Request::is('admin/customer/draft/view') || Request::is('admin/local/customer/view') || Request::is('admin/local/customer/due-list')): ?>
            menu-open
           <?php endif; ?>" id="side_customer" >
@@ -277,9 +280,11 @@
                 </a>
               </li>
             </ul>
+
             
           </li>
            <li class="nav-item has-treeview <?php if(Request::is('admin/purchase/daily/report') || Request::is('admin/stock/report') || Request::is('admin/invoice/daily/report') ||  Request::is('admin/local/invoice/daily/report') ): ?> 
+
            menu-open
           <?php endif; ?>" id="side_report" >
             <a href="#" class="nav-link">
@@ -398,6 +403,12 @@
               </li>
             </ul>
           </li>
+            <li class="nav-item ">
+                <a href="<?php echo e(route('application.setting')); ?>" class="nav-link">
+                    <i class="nav-icon fas fa-copy"></i>
+                    <p style="<?php echo e(Request::is('*/setting') ? 'color:#faf619;' : ''); ?>">Application Setting</p>
+                </a>
+            </li>
         </ul>
       </nav>
      <?php endif; ?>
@@ -408,7 +419,7 @@
   <script type="text/javascript">
 
       $("#side_order").click(function(){
-          
+
           // $('#profile').hide();
           // $('#category').hide();
           //  $('#product').hide();
@@ -418,8 +429,6 @@
           //     $('#purchase').hide();
 
       });
-     
 
-    
   </script>
 <?php /**PATH F:\xampp\htdocs\NashravaCore\resources\views/backend/layout/sidebar.blade.php ENDPATH**/ ?>

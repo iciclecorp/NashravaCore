@@ -16,11 +16,11 @@
                             <div class="slider-content-wrap">
                                 <div class="slider-content t-lft s-tb">
                                     <div class="s-tb-c">
-                                        <!--<h2 class="title1">London Style</h2>
-                                        <h3 class="title3 hidden-xs">Sale up to 50% off for summer days</h3>-->
+                                        <h2 class="title1"><?php echo e($slider->highlight); ?></h2>
+                                        <h3 class="title3 hidden-xs"><?php echo e($slider->short_text); ?></h3>
                                         <div class="slider-btns"> 
-                                            <a href="#" class="slider-btn">Shopping Now</a>
-                                            <a href="#" class="slider-btn2">Explore</a>
+                                            <a href="<?php echo e($slider->shopnow_url); ?>" _tartget="blank" class="slider-btn">Shop Now</a>
+                                            <a href="<?php echo e($slider->explore_url); ?>" class="slider-btn2">Explore</a>
                                         </div>							
                                     </div>
                                 </div>

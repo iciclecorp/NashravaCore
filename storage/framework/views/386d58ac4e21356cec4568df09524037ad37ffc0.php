@@ -9,8 +9,10 @@
                         <div class="topbar-menu"> 
                             <ul>
                                 <li class="drop">
+
                                      <!--<a data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-globe" aria-hidden="true"></i>English</a>
                                     <ul class="dropdown-menu">
+
                                         <li><a href="#">Bangla</a></li>								
                                         <li><a href="#">French</a></li>
                                         <li><a href="#">German</a></li>
@@ -49,17 +51,23 @@
                                      <?php else: ?>
                                         <li><a href="<?php echo e(route('customer.login')); ?>">Login</a></li>
                                         								
-                                        <li><a href="#">Register</a></li>
+                                        <li><a href="<?php echo e(route('customer.signup')); ?>">Register</a></li>
                                         <?php endif; ?>
                                     </ul>
                                 </li>	
-                                <!-- <li class="drop">
-                                    <a data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-globe" aria-hidden="true"></i> Wishlist : <span>0 items</span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">Wish List Item</a></li>
-                                        <li><a href="#">Wish List Item</a></li>
-                                    </ul>
-                                </li> -->		
+                             <li>
+                               
+                                        <form id="cpform" method="POST" action="<?php echo e(route('cart.compare')); ?>" onsubmit="target_popup(this)">
+                                        <?php echo e(csrf_field()); ?>
+
+                                        <input type="hidden"  id="cpid" name="cpid">
+												<button type="submit"  id="cp" class="btn pointer com btn-sm  active" style="color:#000000;" class="tooltip-test" title="Compare">
+												Compare:
+            <span class="compare"></span>
+                                                </button>
+
+												</form>
+                                </li> 	
                             </ul>
                         </div>
                         <!-- End Topbar Menu -->

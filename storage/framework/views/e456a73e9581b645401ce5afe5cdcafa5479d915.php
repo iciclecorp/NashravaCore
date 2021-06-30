@@ -114,7 +114,7 @@
                                      $price = $product->price - $product->discount;
                                    ?>
                                 <span class="price">
-                                    <span class="amount">BDT. <?php echo e($price); ?></span><?php if($product->discount): ?> <span><del><?php echo e($product->price); ?></del></span><?php endif; ?>
+                                    <span class="amount">BDT. <?php echo e($price); ?></span><?php if($product->discount): ?> <span><del><?php echo e($product->price); ?></del></span><?php else: ?> <span><del>0.00</del></span><?php endif; ?>
                                 </span>
                                         <div class="size-quantity-area clearfix">
                                             <!-- Start Size Area -->
@@ -171,10 +171,9 @@
                                             </span>
 </form>
                                             <!-- Start Wish List  -->
-                                            <!--<span class="listview-wishlist"> 
-                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> Wish List</a>
-                                                <a href="#"><i class="fa fa-exchange" aria-hidden="true"></i> Compare</a>
-                                            </span>-->
+                                            <span class="listview-wishlist"> 
+                                             <a href="javascript:void(0)" data-id="<?php echo e($product->id); ?>" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+                                            </span>
                                             <!-- End Wish List  -->
                                         </div>								
                                     </div>
@@ -194,8 +193,8 @@
                                 <div class="description-tab-menu">
                                     <ul role="tablist" class="clearfix">
                                         <li class="active" role="presentation"><a data-toggle="tab" role="tab" aria-controls="description" href="#description" aria-expanded="true">Description</a></li>
-                                        <li role="presentation" class=""><a data-toggle="tab" role="tab" aria-controls="specification" href="#specification" aria-expanded="false">information</a></li>
-                                        <li role="presentation" class=""><a data-toggle="tab" role="tab" aria-controls="review" href="#review" aria-expanded="false">Reviews</a></li>
+                                       <!-- <li role="presentation" class=""><a data-toggle="tab" role="tab" aria-controls="specification" href="#specification" aria-expanded="false">information</a></li>
+                                        <li role="presentation" class=""><a data-toggle="tab" role="tab" aria-controls="review" href="#review" aria-expanded="false">Reviews</a></li>-->
                                   </ul>
                                 </div>
                                 <!-- End Description Menu -->
@@ -211,19 +210,18 @@
                                     </div>
                                     <!-- End Tab Panel -->
                                     <!-- Start Tab Panel -->
-                                    <div id="specification" class="tab-pane" role="tabpanel">
+                                   <!-- <div id="specification" class="tab-pane" role="tabpanel">
                                         <p>Veniam quasi voluptatem facere nesciunt laborum, quibusdam amet totam fugit, blanditiis doloribus alias eveniet dolore pariatur dolores aliquid!</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex consectetur minima quod officiis magni, aspernatur. Ea consectetur ab in, consequatur alias, quo sit. Optio vitae cupiditate, consectetur veritatis cumque odio magnam voluptates voluptas eligendi, minima tenetur voluptatum dolor autem, doloribus expedita obcaecati.</p>
                                     </div>
-                                    <!-- End Tab Panel -->
-                                    <!-- Start Tab Panel -->
+                                   
                                     <div id="review" class="tab-pane" role="tabpanel">
                                         <p>Similique animi consequatur pariatur voluptas tempore, dolores obcaecati dolorum quia odit harum. Quos nemo, minima totam quidem ipsum labore.</p>
                                         <ul>
                                             <li>Minus placeat eligendi neque doloribus sed ratione repellendus a illo similique, sint quisquam perferendis eum nam nihil dolor fugit blanditiis, explicabo, recusandae hic qui exercitationem aspernatur excepturi voluptate unde. </li>
                                             <li>Quaerat magnam, perferendis, sapiente doloremque error omnis esse in saepe quos eveniet quasi ex fugit eligendi consectetur nobis amet. </li>
                                         </ul>
-                                    </div>
+                                    </div>-->
                                     <!-- End Tab Panel -->
                                 </div>
                                 <!-- End Tab Content -->
@@ -281,9 +279,10 @@
                                      $price = $singleproduct->price - $singleproduct->discount;
                                    ?>
                                 <span class="price">
-                                    <span class="amount">BDT. <?php echo e($price); ?></span><?php if($singleproduct->discount): ?> <span><del><?php echo e($singleproduct->price); ?></del></span><?php endif; ?>
+                                    <span class="amount">BDT. <?php echo e($price); ?></span><?php if($singleproduct->discount): ?> <span><del><?php echo e($singleproduct->price); ?></del></span><?php else: ?> <span><del>0.00</del></span> <?php endif; ?>
                                 </span>
-                          <span class="add-to-cart"><a href="<?php echo e(route('product.details',$singleproduct->slug)); ?>"><i aria-hidden="true" class="fa fa-eye"></i>View Details</a></span>
+                          <span class="add-to-cart"><a href="javascript:void(0)" data-id="<?php echo e($singleproduct->id); ?>" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+</span>
                                                     </div>									  
                                                 </div>
                                             </div>

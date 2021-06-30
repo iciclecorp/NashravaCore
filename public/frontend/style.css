@@ -3746,6 +3746,7 @@ h2.related-product-title {
 }
 .relate-product-info {
     overflow: hidden;
+    padding-left: 7px;
 }
 .product-bottom-info .product-cart-wishlist {
     margin-bottom: 55px;

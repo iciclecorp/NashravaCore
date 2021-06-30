@@ -47,21 +47,56 @@
 
                               </font>
                           </div>
-                           <div class="form-group col-md-6">
+                          
+                        
+                       <div class="form-group col-md-6">
+                          <label for="name">Headline Text</label>
+                          <input type="text" class="form-control" name="highlight" placeholder="Enter Highlighted Text" required>
+                          <font style="color:#e60000">
+                                  <?php echo e(($errors->has('highlight'))?($errors->first('highlight')):' '); ?>
+
+                              </font>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="name">Subtitle Text</label>
+                          <input type="text" class="form-control" name="shorttext" placeholder="Enter Short Text" required>
+                          <font style="color:#e60000">
+                                  <?php echo e(($errors->has('shorttext'))?($errors->first('shorttext')):' '); ?>
+
+                              </font>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="name">Shop Now URL </label>
+                          <input type="text" class="form-control" name="shopnow_url" placeholder="Enter Shop Now Link">
+                          <font style="color:#e60000">
+                                  <?php echo e(($errors->has('shopnow_url'))?($errors->first('shopnow_url')):' '); ?>
+
+                              </font>
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="name">Explore URL</label>
+                          <input type="text" class="form-control" name="explore_url" placeholder="Enter Explore Link">
+                          <font style="color:#e60000">
+                                  <?php echo e(($errors->has('explore_url'))?($errors->first('explore_url')):' '); ?>
+
+                              </font>
+                      </div>
+
+                      <div class="form-group col-md-6">
                            <label for="image">Image</label>
                            <input type="file" name="image" class="form-control" id="image">
                            <font style="color:#e60000">
                                  <?php echo e(($errors->has('image'))?($errors->first('image')):' '); ?>
 
                            </font>
+
                            <img id="showImage" src="<?php echo e(url('public/upload/no image found.jpg')); ?>" style="width:150px;height:160px;border:1px solid #000;">
 
                        </div>
-                        <div class="form-group col-md-4">
-                           
+                       <div class="form-group col-md-4" style="padding-top: 30px">
                        </div>
-                        
-                          <div class="form-group col-md-6" style="padding-top: 30px">
+
+                          <div class="form-group col-md-4" style="padding-top: 30px">
                               <input type="submit" name="submit" value="Submit" class="btn btn-primary">
                           </div>
                       </div>

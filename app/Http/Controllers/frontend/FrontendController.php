@@ -72,4 +72,32 @@ class FrontendController extends Controller
                 'product_measurments' => $product_measurments,
            ]); 
     }
+
+    
+    public function compare(Request $request)
+    {
+
+        $ids=$request->input('cpid');
+        
+
+   return  redirect()->route('compare.display')->with( ['ids' => $ids] );
+
+ 
+    }
+    public function display()
+    {
+        
+
+        $categories = Category::latest()->where('status',1)->get();
+
+
+        
+
+       
+        return view('frontend.compare',['categories' => Category::orderBy('id','desc')->get(),
+        'brands' => Brand::orderBy('id','desc')->get(),]);
+
+
+        
+    }
 }

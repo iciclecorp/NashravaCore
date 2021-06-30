@@ -39,11 +39,13 @@
                 <div class="col-xm-12 col-sm-8 col-md-6 col-md-offset-3">
                     <!-- Start Serach Box Area -->
                     <div class="search-box-area">
+
                     <form action="<?php echo e(route('search')); ?>" method="get" onkeypress="this.form.submit()">
                             <input type="search" class="cat-search-box" name="search" placeholder="Enter your keyword" >
                             <i class="fa fa-search"></i>
                         </form>	
                         			
+
                     </div>
                     <?php
                             $contents = Cart::content();
@@ -180,9 +182,11 @@
                                     <!-- Quick View -->
                                     <div class="quick-view">
                                         <a href="<?php echo e(route('product.details',$product->slug)); ?>" class="modal-view detail-link quickview" ><i class="fa fa-eye"></i>View Details</a>
+                                        <a href="javascript:void(0)" data-id="<?php echo e($product->id); ?>" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+
                                     </div>
                                     <!-- End Quick View -->
-
+                                    
                                 </div>
                                 <!-- End Product Hidden Info -->
                             </div>
@@ -250,6 +254,8 @@
                                     <!-- Quick View -->
                                     <div class="quick-view">
                                         <a href="<?php echo e(route('product.details',$product->slug)); ?>" class="modal-view detail-link quickview"><i class="fa fa-eye"></i>View Details</a>
+                                        <a href="javascript:void(0)" data-id="<?php echo e($product->id); ?>" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+
                                     </div>
                                     <!-- End Quick View -->
                                     <!-- Start Wish List  -->

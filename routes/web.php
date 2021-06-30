@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','frontend\FrontendController@index');
-Route::get('/product-list','frontend\FrontendController@productList')->name('product.list');
+//Route::get('/product-list','frontend\FrontendController@productList')->name('product.list');
+Route::get('/product-list','frontend\ProductFilterController@allProductList')->name('product.list');
+
 Route::get('/category-wise-product-list/{id}','frontend\ProductFilterController@catProductList')->name('category.wise.product');
 
 Route::get('/get-shopping-cost','frontend\ProductFilterController@getShippingCost')->name('get-shopping-cost');
@@ -38,6 +40,8 @@ Route::post('/edit-cart','frontend\CartController@updateCart')->name('edit.cart'
 Route::get('/del-cart/{rowId}','frontend\CartController@deleteCart')->name('del.cart');
 Route::post('/coupon_insert', 'CouponsController@store')->name('coupon.insert');
 Route::delete('/coupon_del', 'CouponsController@destroy')->name('coupon.destroy');
+Route::post('/compare', 'frontend\FrontendController@compare')->name('cart.compare');
+Route::get('/getcompare', 'frontend\FrontendController@display')->name('compare.display');
 
 /*Customer Login system*/
 Route::get('/customer-login','frontend\CheckoutController@customerLogin')->name('customer.login');

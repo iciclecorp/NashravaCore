@@ -169,10 +169,9 @@
                                             </span>
 </form>
                                             <!-- Start Wish List  -->
-                                            <!--<span class="listview-wishlist"> 
-                                                <a href="#"><i class="fa fa-heart-o" aria-hidden="true"></i> Wish List</a>
-                                                <a href="#"><i class="fa fa-exchange" aria-hidden="true"></i> Compare</a>
-                                            </span>-->
+                                            <span class="listview-wishlist"> 
+                                             <a href="javascript:void(0)" data-id="{{$product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+                                            </span>
                                             <!-- End Wish List  -->
                                         </div>								
                                     </div>
