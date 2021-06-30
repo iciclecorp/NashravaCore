@@ -35,11 +35,12 @@ class ApplicationController extends Controller
         update_static_option('google', $request->google);
         update_static_option('rss', $request->rss);
         if($request->hasFile('banner_image')){
-            update_static_option('banner_image', $request->file('banner_image')
-            ->move('public/upload/banner_image/', str_random(40) . '.' . $request->banner_image->extension()));
- 
+            $path = 'public/upload/banner_image/';
+            $image_name= str_random(40) . '.' . $request->banner_image->extension();
+            $request->file('banner_image')->move($path, $image_name);
+            update_static_option('banner_image', $path.$image_name);
       }
-       
+
         return back()->with('success','Successfully updated');
     }
 }
