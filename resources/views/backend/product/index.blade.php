@@ -30,6 +30,21 @@
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
               <div class="card-header">
+                <h3>Product color information</h3>
+              </div><!-- /.card-header -->
+              <div class="card-body">
+                  <section class="col-md-12">
+                      @foreach(\App\Model\Color::all() as $color)
+                          <button type="button" class="btn btn-secondary" style="background-color: {{ $color->color_name }}">
+                              <b>{{ $color->color_name }}:{{ \App\Model\Product::whereIn('id', $color->products->pluck('product_id'))->sum('qty')}} </b>
+                          </button>
+                      @endforeach
+                  </section>
+              </div>
+            </div>
+            <!-- Custom tabs (Charts with tabs)-->
+            <div class="card">
+              <div class="card-header">
                 <h3>{{__('back_blade.view_product_list')}}
                    <a class="btn btn-success btn-sm float-right" href="{{route('product.create')}}"><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;{{__('back_blade.view_product_add')}}</a>
                 </h3>
@@ -44,38 +59,38 @@
                         <th width="12%">Brand</th>
                         <th width="12%">Price</th>
                         <th width="10%">Quantity</th>
-                        <th width="10%">Best Selling</th> 
-                        <th width="10%">Offers</th> 
+                        <th width="10%">Best Selling</th>
+                        <th width="10%">Offers</th>
                         <th width="12%">Action</th>
-                      </tr> 
+                      </tr>
                     </thead>
                     <tbody >
                       @foreach($products as $key => $product)
                       <tr>
                         <td># {{$key+1}}</td>
-                        <td>{{$product->purchase->product_name}}</td>
+                        <td>{{$product->purchase->product_name ?? ''}}</td>
                         <td><img src="{{(!empty($product->image))?url($product->image):url('public/upload/no image found.jpg')}}" width="130px" height="80px" ></td>
                         <td>{{$product->brand->brand_name}}</td>
                         <td>{{$product->price}}</td>
                         <td>{{$product->qty}}</td>
-                       
-                        <td style="text-align: center;">  
+
+                        <td style="text-align: center;">
                           @if($product->best_status == '1')
                           <a style="color:white;padding-right:17px;border-radius: 5px;"  class="btn btn-success btn-sm" href="{{route('best.change.status',$product->id)}}">Active</a>
                           @else
                           <a style="color:white;border-radius: 5px;" class="btn btn-danger btn-sm" href="{{route('best.change.status',$product->id)}}">Inactive</a>
                           @endif
                         </td>
-                         <td style="text-align: center;">  
+                         <td style="text-align: center;">
                           @if($product->offers == '1')
                           <a style="color:white;padding-right:17px;border-radius: 5px;"  class="btn btn-success btn-sm" href="{{route('offer.change.status',$product->id)}}">Active</a>
                           @else
                           <a style="color:white;border-radius: 5px;" class="btn btn-danger btn-sm" href="{{route('offer.change.status',$product->id)}}">Inactive</a>
-                          @endif 
+                          @endif
                         </td>
                         <td>
                            @php
-                           $count_product = App\Model\OrderDetail::where('product_id',$product->purchase->id)->count();
+                           $count_product = App\Model\OrderDetail::where('product_id',$product->purchase->id ?? 0)->count();
                            @endphp
                             <div class="row">&nbsp;&nbsp;
                               <a title="Edit" class="btn btn-sm btn-primary" href="{{route('product.edit',$product->id)}}"><i class="fa fa-edit"></i></a>&nbsp;
@@ -90,7 +105,7 @@
                                 @endif
                             </div>
                         </td>
-                      </tr> 
+                      </tr>
                       @endforeach
                     </tbody>
                    <!--  -->

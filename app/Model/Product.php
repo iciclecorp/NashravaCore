@@ -15,19 +15,19 @@ class Product extends Model
 
     public function subCategory(){
     	return $this->belongsTo(SubCategory::class,'sub_category_id','id');
-    } 
+    }
 
     public function brand(){
     	return $this->belongsTo(Brand::class,'brand_id','id');
     }
 
     public function color(){
-        return $this->belongsTo(Brand::class,'color_id','id');
-    } 
+        return $this->hasOne(ProductColor::class,'product_id','id');
+    }
 
     public function size(){
         return $this->belongsTo(Brand::class,'size_id','id');
-    } 
+    }
 
     public function purchase(){
         return $this->belongsTo(Purchase::class,'product_name','id');
