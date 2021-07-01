@@ -40,7 +40,6 @@
                       <tr>
                         <th width="10%">SL.</th>
                         <th width="30%">Category Name</th>
-                        <th width="25%">Image</th>
                         <th width="20%">Status</th>
                         <th width="15%">Action</th>
                       </tr> 
@@ -50,7 +49,6 @@
                       <tr>
                         <td># {{$key+1}}</td>
                         <td>{{$cat_info->category_name}}</td>
-                        <td><img src="{{(!empty($cat_info->category_image))?url($cat_info->category_image):url('public/upload/no image found.jpg')}}" width="130px" height="80px" ></td>
                         <td>
                             &nbsp;&nbsp; &nbsp;&nbsp;
                             @if($cat_info->status == '1')

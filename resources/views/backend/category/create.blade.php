@@ -51,7 +51,7 @@
                         </div>
                         
                      
-                        <div class="form-group col-md-6">
+                        <!--<div class="form-group col-md-6">
                            <label for="category_image">Category Image</label>
                             <input type="file" name="category_image" id="image" class="form-control form-control-sm" >
                             <font style="color:#e60000">
@@ -60,7 +60,7 @@
                         </div>
                         <div class="form-group col-md-4" style="display:none" id="show">
                           <img id="showImage" src="{{url('public/upload/no image found.jpg')}}" style="width:150px;height:160px;border:1px solid #000;">
-                        </div>
+                        </div>-->
                      
                     
                         <div class="form-group col-md-6" style="padding-top: 30px">

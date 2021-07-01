@@ -33,7 +33,7 @@ Route::get('/search','PageController@search')->name('search');
 // Route::get('/cart', 'CartController@cart')->name('cart.index');
 // Route::post('/add', 'frontend\CartController@add')->name('cart.add');
 
-Route::get('/shopping/cart','frontend\FrontendController@shoppingCart')->name('shopping.cart');
+//Route::get('/shopping/cart','frontend\FrontendController@shoppingCart')->name('shopping.cart');
 Route::post('/add-to-cart','frontend\CartController@addToCart')->name('insert.cart');
 Route::get('/view-cart','frontend\CartController@showCart')->name('view.cart');
 Route::post('/edit-cart','frontend\CartController@updateCart')->name('edit.cart');

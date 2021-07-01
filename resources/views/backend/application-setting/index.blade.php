@@ -51,6 +51,15 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-6">
+                                            <label for="address">Address</label>
+                                            <input type="text" name="address" value="{{ get_static_option('address') }}" id="address" class="form-control">
+                                            @error('address')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-md-6">
                                             <label for="facebook">Facebook</label>
                                             <input type="text" name="facebook" value="{{ get_static_option('facebook') }}" id="facebook" class="form-control">
                                             @error('facebook')

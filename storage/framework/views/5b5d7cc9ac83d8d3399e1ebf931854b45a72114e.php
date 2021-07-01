@@ -75,10 +75,10 @@
 	<!-- main js -->
 	<script src="<?php echo e(asset('public/frontend/js/main.js')); ?>"></script>
 	<script>
-			function target_popup(form) {
+/*			function target_popup(form) {
     window.open('', 'formpopup', 'width=1200,height=700,resizeable,scrollbars');
     form.target = 'formpopup';
-}
+}*/
 		$(function () {
                     
                     var id = $(this).data("id");
@@ -137,6 +137,10 @@ var  clickCounter = localStorage.getItem('clickCounter')
 
 
 		});
+
+	
+
+
 		</script>
     </body>
 </html>

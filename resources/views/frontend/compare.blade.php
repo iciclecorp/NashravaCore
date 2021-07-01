@@ -3,6 +3,8 @@
     <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
     <link rel="stylesheet" href="{{asset('public/frontend/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('public/frontend/style.css')}}">
+    <link rel="stylesheet" href="{{asset('public/frontend/css/font-awesome.min.css')}}">	
+
 
 <style>
 
@@ -44,7 +46,7 @@ a{
                 $sizes= DB::table('product_sizes')->where('product_id',$pro->id)->get();
 
                     ?>
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 rmv{{$pro->id}}">
                             <div class="card" style="margin-bottom: 20px; height: auto;">
                                 <img src="{{asset($pro->image)}}"
                                      class="card-img-top mx-auto"
@@ -58,7 +60,7 @@ a{
                                     <span class="price">
                                     <span class="amount">BDT. {{ $price }}</span>@if($pro->discount) <span><del>{{$pro->price}}</del></span>@else <span><del>0.00</del></span>@endif
                                 </span>
-                                <table class="table table-bordered">
+                                <table class="table table-bordered" style="margin-top:20px;">
   <thead>
       <tr>
           <td>
@@ -107,8 +109,15 @@ foreach($sizes as $size){
       
     </tr>
     <tr>
-        
+        <td>
         <span class="add-to-cart"><a href="{{route('product.details', $pro->slug)}}"><i class="fa fa-eye" aria-hidden="true"></i>View Details</a></span>
+
+    <span class="add-to-cart" style="float:right;">  
+     <a href="javascript:void(0)" data-id="{{$pro->id}}" class="delete-confirm" ><i class="fa fa-trash"></i>
+     </a></span>
+
+
+        </td>
 
 
 </tr>
@@ -133,3 +142,13 @@ foreach($sizes as $size){
             </div>
         </div>
                                                   </div>
+<script>
+	$(document).ready(function(){
+		$(".delete-confirm").click(function (){
+			var id = $(this).data("id");
+            $(".rmv"+id).hide(200);
+
+}) 
+
+		});
+</script>

@@ -31,6 +31,8 @@ class ApplicationController extends Controller
 
         update_static_option('mobile', $request->mobile);
         update_static_option('email', $request->email);
+        update_static_option('address', $request->address);
+
         update_static_option('facebook', $request->facebook);
         update_static_option('twitter', $request->twitter);
         update_static_option('linkedin', $request->linkedin);

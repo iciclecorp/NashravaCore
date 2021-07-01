@@ -12,9 +12,9 @@
                             <!-- End Wedget Title -->
                             <!-- Start Wedget Lists -->
                             <ul>
-                                <li class="phone"><a href="callto:0(1234)567890">0 <span>(1234)</span> 567 890</a></li>
-                                <li class="info-email"><a href="mailto:Infor@plazathemes.com">Infor@plazathemes.com</a></li>
-                                <li class="location">Address : No 40 Lucian Sreet 133/2 NewYork City, NY, United States.</li>
+                                <li class="phone"><a href="callto:{{ get_static_option('mobile') }}">{{ get_static_option('mobile') }}</a></li>
+                                <li class="info-email"><a href="mailto:{{ get_static_option('email') }}">{{ get_static_option('email') }}</a></li>
+                                <li class="location">Address :{{ get_static_option('address') }}</li>
                             </ul>
                             <!-- End Wedget Lists -->
                         </div>
@@ -28,10 +28,10 @@
                             <!-- End Wedget Title -->
                             <!-- Start Wedget Lists -->
                             <ul>
-                               <li><a href="#">Login</a></li>
-                               <li><a href="#">Checkout</a></li>
-                               <li><a href="#">Your Account</a></li>
-                               <li><a href="#"></a>Cart</li>
+                               <li><a href="{{route('customer.login')}}">Login</a></li>
+                               <li><a href="{{route('customer.checkout')}}">Checkout</a></li>
+                               <li><a href="{{ route('dashboard') }}">Your Account</a></li>
+                               <li><a href="{{route('view.cart')}}"></a>Cart</li>
                             </ul>
                             <!-- End Wedget Lists -->
                         </div>

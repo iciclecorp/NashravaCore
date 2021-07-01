@@ -43,6 +43,8 @@
                                   <option value=" ">Select User type</option>
                                   <option value="admin" {{($user_info->user_type == 'admin')?('selected'):' '}}>Admin</option>
                                   <option value="user" {{($user_info->user_type =='user')?('selected'):' '}}>User</option>
+                                  <option value="customer" {{($user_info->user_type =='customer')?('selected'):' '}}>Customer</option>
+
                                </select>
                              <font style="color:red">{{($errors->has('user_type'))?($errors->first('user_type')):' '}}</font>
                           </div>

@@ -56,7 +56,7 @@
                                 </li>
                              <li>
 
-                                        <form id="cpform" method="POST" action="{{route('cart.compare')}}" onsubmit="target_popup(this)">
+                                        <form id="cpform" method="POST" action="{{route('cart.compare')}}" target="_blank">
                                         {{ csrf_field() }}
                                         <input type="hidden"  id="cpid" name="cpid">
 												<button type="submit"  id="cp" class="btn pointer com btn-sm  active" style="color:#000000;" class="tooltip-test" title="Compare">
@@ -86,6 +86,92 @@
                 </div>
             </div>
         </div>
+        <div class="header-bottom-wrapper">
+            <div class="header-bottom-area" style="background:#000000; padding:10px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="hidden-xs col-sm-4 col-md-3">
+                            <!-- Start Search Form -->
+                            <div class="search-box-area header-search"> 
+                                	
+                                <form action="{{route('search')}}" method="get" onkeypress="this.form.submit()">
+                            <input type="search" class="cat-search-box" name="search" placeholder="Enter your keyword" >
+                            <i class="fa fa-search"></i>
+                        </form>				    
+                            </div>
+                            <!-- End Search Form -->
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-6"> 
+                            <div class="logo-area">
+                                <!-- Start Logo -->
+                                <div class="logo">
+                                </div>
+                                <!-- End Logo -->
+                            </div>
+                        </div>
+                        @php
+                            $contents = Cart::content();
+                            $count = Cart::count();
+                            $total = 0;
+                            $sum = 0;
+
+                        @endphp
+                        <div class="col-xs-8 col-sm-4 col-md-3"> 
+                            <!-- Start Cart Area -->
+                            <div class="cart-inner header-cart">
+                                <a class="backet-area"> 
+                                    <span class="added-total">{{ $count}}</span>
+                                    shopping cart
+                                </a>	
+                                <!-- Start Cart Dropdown -->
+                                <div class="cart-items-area"> 
+                                    <div class="cart-items-area-inner"> 
+                                        <ul class="cart-items"> 
+                                        @foreach($contents as $content)
+                                @php
+                                       $sum +=  $content->subtotal;
+                                     @endphp
+                                            <li>
+                                            <a href="#" class="prodcut-thumb"><img src="{{$content->options->image}}" alt="" /></a>
+                                        <div class="item-details">
+                                            <a href="#" class="item-name">{{$content->name}}</a>
+                                            <span class="item-quantity">QTY: {{$content->qty}}</span>
+                                            <span class="item-price">{{$content->price}}</span>
+                                            <span class="item-remove-btn"><a href="{{route('del.cart',$content->rowId)}}"><i class="fa fa-trash"></i></a></span>
+                                        </div>
+                                            </li>
+                                            @php
+                                       $total += $content->subtotal;
+                                       $count ++;
+                                    @endphp
+                                   	@endforeach
+                                           										 
+                                        </ul>
+                                        <p class="cart-total total">Total <span class="amount">{{$total}}</span></p>
+                                <span>
+
+                                @if(@Auth::user()->id != NULL && Session::get('shipping_id') == NULL)
+                                     <a href="{{route('customer.checkout')}}" class="btn-checkout"><span>Checkout</span></a>
+                                      @elseif(@Auth::user()->id != NULL && Session::get('shipping_id') != NULL)
+                                     <a href="{{route('customer.payment')}}" class="btn-checkout"><span>Checkout</span></a>
+                                      @else
+                                     <a href="{{route('customer.login')}}" class="btn-checkout"><span>Checkout</span></a>
+                                      @endif
+
+
+
+                            </span>
+                                    </div>	
+                                </div>	
+                                <!-- End Cart Dropdown -->
+                            </div>					   
+                            <!-- End Cart Area -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Header Bottom -->
         <!-- End Header Top -->
         <!-- Header Bottom -->
         <div class="header-bottom-area">

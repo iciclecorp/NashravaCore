@@ -57,7 +57,7 @@
                                 </li>
                              <li>
 
-                                        <form id="cpform" method="POST" action="<?php echo e(route('cart.compare')); ?>" onsubmit="target_popup(this)">
+                                        <form id="cpform" method="POST" action="<?php echo e(route('cart.compare')); ?>" target="_blank">
                                         <?php echo e(csrf_field()); ?>
 
                                         <input type="hidden"  id="cpid" name="cpid">
@@ -88,6 +88,92 @@
                 </div>
             </div>
         </div>
+        <div class="header-bottom-wrapper">
+            <div class="header-bottom-area" style="background:#000000; padding:10px;">
+                <div class="container">
+                    <div class="row">
+                        <div class="hidden-xs col-sm-4 col-md-3">
+                            <!-- Start Search Form -->
+                            <div class="search-box-area header-search"> 
+                                	
+                                <form action="<?php echo e(route('search')); ?>" method="get" onkeypress="this.form.submit()">
+                            <input type="search" class="cat-search-box" name="search" placeholder="Enter your keyword" >
+                            <i class="fa fa-search"></i>
+                        </form>				    
+                            </div>
+                            <!-- End Search Form -->
+                        </div>
+                        <div class="col-xs-4 col-sm-4 col-md-6"> 
+                            <div class="logo-area">
+                                <!-- Start Logo -->
+                                <div class="logo">
+                                </div>
+                                <!-- End Logo -->
+                            </div>
+                        </div>
+                        <?php
+                            $contents = Cart::content();
+                            $count = Cart::count();
+                            $total = 0;
+                            $sum = 0;
+
+                        ?>
+                        <div class="col-xs-8 col-sm-4 col-md-3"> 
+                            <!-- Start Cart Area -->
+                            <div class="cart-inner header-cart">
+                                <a class="backet-area"> 
+                                    <span class="added-total"><?php echo e($count); ?></span>
+                                    shopping cart
+                                </a>	
+                                <!-- Start Cart Dropdown -->
+                                <div class="cart-items-area"> 
+                                    <div class="cart-items-area-inner"> 
+                                        <ul class="cart-items"> 
+                                        <?php $__currentLoopData = $contents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $content): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <?php
+                                       $sum +=  $content->subtotal;
+                                     ?>
+                                            <li>
+                                            <a href="#" class="prodcut-thumb"><img src="<?php echo e($content->options->image); ?>" alt="" /></a>
+                                        <div class="item-details">
+                                            <a href="#" class="item-name"><?php echo e($content->name); ?></a>
+                                            <span class="item-quantity">QTY: <?php echo e($content->qty); ?></span>
+                                            <span class="item-price"><?php echo e($content->price); ?></span>
+                                            <span class="item-remove-btn"><a href="<?php echo e(route('del.cart',$content->rowId)); ?>"><i class="fa fa-trash"></i></a></span>
+                                        </div>
+                                            </li>
+                                            <?php
+                                       $total += $content->subtotal;
+                                       $count ++;
+                                    ?>
+                                   	<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                           										 
+                                        </ul>
+                                        <p class="cart-total total">Total <span class="amount"><?php echo e($total); ?></span></p>
+                                <span>
+
+                                <?php if(@Auth::user()->id != NULL && Session::get('shipping_id') == NULL): ?>
+                                     <a href="<?php echo e(route('customer.checkout')); ?>" class="btn-checkout"><span>Checkout</span></a>
+                                      <?php elseif(@Auth::user()->id != NULL && Session::get('shipping_id') != NULL): ?>
+                                     <a href="<?php echo e(route('customer.payment')); ?>" class="btn-checkout"><span>Checkout</span></a>
+                                      <?php else: ?>
+                                     <a href="<?php echo e(route('customer.login')); ?>" class="btn-checkout"><span>Checkout</span></a>
+                                      <?php endif; ?>
+
+
+
+                            </span>
+                                    </div>	
+                                </div>	
+                                <!-- End Cart Dropdown -->
+                            </div>					   
+                            <!-- End Cart Area -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Header Bottom -->
         <!-- End Header Top -->
         <!-- Header Bottom -->
         <div class="header-bottom-area">
