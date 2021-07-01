@@ -105,6 +105,37 @@
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-6">
+                                            <label for="facebook_page_id">Facebook page ID</label>
+                                            <input type="text" name="facebook_page_id" value="{{ get_static_option('facebook_page_id') }}" id="facebook_page_id" class="form-control">
+                                            @error('facebook_page_id')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="facebook_page_access_token">Facebook page Access token</label>
+                                            <input type="text" name="facebook_page_access_token" value="{{ get_static_option('facebook_page_access_token') }}" id="facebook_page_access_token" class="form-control">
+                                            @error('facebook_page_access_token')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="banner_image">Facebook section background image</label>
+                                            <input type="file" name="facebook_section_background_image" value="{{ get_static_option('facebook_section_background_image') }}" id="facebook_section_background_image" class="form-control">
+                                            <div class="image">
+                                                <img src="{{ asset(get_static_option('facebook_section_background_image')) }}" width="100" class="img-circle elevation-2">
+                                            </div>
+                                            @error('facebook_section_background_image')
+                                            <div class="alert alert-danger" role="alert">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+
+                                        <div class="form-group col-md-6">
                                             <label for="banner_image">Category Menu Banner image</label>
                                             <input type="file" name="banner_image" value="{{ get_static_option('banner_image') }}" id="banner_image" class="form-control">
                                             <div class="image">

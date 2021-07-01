@@ -43,8 +43,8 @@
                     <form action="{{route('search')}}" method="get" onkeypress="this.form.submit()">
                             <input type="search" class="cat-search-box" name="search" placeholder="Enter your keyword" >
                             <i class="fa fa-search"></i>
-                        </form>	
-                        			
+                        </form>
+
 
                     </div>
                     @php
@@ -186,7 +186,7 @@
 
                                     </div>
                                     <!-- End Quick View -->
-                                    
+
                                 </div>
                                 <!-- End Product Hidden Info -->
                             </div>
@@ -339,7 +339,7 @@
 
     <!-- End Blog Area -->
     <!-- Start Testimonial Area -->
-    <section id="testimonial-area" class="padtop75 padbot45">
+    <section id="testimonial-area" class="padtop75 padbot45" style="background-image: url({{ asset(get_static_option('facebook_section_background_image')) }});  background-size: cover">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
