@@ -3185,7 +3185,6 @@ li.single-comment:nth-child(2n)::before {
     width: 100%;
 }
 .contact-banner-area {
-  background: rgba(0, 0, 0, 0) url("img/banners/contact-banner.jpg") no-repeat scroll center top;
   height: auto !important;
 }
 .contact-info-area {
@@ -3195,6 +3194,7 @@ li.single-comment:nth-child(2n)::before {
     overflow: hidden;
     padding: 40px 0;
     width: 100%;
+    margin-top:-110px;
 }
 .contact-info {
     display: table-cell;
@@ -3206,7 +3206,7 @@ li.single-comment:nth-child(2n)::before {
     height: 150px;
     position: relative;
     text-align: center;
-    width: 25%;
+    width: 30%;
 }
 .single-contact-item::after {
     background: rgba(255, 255, 255, 0.35) none repeat scroll 0 0;

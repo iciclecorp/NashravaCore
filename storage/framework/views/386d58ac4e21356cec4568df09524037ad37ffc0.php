@@ -233,6 +233,8 @@
                                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </ul></li>
 <li><a href="<?php echo e(url('/newarrivals')); ?>">New Arrivals</a></li>
+<li><a href="<?php echo e(url('/contact')); ?>">Contact Us</a></li>
+
                                             <!--<li class="drop"><a href="#">Pages</a>
                                                 <ul>
                                                     <li><a href="blog.html">Blog</a></li>

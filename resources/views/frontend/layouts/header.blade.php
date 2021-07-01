@@ -231,6 +231,8 @@
                                   @endforeach
 </ul></li>
 <li><a href="{{url('/newarrivals')}}">New Arrivals</a></li>
+<li><a href="{{url('/contact')}}">Contact Us</a></li>
+
                                             <!--<li class="drop"><a href="#">Pages</a>
                                                 <ul>
                                                     <li><a href="blog.html">Blog</a></li>

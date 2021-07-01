@@ -31,7 +31,7 @@
                                <li><a href="{{route('customer.login')}}">Login</a></li>
                                <li><a href="{{route('customer.checkout')}}">Checkout</a></li>
                                <li><a href="{{ route('dashboard') }}">Your Account</a></li>
-                               <li><a href="{{route('view.cart')}}"></a>Cart</li>
+                               <li><a href="{{url('/view-cart')}}"></a>Cart</li>
                             </ul>
                             <!-- End Wedget Lists -->
                         </div>
@@ -67,7 +67,7 @@
                                 <li><a href="#">Compensation First</a></li>
                                 <li><a href="#">My Account</a></li>
                                 <li><a href="#">Return Policy</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="{{url('/contact')}}">Contact Us</a></li>
                             </ul>
                             <!-- End Wedget Lists -->
                        </div>

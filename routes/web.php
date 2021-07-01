@@ -42,6 +42,10 @@ Route::post('/coupon_insert', 'CouponsController@store')->name('coupon.insert');
 Route::delete('/coupon_del', 'CouponsController@destroy')->name('coupon.destroy');
 Route::post('/compare', 'frontend\FrontendController@compare')->name('cart.compare');
 Route::get('/getcompare', 'frontend\FrontendController@display')->name('compare.display');
+Route::resource('contact','frontend\ContactController');
+Route::post('/contact-us','frontend\ContactController@handleForm');
+
+
 
 /*Customer Login system*/
 Route::get('/customer-login','frontend\CheckoutController@customerLogin')->name('customer.login');
