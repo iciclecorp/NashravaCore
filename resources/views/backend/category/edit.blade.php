@@ -48,7 +48,7 @@
                           </div>
                            
                            
-                                 <div class="form-group col-md-6">
+                                <!-- <div class="form-group col-md-6">
                                  <label for="category_image">Category Image</label>
                                   <input type="file" name="category_image" id="image" class="form-control form-control-sm">
                                   <font style="color:#e60000">
@@ -58,7 +58,7 @@
                               <div class="form-group col-md-4"  id="show">
                                 <img id="showImage" src="{{(!empty(
                                 $category_info->category_image))?url($category_info->category_image):url('public/upload/image_avatar.jpg')}}" style="width:150px;height:160px;border:1px solid #000;">
-                               </div>
+                               </div>-->
                           <div class="form-group col-md-6" style="padding: 30px;">
                               <input type="submit" name="submit" value="Update" class="btn btn-primary">
                           </div>

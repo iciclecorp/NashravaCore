@@ -38,12 +38,14 @@
                       <tr>
                         <th width="5%">SL.</th>
                         <th width="13%">Product Name</th>
+                        <th width="13%">Product Title</th>
+
                         <th width="10%">Category</th>
                         <th width="10%">Sub Category</th>
                         <th width="13%">Brand</th>
                         <th width="13%">Price</th>
                         <th width="13%">Opening Stock</th>
-                        <th width="13%">Current Stcok</th>
+                        <th width="13%">Current Stock</th>
                         <th width="10%">Action</th>
                       </tr> 
                     </thead>
@@ -55,6 +57,8 @@
 $name=App\Model\Purchase::where('id',$stock->product_name)->first();
                         ?>
                         <td>{{$name->product_name}}</td>
+                        <td>{{$stock->title}}</td>
+
                         <td>{{$stock->category->category_name}}</td>
                         <td>{{$stock->subCategory->sub_category_name}}</td>
                         <td>{{$stock->brand->brand_name}}</td>

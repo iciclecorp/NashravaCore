@@ -43,8 +43,8 @@
                     <form action="{{route('search')}}" method="get" onkeypress="this.form.submit()">
                             <input type="search" class="cat-search-box" name="search" placeholder="Enter your keyword" >
                             <i class="fa fa-search"></i>
-                        </form>	
-                        			
+                        </form>
+
 
                     </div>
                     @php
@@ -182,6 +182,8 @@
                                     <!-- Quick View -->
                                     <div class="quick-view">
                                         <a href="{{route('product.details',$product->slug)}}" class="modal-view detail-link quickview" ><i class="fa fa-eye"></i>View Details</a>
+                                        <a href="javascript:void(0)" data-id="{{$product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+
                                     </div>
                                     <!-- End Quick View -->
 
@@ -252,6 +254,8 @@
                                     <!-- Quick View -->
                                     <div class="quick-view">
                                         <a href="{{route('product.details',$product->slug)}}" class="modal-view detail-link quickview"><i class="fa fa-eye"></i>View Details</a>
+                                        <a href="javascript:void(0)" data-id="{{$product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+
                                     </div>
                                     <!-- End Quick View -->
                                     <!-- Start Wish List  -->
@@ -335,7 +339,7 @@
 
     <!-- End Blog Area -->
     <!-- Start Testimonial Area -->
-    <section id="testimonial-area" class="padtop75 padbot45">
+    <section id="testimonial-area" class="padtop75 padbot45" style="background-image: url({{ asset(get_static_option('facebook_section_background_image')) }});  background-size: cover">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

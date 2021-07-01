@@ -31,6 +31,14 @@ class SliderController extends Controller
         ]);
         $data = new Slider();
           $data->slider_name = $request->slider_name;
+          $data->highlight = $request->highlight;
+          $data->short_text = $request->shorttext;
+          $data->shopnow_url = $request->shopnow_url;
+          $data->explore_url = $request->explore_url;
+
+
+
+
           if($request->file('image')){
 
                     $file=$request->file('image');
@@ -65,6 +73,10 @@ class SliderController extends Controller
          $data = Slider::findOrFail($id);
     
          $data->slider_name = $request->slider_name;
+         $data->highlight = $request->highlight;
+          $data->short_text = $request->shorttext;
+          $data->shopnow_url = $request->shopnow_url;
+          $data->explore_url = $request->explore_url;
          if($request->file('image')){
 
                     $file=$request->file('image');

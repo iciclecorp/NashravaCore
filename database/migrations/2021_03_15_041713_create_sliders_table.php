@@ -20,6 +20,11 @@ class CreateSlidersTable extends Migration
             $table->tinyInteger('upper')->default('1');
             $table->tinyInteger('middle')->default('2');
             $table->tinyInteger('lower')->default('3');
+            $table->string('highlight')->nullable();
+            $table->string('short_text')->nullable();
+            $table->string('shopnow_url')->nullable();
+            $table->string('explore_url')->nullable();
+
             $table->timestamps();
         });
     }

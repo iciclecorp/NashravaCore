@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','frontend\FrontendController@index');
-Route::get('/product-list','frontend\FrontendController@productList')->name('product.list');
+Route::get('/newarrivals','frontend\FrontendController@newarrivalProductList')->name('newarrivalproduct.list');
+Route::get('/product-list','frontend\ProductFilterController@allProductList')->name('product.list');
+
 Route::get('/category-wise-product-list/{id}','frontend\ProductFilterController@catProductList')->name('category.wise.product');
 
 Route::get('/get-shopping-cost','frontend\ProductFilterController@getShippingCost')->name('get-shopping-cost');
@@ -31,13 +33,19 @@ Route::get('/search','PageController@search')->name('search');
 // Route::get('/cart', 'CartController@cart')->name('cart.index');
 // Route::post('/add', 'frontend\CartController@add')->name('cart.add');
 
-Route::get('/shopping/cart','frontend\FrontendController@shoppingCart')->name('shopping.cart');
+//Route::get('/shopping/cart','frontend\FrontendController@shoppingCart')->name('shopping.cart');
 Route::post('/add-to-cart','frontend\CartController@addToCart')->name('insert.cart');
 Route::get('/view-cart','frontend\CartController@showCart')->name('view.cart');
 Route::post('/edit-cart','frontend\CartController@updateCart')->name('edit.cart');
 Route::get('/del-cart/{rowId}','frontend\CartController@deleteCart')->name('del.cart');
 Route::post('/coupon_insert', 'CouponsController@store')->name('coupon.insert');
 Route::delete('/coupon_del', 'CouponsController@destroy')->name('coupon.destroy');
+Route::post('/compare', 'frontend\FrontendController@compare')->name('cart.compare');
+Route::get('/getcompare', 'frontend\FrontendController@display')->name('compare.display');
+Route::resource('contact','frontend\ContactController');
+Route::post('/contact-us','frontend\ContactController@handleForm');
+
+
 
 /*Customer Login system*/
 Route::get('/customer-login','frontend\CheckoutController@customerLogin')->name('customer.login');
@@ -81,6 +89,9 @@ Route::resource('product','backend\ProductController');
 Route::get('product/changeStatus/{id}', 'backend\ProductController@changeStatus')->name('best.change.status');
 Route::get('feature/product/changeStatus/{id}', 'backend\ProductController@featureChangeStatus')->name('featured.change.status');
 Route::get('offers/product/changeStatus/{id}', 'backend\ProductController@offersChangeStatus')->name('offer.change.status');
+Route::get('/new_arrival/products','backend\ProductController@newarrival_index')->name('newarrival.index');
+
+Route::get('new_arrivals/product/changeStatus/{id}', 'backend\ProductController@newarrivalChangeStatus')->name('newarrival.change.status');
 
 
 Route::resource('category','backend\CategoryController');
