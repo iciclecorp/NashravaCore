@@ -44,6 +44,8 @@ Route::post('/compare', 'frontend\FrontendController@compare')->name('cart.compa
 Route::get('/getcompare', 'frontend\FrontendController@display')->name('compare.display');
 Route::resource('contact','frontend\ContactController');
 Route::post('/contact-us','frontend\ContactController@handleForm');
+Route::post('/delete_compare', 'frontend\FrontendController@delCompare')->name('delete.product');
+
 
 
 

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\frontend;
-
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Product;
@@ -102,7 +102,7 @@ class FrontendController extends Controller
     {
 
         $ids=$request->input('cpid');
-        
+        $request->session()->put('ids', $ids); 
 
    return  redirect()->route('compare.display')->with( ['ids' => $ids] );
 
@@ -110,19 +110,24 @@ class FrontendController extends Controller
     }
     public function display()
     {
-        
 
         $categories = Category::latest()->where('status',1)->get();
 
+        $vals=Session::keep('ids'); 
 
         
 
        
-        return view('frontend.compare',['categories' => Category::orderBy('id','desc')->get(),
+        return view('frontend.compare',['ids'=>$vals,'categories' => Category::orderBy('id','desc')->get(),
         'brands' => Brand::orderBy('id','desc')->get(),]);
 
 
         
     }
+
+    public function deleteCompare($id){
+        
+         return $request->session()->forget('product.' . $id);
+ }
 
 }
