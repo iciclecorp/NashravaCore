@@ -124,10 +124,4 @@ class FrontendController extends Controller
 
         
     }
-
-    public function deleteCompare($id){
-        
-         return $request->session()->forget('product.' . $id);
- }
-
 }

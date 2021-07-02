@@ -1,3 +1,5 @@
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+
 <script src="{{asset('public/frontend/js/vendor/jquery-1.12.4.min.js')}}"></script>
 	<!-- bootstrap js -->
     <script src="{{asset('public/frontend/js/bootstrap.min.js')}}"></script>
@@ -147,31 +149,28 @@ foreach($sizes as $size){
                                                   </div>
 <script>
 	$(document).ready(function(){
+        var fieldArray = [];
+                    var $this = $(this);
+                    var rmvids=JSON.parse(localStorage.getItem('rmvids'))
+                    if(rmvids){
+                        $.each(rmvids, function(index, value){
+                            
+                            $(".rmv"+value).hide(400);
+
+                        });
+   
+                    }
 		$(".delete-confirm").click(function (){
 			var id = $(this).data("id");
-           /* $(".rmv"+id).hide(200);*/
+            $(".rmv"+id).hide(200);
+            fieldArray.push($(this).data("id"));
+            localStorage.setItem('rmvids', JSON.stringify(fieldArray))
+
+
+
            
-$.ajax({
-	 headers: {
-'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-},  
-   type:"POST",
-   url: "{{route('delete.product')}}",
-   data:{id:id},
 
-   success:function(data){
 	
-        
-		
-  
-   },
-   error:function(error){
-	 console.log(error)
-	 alert("not send");
-   },
-
-   
- });
 
 }) 
 
