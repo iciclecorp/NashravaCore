@@ -31,7 +31,10 @@ a{
                 <div class="row">
 
                 <?php 
-                $ids = session()->get( 'ids' );
+
+              $ids = session()->get( 'ids' );
+
+              
                 $idarr=explode(",",$ids);
                 ?>
                 @foreach($idarr as $id)
@@ -146,7 +149,29 @@ foreach($sizes as $size){
 	$(document).ready(function(){
 		$(".delete-confirm").click(function (){
 			var id = $(this).data("id");
-            $(".rmv"+id).hide(200);
+           /* $(".rmv"+id).hide(200);*/
+           
+$.ajax({
+	 headers: {
+'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+},  
+   type:"POST",
+   url: "{{route('delete.product')}}",
+   data:{id:id},
+
+   success:function(data){
+	
+        
+		
+  
+   },
+   error:function(error){
+	 console.log(error)
+	 alert("not send");
+   },
+
+   
+ });
 
 }) 
 
