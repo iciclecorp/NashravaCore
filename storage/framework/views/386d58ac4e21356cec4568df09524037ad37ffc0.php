@@ -134,7 +134,7 @@
                                        $sum +=  $content->subtotal;
                                      ?>
                                             <li>
-                                            <a href="#" class="prodcut-thumb"><img src="<?php echo e($content->options->image); ?>" alt="" /></a>
+                                            <a href="#" class="prodcut-thumb"><img src="<?php echo e(asset($content->options->image)); ?>" alt="" /></a>
                                         <div class="item-details">
                                             <a href="#" class="item-name"><?php echo e($content->name); ?></a>
                                             <span class="item-quantity">QTY: <?php echo e($content->qty); ?></span>

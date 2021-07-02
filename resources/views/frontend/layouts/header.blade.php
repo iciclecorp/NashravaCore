@@ -132,7 +132,7 @@
                                        $sum +=  $content->subtotal;
                                      @endphp
                                             <li>
-                                            <a href="#" class="prodcut-thumb"><img src="{{$content->options->image}}" alt="" /></a>
+                                            <a href="#" class="prodcut-thumb"><img src="{{ asset($content->options->image) }}" alt="" /></a>
                                         <div class="item-details">
                                             <a href="#" class="item-name">{{$content->name}}</a>
                                             <span class="item-quantity">QTY: {{$content->qty}}</span>

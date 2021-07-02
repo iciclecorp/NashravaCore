@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-md-12"> 
                     <div class="breadcrumbs">
-                        <a href="#">Home</a> <span class="separator">&gt;</span> <span>Checkout</span>
+                        <a href="{{url('/')}}">Home</a> <span class="separator">&gt;</span> <span>Checkout</span>
                     </div>					   
                 </div>
             </div>

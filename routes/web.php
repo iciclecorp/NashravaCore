@@ -46,6 +46,7 @@ Route::resource('contact','frontend\ContactController');
 Route::post('/contact-us','frontend\ContactController@handleForm');
 Route::post('/delete_compare', 'frontend\FrontendController@delCompare')->name('delete.product');
 
+Route::get('/check_coupon', 'frontend\FrontendController@checkCoupon')->name('coupon.check');
 
 
 
@@ -186,7 +187,7 @@ Route::get('other-cart','HomeController@otherCart')->name('home.other.cart');
 
 Route::post('/add-to-cart','backend\CartController@addToCart')->name('inserts.cart');
 Route::get('/show-cart','backend\CartController@showCart')->name('show.cart');
-Route::post('/update-cart','backend\CartController@updateCart')->name('update.cart');
+//Route::post('/update-cart','backend\CartController@updateCart')->name('update.cart');
 Route::get('/delete-cart/{rowId}','backend\CartController@deleteCart')->name('delete.cart');
 Route::resource('cart','backend\CartDeleteController');
 Route::get('setting','backend\ApplicationController@index')->name('application.setting');

@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="breadcrumbs">
-                        <a href="index.html">Home</a> <span class="separator">&gt;</span> <span> Cart</span>
+                        <a href="{{url('/')}}">Home</a> <span class="separator">&gt;</span> <span> Cart</span>
                     </div>
                 </div>
             </div>
@@ -43,6 +43,8 @@
                                     <th class="product-quantity">Quantity</th>
 
                                     <th class="product-grandtotal">SubTotal</th>
+                                    <th class="product-grandtotal">Coupon</th>
+
                                 </tr>
                             </thead>
                                 @php
@@ -57,8 +59,8 @@
                                         $count++;
                                         $subtotal += $cart->price * $cart->qty;
                                         @endphp
-                                    <tr>
-                                        <td class="product-remove"><a href="{{ route('delete.cart', $cart->rowId) }}"><i class="fa fa-trash"></i></a>
+                                    <tr class="cg">
+                                        <td class="product-remove"><a href="{{ route('del.cart', $cart->rowId) }}"><i class="fa fa-trash"></i></a>
                                         </td>
                                         <td class="product-thumbnail">
                                             <a href="#"><img alt="" src="{{ asset($cart->options->image) }}" width="100px" height="100px">
@@ -70,18 +72,34 @@
                                     <span>Color: {{$cart->options->color_name}}</span>
                                         </td>
                                          <td class="product-subtotal">BDT. {{$cart->price }}</td>
+  
+                                         <form>
+                                         <input type="hidden" name="id" id="id" value="{{$cart->id}}">
+
+                                         <input type="hidden" name="price" id="price" value="{{$cart->price}}">
                                         <td class="product-quantity">
-{{--                                            <div class="cart-plus-minus">--}}
-{{--                                            <form action="{{ route('edit.cart') }}" class="sendupdate<?php echo $count;?>" method="POST">--}}
-{{--                                                {{ csrf_field() }}--}}
-{{--                                                <input type="hidden" name="rowid" class="rowid" value="{{ $cart->rowId }}">--}}
-{{--                                                <input class="cart-plus-minus-box" name="qty" type="text" disabled  value="{{ $cart->qty }}">--}}
-{{--                                            </form>--}}
-{{--                                            </div>--}}
-                                            <h4 class="text-danger">QTY: {{ $cart->qty }}</h4>
+                                                        
+                             <div class="cart-plus-minus">
+                                            <input class="cart-plus-minus-box" type="text" class="qty" id="qty" name="qtybutton" value="{{$cart->qty}}" onchange="myCart(this.form)">
+                                            
+                                                    
+                                        </div>
+                                      </form>
+
+										</td>
                                         </td>
-                                        <td class="product-subtotal">BDT. {{$subtotal }}</td>
-                                        <!-- <td class="product-grandtotal">$250.00</td> -->
+                                        <td class="product-subtotal">BDT.<span class="oldsubtotal{{ $cart->rowId}}"> {{$subtotal }}</span><span class="subtotal{{ $cart->rowId}}"></span></td>
+                                       
+
+                                     <td class="product-grandtotal"> 
+                                        <form action="{{route('coupon.check')}}" method="GET">
+                                            <input type="hidden" name="product_id" value="{{$cart->id}}">
+                                         <input type="text" name="coupon" placeholder="Coupon code" onchange="myCoupon(this.form)">
+                                         <h5 id="error" style="color:red"></h5>
+                                         <h6 id="success" style="color:green"></h6>
+
+                                       </form>
+                                    </td> 
                                     </tr>
                                     @php
                                        $subtotals += $subtotal;
@@ -89,6 +107,10 @@
                                     @endforeach
                                     <tr>
                                        <td colspan="6" style="text-align: right;">Grand Sub Total</td>
+                                       <td class="product-grandtotal"><strong>BDT. {{ $subtotals}}</strong></td>
+                                    </tr>
+                                    <tr>
+                                       <td colspan="6" style="text-align: right;">With Discount</td>
                                        <td><strong>BDT. {{ $subtotals}}</strong></td>
                                     </tr>
                                 </tbody>
@@ -206,7 +228,69 @@
             </div>
         </div>
     </div>
+	<script src="{{asset('public/frontend/js/vendor/jquery-1.12.4.min.js')}}"></script>
 
+<script>
+        $(document).ready(function(){
+
+            $('.qtybutton').on('click', function(){
+                var rowCount = $('.cg').length;
+                var id = $("#id").val();
+                var qty= $("#qty"+id).val();
+  
+
+    var price = $("#price"+id).val();
+    alert(rowCount);
+
+alert(price);
+    var total=qty*price;
+    
+    $('.subtotal'+id).text(total);
+    $('.oldsubtotal'+id).hide();
+
+            });
+
+
+
+
+        });
+
+        
+
+            
+	function myCoupon(form) {
+var j=0;
+$.ajax({
+	 headers: {
+'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+},  
+   type:"GET",
+   url: "{{route('coupon.check')}}",
+   data:$(form).serializeArray(),
+
+   success:function(data){
+	
+      console.log(data);
+      const h5 = document.getElementById("error");
+         h5.innerHTML = data.errors;
+
+         const h6 = document.getElementById("success");
+         h6.innerHTML = data.success;
+  
+   },
+   error:function(error){
+	 console.log(error)
+	 alert("not send");
+   },
+
+   
+ });
+ 
+
+
+}
+
+</script>
 
 
  @endsection

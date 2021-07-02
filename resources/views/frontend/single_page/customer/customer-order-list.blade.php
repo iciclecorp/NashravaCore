@@ -30,7 +30,7 @@
             <div class="row">
                 <div class="col-md-12"> 
                     <div class="breadcrumbs">
-                        <a href="index.html">Home</a> <span class="separator">&gt;</span> <span>Order List</span>
+                        <a href="{{url('/')}}">Home</a> <span class="separator">&gt;</span> <span>Order List</span>
                     </div>					   
                 </div>
             </div>

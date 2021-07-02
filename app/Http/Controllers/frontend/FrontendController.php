@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\Category;
+use App\Model\Coupon;
+
 use App\Model\SubCategory;
 use App\Model\Brand;
 use App\Model\ProductSubImage;
@@ -124,4 +126,37 @@ class FrontendController extends Controller
 
         
     }
+
+
+    public function checkCoupon(Request $request){
+
+        $code=$request->coupon;
+        $proid=$request->product_id;
+
+        $coupons=Coupon::where('coupon_code',$code)->first();
+        if($coupons){
+
+        }
+        else{
+            //$request->session()->flash('error', );
+
+            //return redirect(route('view.cart'))->with(['proid' => $proid]);
+            return response()->json( ['errors' => 'Coupon Not Found']);
+
+ 
+        }
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
 }
