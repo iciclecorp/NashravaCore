@@ -412,7 +412,7 @@ $.ajax({
         
       })
 	  
-      $(".backet-area").load("  .backet-area >*");
+      $(".header-cart").load("  .header-cart >*");
 
 	  
    },
