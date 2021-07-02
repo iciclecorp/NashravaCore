@@ -41,7 +41,7 @@
                                     <th class="product-name">Size & Color</th>
                                     <th class="product-subtotal">Price</th>
                                     <th class="product-quantity">Quantity</th>
-                                    
+
                                     <th class="product-grandtotal">SubTotal</th>
                                 </tr>
                             </thead>
@@ -71,12 +71,14 @@
                                         </td>
                                          <td class="product-subtotal">BDT. {{$cart->price }}</td>
                                         <td class="product-quantity">
-                                            <div class="cart-plus-minus">
-                                            <form action="{{ route('edit.cart') }}" class="sendupdate<?php echo $count;?>" method="POST">
-                                    {{ csrf_field() }}
-                                                <input type="hidden" name="rowid" class="rowid" value="{{ $cart->rowId }}">
-                                                <input class="cart-plus-minus-box " type="text"  value="{{ $cart->qty }}">
-                                            </div>
+{{--                                            <div class="cart-plus-minus">--}}
+{{--                                            <form action="{{ route('edit.cart') }}" class="sendupdate<?php echo $count;?>" method="POST">--}}
+{{--                                                {{ csrf_field() }}--}}
+{{--                                                <input type="hidden" name="rowid" class="rowid" value="{{ $cart->rowId }}">--}}
+{{--                                                <input class="cart-plus-minus-box" name="qty" type="text" disabled  value="{{ $cart->qty }}">--}}
+{{--                                            </form>--}}
+{{--                                            </div>--}}
+                                            <h4 class="text-danger">QTY: {{ $cart->qty }}</h4>
                                         </td>
                                         <td class="product-subtotal">BDT. {{$subtotal }}</td>
                                         <!-- <td class="product-grandtotal">$250.00</td> -->
@@ -87,10 +89,10 @@
                                     @endforeach
                                     <tr>
                                        <td colspan="6" style="text-align: right;">Grand Sub Total</td>
-                                       <td><strong>BDT. {{ $subtotals}}</strong></td> 
+                                       <td><strong>BDT. {{ $subtotals}}</strong></td>
                                     </tr>
                                 </tbody>
-                                 @else 
+                                 @else
                                 <tbody>
                                 <tr>
                                     <td colspan="4">No Item added yet</td>
@@ -103,13 +105,12 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-               
+
                 </div>
                 <div class="col-md-6">
                     <div class="update-cart-area">
                     <a href="{{route('product.list')}}" class="lucian-border-btn">CONTINUE SHOPPING</a>
                     <input type="submit" class="lucian-border-btn" value="UPDATE SHOPPING CART">
-</form>
                     </div>
                 </div>
             </div>
@@ -205,7 +206,7 @@
             </div>
         </div>
     </div>
-    
 
-   
+
+
  @endsection

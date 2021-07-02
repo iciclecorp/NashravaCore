@@ -62,6 +62,7 @@
                                             <td>{{ $payment->vat ?? '' }}</td>
                                             <td>
                                                 <a class="btn btn-success btn-sm float-right" href="{{route('invoice.print',$payment->invoice_id)}}" target="_blank"><i class="fa fa-print"></i></a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                     </tbody>
