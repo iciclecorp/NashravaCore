@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/test', function (){
+    $u = User::where('email', 'admin@gmail.com')->first();
+    $u->password = bcrypt('password');
+    $u->save();
+    dd($u);
+});
 
 Route::get('/','frontend\FrontendController@index');
 Route::get('/newarrivals','frontend\FrontendController@newarrivalProductList')->name('newarrivalproduct.list');
@@ -46,7 +54,7 @@ Route::resource('contact','frontend\ContactController');
 Route::post('/contact-us','frontend\ContactController@handleForm');
 Route::post('/delete_compare', 'frontend\FrontendController@delCompare')->name('delete.product');
 
-Route::get('/check_coupon', 'frontend\FrontendController@checkCoupon')->name('coupon.check');
+Route::post('/check-coupon', 'frontend\FrontendController@checkCoupon')->name('coupon.check');
 
 
 

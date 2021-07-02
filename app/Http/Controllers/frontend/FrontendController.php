@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\frontend;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -30,7 +31,7 @@ class FrontendController extends Controller
     // Artisan::call('config:cache');
 
     return view('frontend.layouts.home',[
-         
+
          'products' => Product::orderBy('id','desc')->get(),
          'best_sell_products' => Product::where('best_status','1')->orderBy('id','desc')->get(),
          'offers' => Product::where('offers','1')->orderBy('id','desc')->get(),
@@ -43,7 +44,7 @@ class FrontendController extends Controller
 
     ]);
 
-    }  
+    }
 
     public function newarrivalProductList(){
      if(request()->short == 'new-first'){
@@ -86,7 +87,7 @@ class FrontendController extends Controller
            $product_color = ProductColor::where('product_id',$product->id)->get();
            $all_products = Product::orderBy('id','desc')->get();
            $product_measurments = ProductMeasurement::where('product_id',$product->id)->get();
-          
+
            return view('frontend.product-details',[
                 'product' => $product,
                 'sub_images' => $sub_image,
@@ -96,67 +97,72 @@ class FrontendController extends Controller
                 'brands' => Brand::orderBy('id','desc')->get(),
                 'all_products' => $all_products,
                 'product_measurments' => $product_measurments,
-           ]); 
+           ]);
     }
 
-    
+
     public function compare(Request $request)
     {
 
         $ids=$request->input('cpid');
-        $request->session()->put('ids', $ids); 
+        $request->session()->put('ids', $ids);
 
    return  redirect()->route('compare.display')->with( ['ids' => $ids] );
 
- 
+
     }
     public function display()
     {
 
         $categories = Category::latest()->where('status',1)->get();
 
-        $vals=Session::keep('ids'); 
+        $vals=Session::keep('ids');
 
-        
 
-       
+
+
         return view('frontend.compare',['ids'=>$vals,'categories' => Category::orderBy('id','desc')->get(),
         'brands' => Brand::orderBy('id','desc')->get(),]);
 
 
-        
+
     }
 
 
     public function checkCoupon(Request $request){
+        $coupon_code    =   $request->coupon_code;
+        $product_id     =   $request->product_id;
+        $coupon         =   Coupon::where('coupon_code',$coupon_code)->first();
+        if(!$coupon){
+            return response()->json( ['errors' => 'Coupon not fount']);
+        }else{
+            //check user
+            if (!in_array(auth()->user()->email ?? '', explode(",",$coupon->users))){
+                return response()->json( ['errors' => 'Coupon is not for you']);
+            }
 
-        $code=$request->coupon;
-        $proid=$request->product_id;
+            //check product
+            if (!in_array($product_id, explode(",",$coupon->products))){
+                return response()->json( ['errors' => 'Coupon is not for this product']);
+            }
 
-        $coupons=Coupon::where('coupon_code',$code)->first();
-        if($coupons){
+            //check status
+            if ($coupon->status != 1){
+                return response()->json( ['errors' => 'Coupon is not activated']);
+            }
 
+            //check expire date
+            if (Carbon::parse($coupon->expiry_date)->format('Y-m-d') >= Carbon::today()){
+                return response()->json( ['errors' => 'In Valid Date']);
+            }
+
+            //check multi time or single time || Multiple Times | Single Times
+            if ($coupon->coupon_type == 'Single Times'){
+                return response()->json( ['errors' => 'In Valid Date']);
+            }
+
+            //After all condition check this coupon is valid
+            return response()->json( ['success' => 'Valid coupon']);
         }
-        else{
-            //$request->session()->flash('error', );
-
-            //return redirect(route('view.cart'))->with(['proid' => $proid]);
-            return response()->json( ['errors' => 'Coupon Not Found']);
-
- 
-        }
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
 }
