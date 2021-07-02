@@ -412,7 +412,8 @@ $.ajax({
         
       })
 	  
-	
+      $(".backet-area").load("  .backet-area >*");
+
 	  
    },
    error: function (xhr) {
@@ -465,7 +466,7 @@ $.ajax({
         
       })
 	  
-	
+
 	  
    },
    error: function (xhr) {
