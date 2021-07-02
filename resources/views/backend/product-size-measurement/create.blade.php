@@ -30,11 +30,11 @@
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
               <div class="card-header">
-             
+
                 <h3>Product-Measurement Add
                   <a class="btn btn-success btn-sm float-right" href="{{route('product-measurement.index')}}"><i class="fa fa-list"></i>&nbsp;&nbsp;&nbsp;Product-Measurement List</a>
                 </h3>
-             
+
               </div><!-- /.card-header -->
               <div class="card-body">
                 <form  method="post" action="{{route('product-measurement.store')}}"  id="myForm" enctype="multipart/form-data">
@@ -45,9 +45,9 @@
                             <select type="text" name="product_id" class="form-control form-control-sm select2" placeholder="Please enter size name" required>
                               <option value="">--select Product--</option>
                               @foreach($products as $product)
-                              <option value="{{$product->id}}">{{$product->purchase->product_name}}</option>
+                              <option value="{{$product->id}}">{{$product->purchase->product_name ?? ''}}</option>
                               @endforeach
-                             </select> 
+                             </select>
                            <!--  <font style="color:#e60000">
                                  {{($errors->has('size_name'))?($errors->first('size_name')):' '}}
                             </font> -->
@@ -59,7 +59,7 @@
                                @foreach($sizes as $size)
                               <option value="{{$size->id}}">{{$size->measurement}}</option>
                               @endforeach
-                             </select> 
+                             </select>
                            <!--  <font style="color:#e60000">
                                  {{($errors->has('size_name'))?($errors->first('size_name')):' '}}
                             </font> -->
@@ -67,32 +67,32 @@
                         <div class="form-group col-md-4">
                           <label>X-Small</label>
                           <input type="text" name="x_small" class="form-control form-control-sm">
-                          
+
                         </div>
                         <div class="form-group col-md-4">
                           <label>Small</label>
                           <input type="text" name="small" class="form-control form-control-sm">
-                          
+
                         </div>
                         <div class="form-group col-md-4">
                           <label>Medium</label>
                           <input type="text" name="medium" class="form-control form-control-sm">
-                          
+
                         </div>
                          <div class="form-group col-md-4">
                           <label>Large</label>
                           <input type="text" name="large" class="form-control form-control-sm">
-                          
+
                         </div>
                          <div class="form-group col-md-4">
                           <label>X-Large</label>
                           <input type="text" name="x_large" class="form-control form-control-sm">
-                          
+
                         </div>
                         <div class="form-group col-md-4">
                           <label>XX-Large</label>
                           <input type="text" name="xx_large" class="form-control form-control-sm">
-                          
+
                         </div>
                         <div class="form-group col-md-6" style="padding-top: 30px">
                             <input type="submit" name="submit" value="Submit" class="btn btn-primary">

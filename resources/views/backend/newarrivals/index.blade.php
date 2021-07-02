@@ -44,31 +44,31 @@
                         <th width="12%">Brand</th>
                         <th width="12%">Price</th>
                         <th width="10%">Quantity</th>
-                        <th width="10%">New Arrivals</th> 
+                        <th width="10%">New Arrivals</th>
                         <th width="12%">Action</th>
-                      </tr> 
+                      </tr>
                     </thead>
                     <tbody >
                       @foreach($products as $key => $product)
                       <tr>
                         <td># {{$key+1}}</td>
-                        <td>{{$product->purchase->product_name}}</td>
+                        <td>{{$product->purchase->product_name ?? ''}}</td>
                         <td><img src="{{(!empty($product->image))?url($product->image):url('public/upload/no image found.jpg')}}" width="130px" height="80px" ></td>
-                        <td>{{$product->brand->brand_name}}</td>
+                        <td>{{$product->brand->brand_name ?? ''}}</td>
                         <td>{{$product->price}}</td>
                         <td>{{$product->qty}}</td>
-                       
-                        <td style="text-align: center;">  
+
+                        <td style="text-align: center;">
                           @if($product->new_arrival == '1')
                           <a style="color:white;padding-right:17px;border-radius: 5px;"  class="btn btn-success btn-sm" href="{{route('newarrival.change.status',$product->id)}}">Active</a>
                           @else
                           <a style="color:white;border-radius: 5px;" class="btn btn-danger btn-sm" href="{{route('newarrival.change.status',$product->id)}}">Inactive</a>
                           @endif
                         </td>
-                         
+
                         <td>
                            @php
-                           $count_product = App\Model\OrderDetail::where('product_id',$product->purchase->id)->count();
+                           $count_product = App\Model\OrderDetail::where('product_id',$product->purchase->id ?? 0)->count();
                            @endphp
                             <div class="row">&nbsp;&nbsp;
                               <a title="Edit" class="btn btn-sm btn-primary" href="{{route('product.edit',$product->id)}}"><i class="fa fa-edit"></i></a>&nbsp;
@@ -83,7 +83,7 @@
                                 @endif
                             </div>
                         </td>
-                      </tr> 
+                      </tr>
                       @endforeach
                     </tbody>
                    <!--  -->

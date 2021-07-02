@@ -48,14 +48,14 @@
                         <th width="10%">X-Large</th>
                         <th width="20%">XX-Large</th>
                       <!--   <th width="15%">Action</th> -->
-                      </tr> 
+                      </tr>
                     </thead>
                     <tbody style="color: #4d0026">
                       @foreach($measurements as $key => $measurement)
                       <tr>
                         <td># {{$key+1}}</td>
                         <td>{{$measurement->product->purchase->product_name}}</td>
-                        <td>{{$measurement->sizeMeasurement->measurement}}</td>
+                        <td>{{$measurement->sizeMeasurement->measurement ?? ''}}</td>
                         <td>{{$measurement->x_small}}</td>
                         <td>{{$measurement->small}}</td>
                         <td>{{$measurement->medium}}</td>
@@ -74,10 +74,10 @@
                           </div>
 
                         </td> -->
-                        
-                      </tr> 
+
+                      </tr>
                       @endforeach
-                    </tbody>   
+                    </tbody>
 
                    </table>
                <!-- /.card-body -->
