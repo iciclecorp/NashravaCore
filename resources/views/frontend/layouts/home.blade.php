@@ -82,18 +82,14 @@
                                <!-- <p class="cart-total">Shiping <span class="amount">$5.00</span></p>-->
                                 <p class="cart-total total">Total <span class="amount">{{$total}}</span></p>
                                 <span>
-
-                                @if(@Auth::user()->id != NULL && Session::get('shipping_id') == NULL)
-                                     <a href="{{route('customer.checkout')}}" class="btn-checkout"><span>Checkout</span></a>
-                                      @elseif(@Auth::user()->id != NULL && Session::get('shipping_id') != NULL)
-                                     <a href="{{route('customer.payment')}}" class="btn-checkout"><span>Checkout</span></a>
-                                      @else
-                                     <a href="{{route('customer.login')}}" class="btn-checkout"><span>Checkout</span></a>
-                                      @endif
-
-
-
-                            </span>
+{{--                                    @if(@Auth::user()->id != NULL && Session::get('shipping_id') == NULL)--}}
+                                     <a href="{{route('view.cart')}}" class="btn-checkout"><span>Checkout</span></a>
+{{--                                      @elseif(@Auth::user()->id != NULL && Session::get('shipping_id') != NULL)--}}
+{{--                                        <a href="{{route('customer.payment')}}" class="btn-checkout"><span>Checkout</span></a>--}}
+{{--                                      @else--}}
+{{--                                     <a href="{{route('customer.login')}}" class="btn-checkout"><span>Checkout</span></a>--}}
+{{--                                    @endif--}}
+                                </span>
                             </div>
                         </div>
                     </div>
