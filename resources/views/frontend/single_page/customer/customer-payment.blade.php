@@ -68,7 +68,7 @@
 										<div class="row">
 										<td class="product-thumbnail">
 											<figure>
-												<a href="product-simple.html">
+												<a href="#">
 													<img src="{{url($item->options->image)}}" width="100" height="100"
 													alt="product">
 												</a>
@@ -77,19 +77,25 @@
 										</td>
 										<td class="product-name">
 											<div class="product-name-section">
-												<a href="product-simple.html">{{ $item->name }}</a>
+												<a href="#">{{ $item->name }}</a>
 											</div>
 										</td>
 										<td class="product-subtotal">
+                                            @if(get_discount_price_by_product_id($item->id) != $item->price)
 											<del> BDT. {{$item->price}} </del>
                                             <br> BDT. {{ get_discount_price_by_product_id($item->id) }}
+                                            @else BDT. {{$item->price}} @endif
 										</td>
 										<td class="product-quantity" style="text-align: center">
 										   {{$item->qty}}
 										</td>
 										<td class="product-price">
+                                            @if($item->qty * get_discount_price_by_product_id($item->id) != $item->subtotal)
 											<del> BDT.{{$item->subtotal}} </del>
                                             <br> BDT. {{ $item->qty * get_discount_price_by_product_id($item->id) }}
+                                            @else
+                                                BDT.{{$item->subtotal}}
+                                            @endif
 										</td>
 										@php
 							            $total += $item->qty * get_discount_price_by_product_id($item->id);

@@ -121,13 +121,17 @@
 												@foreach($contents as $content)
 												<tr>
 													<td class="product-name">{{$content->name}}</td>
-													<td class="product-total">BDT. {{$content->price}} to {{ get_discount_price_by_product_id($content->id) }}</td>
+													<td class="product-total">BDT. {{$content->price}} @if($content->price != get_discount_price_by_product_id($content->id))
+                                                            to {{ get_discount_price_by_product_id($content->id) }} @endif
+                                                    </td>
 												</tr>
 												@endforeach
 
 												<tr class="order-total">
 													<td>Total:</td>
-													<td>BDT. {{$content->qty * $content->price}} to {{$content->qty * get_discount_price_by_product_id($content->id) }}</td>
+													<td>BDT. {{$content->qty * $content->price}}
+                                                        @if($content->qty * get_discount_price_by_product_id($content->id) != $content->qty * $content->price) to {{$content->qty * get_discount_price_by_product_id($content->id) }} @endif
+                                                    </td>
 												</tr>
 											</tbody>
 										</table>
