@@ -186,7 +186,12 @@ class FrontendController extends Controller
 
             $s = Session::get('coupon');
             //After all condition check this coupon is valid
-            return response()->json( ['success' => 'Valid coupon', 'session' => $s]);
+            if($coupon->Percentage){
+                $message = $coupon->amount.' % OFF';
+            }else{
+                $message = $coupon->amount.' BDT OFF';
+            }
+            return response()->json( ['success' => $message, 'session' => $s]);
         }
     }
 }

@@ -97,7 +97,7 @@
                                         <td class="product-grandtotal">
                                                 <input type="hidden" name="product_id" class="product_id" value="{{$cart->id}}">
                                                 <input type="text" name="coupon" class="coupon_code" placeholder="Coupon code">
-                                                <h5 class="coupon_alert_message"></h5>
+                                                <h5 class="coupon_alert_message text-center">{{--Message assign by ajax--}}</h5>
 
                                         </td>
                                     </tr>
