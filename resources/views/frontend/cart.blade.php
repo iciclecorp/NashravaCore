@@ -97,8 +97,8 @@
                                         <td class="product-grandtotal">
                                                 <input type="hidden" name="product_id" class="product_id" value="{{$cart->id}}">
                                                 <input type="text" name="coupon" class="coupon_code" placeholder="Coupon code">
-                                                <h5 class="coupon_error_message" style="color:red"></h5>
-                                                <h6 class="coupon_success_message" style="color:green"></h6>
+                                                <h5 class="coupon_alert_message"></h5>
+
                                         </td>
                                     </tr>
                                     @php
@@ -272,11 +272,12 @@
                     success:function(data){
                         console.log(data)
                         if(data.error){
-                            selected_coupon_field.parent().find('.coupon_error_message').text(data.error);
-                            selected_coupon_field.parent().find('.coupon_success_message').text("");
+                            selected_coupon_field.parent().find('.coupon_alert_message').text(data.error);
+                            selected_coupon_field.parent().find('.coupon_alert_message').css('color', 'red');
                         }else if(data.success){
-                            selected_coupon_field.parent().find('.coupon_success_message').text(data.success);
-                            selected_coupon_field.parent().find('.coupon_error_message').text("");
+                            selected_coupon_field.parent().find('.coupon_alert_message').text(data.success);
+                            selected_coupon_field.parent().find('.coupon_alert_message').css('color', 'green');
+                            selected_coupon_field.parent().find('.coupon_code').attr('readonly', true);
                         }
                     },
                 })

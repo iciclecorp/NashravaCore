@@ -133,43 +133,60 @@ class FrontendController extends Controller
     public function checkCoupon(Request $request){
         $coupon_code    =   $request->coupon_code;
         $product_id     =   $request->product_id;
+
         $coupon         =   Coupon::where('coupon_code',$coupon_code)->first();
         if(!$coupon){
             //return response()->json( ['error' => 'Coupon not fount']);
-            return response()->json( ['error' => 'Invalid Coupon']);
+             remove_from_coupon_session($product_id);
+            return remove_from_coupon_session($product_id);
         }else{
+            $invalid_coupon = null;
             //check user
             if (!in_array(auth()->user()->email ?? '', explode(",",$coupon->users))){
                 //return response()->json( ['error' => 'Coupon is not for you']);
-                return response()->json( ['error' => 'Invalid Coupon']);
+                $invalid_coupon = true;
             }
 
             //check product
             if (!in_array($product_id, explode(",",$coupon->products))){
                 //return response()->json( ['error' => 'Coupon is not for this product']);
-                return response()->json( ['error' => 'Invalid Coupon']);
+                $invalid_coupon = true;
             }
 
             //check status
             if ($coupon->status != 1){
                 //return response()->json( ['error' => 'Coupon is not activated']);
-                return response()->json( ['error' => 'Invalid Coupon']);
+                $invalid_coupon = true;
             }
 
             //check expire date
             if (!Carbon::parse($coupon->expiry_date)->format('Y-m-d') >= Carbon::today()){
                 //return response()->json( ['error' => 'In Valid Date']);
-                return response()->json( ['error' => 'Invalid Coupon']);
+                $invalid_coupon = true;
             }
 
             //check multi time or single time || Multiple Times | Single Times
             if ($coupon->coupon_type == 'Single Times' && OrderDetail::where('coupon_id', $coupon->id)->where('customer_id', auth()->user()->id ?? '')->first()){
                 //return response()->json( ['error' => 'Coupon already used']);
-                return response()->json( ['error' => 'Invalid Coupon']);
+                $invalid_coupon = true;
             }
 
+            if($invalid_coupon){
+                remove_from_coupon_session($product_id);
+                return remove_from_coupon_session($product_id);
+            }
+
+            if (!Session::get('coupon')){
+                Session::put('coupon', []);
+            }
+
+            if(!collect(Session::get('coupon'))->where('product_id', $product_id)->first()){
+                Session::push('coupon', ['coupon_id' => $coupon->id, 'product_id' => $product_id]);
+            }
+
+            $s = Session::get('coupon');
             //After all condition check this coupon is valid
-            return response()->json( ['success' => 'Valid coupon']);
+            return response()->json( ['success' => 'Valid coupon', 'session' => $s]);
         }
     }
 }
