@@ -92,16 +92,16 @@
                     <div class="row">
                         <div class="hidden-xs col-sm-4 col-md-3">
                             <!-- Start Search Form -->
-                            <div class="search-box-area header-search"> 
-                                	
+                            <div class="search-box-area header-search">
+
                                 <form action="{{route('search')}}" method="get" onkeypress="this.form.submit()">
                             <input type="search" class="cat-search-box" name="search" placeholder="Enter your keyword" >
                             <i class="fa fa-search"></i>
-                        </form>				    
+                        </form>
                             </div>
                             <!-- End Search Form -->
                         </div>
-                        <div class="col-xs-4 col-sm-4 col-md-6"> 
+                        <div class="col-xs-4 col-sm-4 col-md-6">
                             <div class="logo-area">
                                 <!-- Start Logo -->
                                 <div class="logo">
@@ -116,17 +116,17 @@
                             $sum = 0;
 
                         @endphp
-                        <div class="col-xs-8 col-sm-4 col-md-3"> 
+                        <div class="col-xs-8 col-sm-4 col-md-3">
                             <!-- Start Cart Area -->
                             <div class="cart-inner header-cart">
-                                <a class="backet-area"> 
+                                <a class="backet-area">
                                     <span class="added-total">{{ $count}}</span>
                                     shopping cart
-                                </a>	
+                                </a>
                                 <!-- Start Cart Dropdown -->
-                                <div class="cart-items-area"> 
-                                    <div class="cart-items-area-inner"> 
-                                        <ul class="cart-items"> 
+                                <div class="cart-items-area">
+                                    <div class="cart-items-area-inner">
+                                        <ul class="cart-items">
                                         @foreach($contents as $content)
                                 @php
                                        $sum +=  $content->subtotal;
@@ -145,26 +145,33 @@
                                        $count ++;
                                     @endphp
                                    	@endforeach
-                                           										 
+
                                         </ul>
                                         <p class="cart-total total">Total <span class="amount">{{$total}}</span></p>
                                 <span>
 
-                                @if(@Auth::user()->id != NULL && Session::get('shipping_id') == NULL)
-                                     <a href="{{route('customer.checkout')}}" class="btn-checkout"><span>Checkout</span></a>
-                                      @elseif(@Auth::user()->id != NULL && Session::get('shipping_id') != NULL)
-                                     <a href="{{route('customer.payment')}}" class="btn-checkout"><span>Checkout</span></a>
-                                      @else
-                                     <a href="{{route('customer.login')}}" class="btn-checkout"><span>Checkout</span></a>
-                                      @endif
+                                    @if(Auth::user()->id != NULL)
+                                        <a href="{{route('view.cart')}}" class="btn-checkout"><span>Checkout</span></a>
+                                    @else
+                                        <a href="{{route('customer.login')}}" class="btn-checkout"><span>Checkout</span></a>
+                                    @endif
+
+{{--                                @if(@Auth::user()->id != NULL && Session::get('shipping_id') == NULL)--}}
+{{--                                     <a href="{{route('customer.checkout')}}" class="btn-checkout"><span>Checkout</span></a>--}}
+{{--                                      @elseif(@Auth::user()->id != NULL && Session::get('shipping_id') != NULL)--}}
+{{--                                     <a href="{{route('customer.payment')}}" class="btn-checkout"><span>Checkout</span></a>--}}
+{{--                                      @else--}}
+{{--                                     <a href="{{route('customer.login')}}" class="btn-checkout"><span>Checkout</span></a>--}}
+{{--                                      @endif--}}
+
 
 
 
                             </span>
-                                    </div>	
-                                </div>	
+                                    </div>
+                                </div>
                                 <!-- End Cart Dropdown -->
-                            </div>					   
+                            </div>
                             <!-- End Cart Area -->
                         </div>
                     </div>
