@@ -110,7 +110,6 @@
 										<table class="order-table">
 											@php
 			                                   $contents = Cart::content();
-			                                   $total = 0;
 							                @endphp
 											<thead>
 												<tr>
@@ -120,19 +119,15 @@
 											</thead>
 											<tbody>
 												@foreach($contents as $content)
-
 												<tr>
 													<td class="product-name">{{$content->name}}</td>
 													<td class="product-total">BDT. {{$content->price}} to {{ get_discount_price_by_product_id($content->id) }}</td>
-													@php
-							                           $total += $content->subtotal;
-							                        @endphp
 												</tr>
 												@endforeach
 
 												<tr class="order-total">
 													<td>Total:</td>
-													<td>BDT. {{$total}}</td>
+													<td>BDT. {{$content->qty * $content->price}} to {{$content->qty * get_discount_price_by_product_id($content->id) }}</td>
 												</tr>
 											</tbody>
 										</table>

@@ -87,4 +87,19 @@ if (!function_exists('random_code')){
 
         return $product->price;
     }
+
+    //Global discount check for backend site
+    function discount_price($user_id, $product_id, $coupon_id){
+        $coupon = Coupon::find($coupon_id);
+        $product = \App\Model\Product::find($product_id);
+        if (in_array(\App\User::find($user_id)->email, explode(",",$coupon->users)) && in_array($product_id, explode(",",$coupon->products))){
+            if($coupon->amount_type == 'Percentage'){
+                return $product->price - ($product->price * ($coupon->amount/100));
+            }else{
+                return $product->price - $coupon->amount;
+            }
+        }else{
+            $product->price;
+        }
+    }
 }

@@ -1,11 +1,11 @@
 @extends('frontend.layouts.master')
 @section('css')
 <style type="text/css">
-  
+
         #login .container #login-row #login-column #login-box {
                 margin-top: 40px;
                 max-width: 600px;
-              
+
                 border: 1px solid #9C9C9C;
                 background-color: #EAEAEA;
                 margin-bottom: 40px;
@@ -28,10 +28,10 @@
 <div id="breadcrumb-area">
         <div class="container">
             <div class="row">
-                <div class="col-md-12"> 
+                <div class="col-md-12">
                     <div class="breadcrumbs">
                         <a href="{{url('/')}}">Home</a> <span class="separator">&gt;</span> <span>Order Details</span>
-                    </div>					   
+                    </div>
                 </div>
             </div>
         </div>
@@ -66,7 +66,7 @@
                                   document.getElementById('logout-form').submit();" style="font-weight: bold">Logout</a>
                                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
-                                    </form> 
+                                    </form>
                             </li>
                         </ul>
                         <div class="tab-content">
@@ -83,7 +83,7 @@
                     <span><strong>Address:</strong>House# 03(4th floor), Road# 19, Sector# 13, Uttara, Dhaka-1230.</span>
                    <span><strong>Phone Number: </strong>01309286974</span><br/>
                     <span><strong>Email:</strong>support@nashrava.co</span>
-                   
+
                  </td>
                  <td width="30%" style="padding-left: 5px;">
                    <strong>Order No: # {{$order->order_no}}</strong>
@@ -120,22 +120,23 @@
                             style="width:50px;height:55px;border:1px solid #000;"> &nbsp; {{$details->product->product_name}}
                 </td>
                 <td style="padding-left: 5px;">
-               <?php 
-if(!$details->color==0 || !$details->size==0 ){
+               <?php
+                if(!$details->color==0 || !$details->size==0 ){
 
-?>
+                ?>
                  {{$details->color->color_name}}&nbsp; & &nbsp;
                  {{$details->size->size_name}}
 
-    <?php }?>
-                 
+                <?php }?>
+
                 </td>
                 <td style="padding-left: 5px;">
-                   @php
-                      $sub_total = $details->quantity * $details->product->price;
-                  @endphp
-                  {{$details->quantity}} x {{$details->product->price}} = {{$sub_total}}
-
+                    @if($details->coupon_id)
+                    {{$details->quantity}} x <del> {{$details->product->price}} = {{ $details->quantity * $details->product->price }} </del> <br>
+                    {{$details->quantity}} x  {{ discount_price($details->customer_id,$details->product_id,$details->coupon_id) }} = {{ $details->quantity * discount_price($details->customer_id,$details->product_id,$details->coupon_id) }}
+                    @else
+                        {{$details->quantity}} x  {{$details->product->price}} = {{ $details->quantity * $details->product->price }}
+                    @endif
                 </td>
                </tr>
                @endforeach
@@ -143,11 +144,11 @@ if(!$details->color==0 || !$details->size==0 ){
                 <td colspan="2" style="text-align: right;padding-right: 5px;"><strong>Grand Total</strong></td>
                 <td style="padding-left: 5px;">{{$order->order_total_amount}}</td>
                </tr>
-             </table>     
-						
+             </table>
+
 						</div>
 					</div>
-				</div>  
+				</div>
                         </div>
                     </div>
                 </div>
