@@ -13,10 +13,10 @@
   padding: 8px;
 }
 
-#border tr:nth-child(even){background-color: #f2f2f2;} 
+#border tr:nth-child(even){background-color: #f2f2f2;}
 </style>
 
-</head>	
+</head>
 <body>
       <div class="col-md-9">
                    <div class="card">
@@ -34,7 +34,7 @@
                         <td class="text-left">
                             <b>Order ID:</b> {{$order->order_no}}<br>
                             <b>Order date:</b>{{$order->created_at->format('d/m/Y')}}<br>
-                            <b>Order Status:</b>  
+                            <b>Order Status:</b>
                             @if($order->status == '0')
                             <span>Pending</span>
                             @elseif($order->status == '1')
@@ -78,23 +78,41 @@
                                     </div>&nbsp;&nbsp;
                                     <div class="t-content">
                                         <p class="t-heading"><a href="#">{{$order->product->purchase->product_name}}</a></p>
-                                    
+
                                     </div>
                                 </td>
                                 <td>
                                     <span>Size: {{$order->size->size_name ?? 'No Size'}}</span><br/>
                                     <span>Color: {{$order->color->color_name ?? 'No Color'}}</span>
                                 </td>
-                              
-                                <td>BDT. {{$order->product->price}}</td>
+
+
+                                <td>
+                                    @if($order->coupon_id) <del> BDT. {{$order->product->price}} </del> <br>
+                                        BDT. {{ discount_price($order->customer_id,$order->product_id,$order->coupon_id) }}
+                                    @else
+                                        BDT. {{$order->product->price}}
+                                    @endif
+
+                                </td>
                                 <td class="t-total">{{$order->quantity}}</td>
-                                <td>BDT. {{$order->product->price * $order->quantity}}</td>
-                                
+                                <td>
+                                    @if($order->coupon_id) <del> BDT. {{$order->product->price * $order->quantity}} </del> <br>
+                                    BDT. {{ discount_price($order->customer_id,$order->product_id,$order->coupon_id) * $order->quantity}}
+                                    @else
+                                        BDT. {{$order->product->price * $order->quantity}}
+                                    @endif
+                                </td>
+
                             </tr>
                             @php
-                                 $subTotal = ($order->product->price * $order->quantity);
+                            if ($order->coupon_id){
+                                    $subTotal = (discount_price($order->customer_id,$order->product_id,$order->coupon_id) * $order->quantity);
+                                }else{
+                                    $subTotal = ($order->product->price * $order->quantity);
+                                }
                             @endphp
-                          @endforeach 
+                          @endforeach
                         </tbody>
 
 
