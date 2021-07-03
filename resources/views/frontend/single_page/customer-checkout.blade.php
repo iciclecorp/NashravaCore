@@ -10,15 +10,15 @@
 @section('content')
 <!-- End Header -->
 <!-- End Header -->
-	
+
     <!-- Start Breadcrumb -->
     <div id="breadcrumb-area">
         <div class="container">
             <div class="row">
-                <div class="col-md-12"> 
+                <div class="col-md-12">
                     <div class="breadcrumbs">
                         <a href="{{url('/')}}">Home</a> <span class="separator">&gt;</span> <span>Checkout</span>
-                    </div>					   
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,12 +40,12 @@
 			<div id="main-content-area" class="padtop80 padbot25 my2">
 				<div class="container mt-4">
 					<form action="{{route('customer.checkout.store')}}" method="POST" class="form">
-						@csrf	
-						
+						@csrf
+
 						<div class="row gutter-lg">
 							<div class="col-lg-8 mb-6">
 								<h3 class="title title-simple text-left">Billing Details</h3>
-							
+
 								<div class="row">
 									<div class="col-xs-12">
 									@if ($errors->any())
@@ -81,12 +81,12 @@
 								</div>
 								<label>Address *</label>
 								<textarea class="form-control" name="address" placeholder="Please Give Us Your Address in Details" required=""></textarea>
-						
+
 								<label>Town / City </label>
 								<input type="text" class="form-control" name="city" />
 								<label>Country </label>
 								<input type="text" class="form-control" name="country" />
-									
+
 								<!-- <div class="form-checkbox mt-8">
 									<input type="checkbox" class="custom-checkbox" id="create-account"
 										name="create-account">
@@ -101,7 +101,7 @@
 								<!-- <label>Order Notes (optional)</label>
 								<textarea class="form-control" cols="30" rows="6"
 									placeholder="Notes about your order, e.g. special notes for delivery"></textarea> -->
-							
+
 							</div>
 							<aside class="col-lg-4 sticky-sidebar-wrapper mt-4">
 								<div class="sticky-sidebar" data-sticky-options="{'bottom': 50}">
@@ -120,22 +120,23 @@
 											</thead>
 											<tbody>
 												@foreach($contents as $content)
+
 												<tr>
 													<td class="product-name">{{$content->name}}</td>
-													<td class="product-total">BDT. {{$content->price}}</td>
+													<td class="product-total">BDT. {{$content->price}} to {{ get_discount_price_by_product_id($content->id) }}</td>
 													@php
 							                           $total += $content->subtotal;
 							                        @endphp
 												</tr>
 												@endforeach
-											
+
 												<tr class="order-total">
 													<td>Total:</td>
 													<td>BDT. {{$total}}</td>
 												</tr>
 											</tbody>
 										</table>
-										
+
 										<!-- <div class="payment accordion radio-type">
 											<div class="card">
 												<div class="card-header">
@@ -205,7 +206,7 @@
 					</form>
 				</div>
 			</div>
-		</div>		
+		</div>
 @endsection
 
 @section('js')
@@ -223,7 +224,7 @@ $(function () {
       },
      size_id: {
         required: true,
-   
+
       },
     },
     messages: {
@@ -248,5 +249,5 @@ $(function () {
   });
 });
 </script>
-  
+
 @endsection

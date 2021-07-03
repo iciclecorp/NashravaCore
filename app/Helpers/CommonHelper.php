@@ -49,6 +49,7 @@ if (!function_exists('random_code')){
         return false;
     }
 
+    //Use for front and session data
     function remove_from_coupon_session($product_id){
         if (!Session::get('coupon')){
             Session::put('coupon', []);
@@ -58,7 +59,7 @@ if (!function_exists('random_code')){
         $execute = false;
         try {
             foreach ($old_coupon_session_items as $old_coupon_session_item){
-                if ($old_coupon_session_item[$product_id] == $product_id && $execute == false){
+                if ($old_coupon_session_item['product_id'] == $product_id && $execute == false){
                     $execute = true;
                     continue;
                 }
@@ -69,5 +70,21 @@ if (!function_exists('random_code')){
         }catch (\Exception $exception){
             return response()->json( ['error' => $exception->getMessage()]);
         }
+    }
+    //Use for front and session data
+    function get_discount_price_by_product_id($product_id){
+        $product = \App\Model\Product::find($product_id);
+        foreach (Session::get('coupon') as $coupon){
+            if ($coupon['product_id'] == $product_id){
+                $coupon = Coupon::find($coupon['coupon_id']);
+                if($coupon->amount_type == 'Percentage'){
+                    return $product->price - ($product->price * ($coupon->amount/100));
+                }else{
+                    return $product->price - $coupon->amount;
+                }
+            }
+        }
+
+        return $product->price;
     }
 }

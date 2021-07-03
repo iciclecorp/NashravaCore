@@ -137,7 +137,6 @@ class FrontendController extends Controller
         $coupon         =   Coupon::where('coupon_code',$coupon_code)->first();
         if(!$coupon){
             //return response()->json( ['error' => 'Coupon not fount']);
-             remove_from_coupon_session($product_id);
             return remove_from_coupon_session($product_id);
         }else{
             $invalid_coupon = null;
@@ -172,7 +171,6 @@ class FrontendController extends Controller
             }
 
             if($invalid_coupon){
-                remove_from_coupon_session($product_id);
                 return remove_from_coupon_session($product_id);
             }
 
@@ -186,7 +184,7 @@ class FrontendController extends Controller
 
             $s = Session::get('coupon');
             //After all condition check this coupon is valid
-            if($coupon->Percentage){
+            if($coupon->amount_type == 'Percentage'){
                 $message = $coupon->amount.' % OFF';
             }else{
                 $message = $coupon->amount.' BDT OFF';
