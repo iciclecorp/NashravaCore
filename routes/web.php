@@ -43,7 +43,7 @@ Route::get('/search','PageController@search')->name('search');
 
 //Route::get('/shopping/cart','frontend\FrontendController@shoppingCart')->name('shopping.cart');
 Route::post('/add-to-cart','frontend\CartController@addToCart')->name('insert.cart');
-Route::get('/view-cart','frontend\CartController@showCart')->name('view.cart');
+Route::get('/view-cart','frontend\CartController@showCart')->name('view.cart')->middleware('customer');
 Route::post('/edit-cart','frontend\CartController@updateCart')->name('edit.cart');
 Route::get('/del-cart/{rowId}','frontend\CartController@deleteCart')->name('del.cart');
 Route::post('/coupon_insert', 'CouponsController@store')->name('coupon.insert');
@@ -59,15 +59,15 @@ Route::post('/check-coupon', 'frontend\FrontendController@checkCoupon')->name('c
 
 
 /*Customer Login system*/
-Route::get('/customer-login','frontend\CheckoutController@customerLogin')->name('customer.login');
+Route::get('/customer-login','frontend\CheckoutController@customerLogin')->name('customer.login')->middleware('guest');
 Route::get('/customer-signup','frontend\CheckoutController@customerSignup')->name('customer.signup');
 Route::post('/customer-signup-store','frontend\CheckoutController@SignupStore')->name('customer.signup.store');
 Route::get('/email-verify','frontend\CheckoutController@emailVerify')->name('email.verify');
 Route::post('/verify-store','frontend\CheckoutController@verifyStore')->name('verify.store');
-Route::get('/checkout','frontend\CheckoutController@checkOut')->name('customer.checkout');
+Route::get('/checkout','frontend\CheckoutController@checkOut')->name('customer.checkout')->middleware('customer');
 Route::post('/checkout/store','frontend\CheckoutController@checkoutStore')->name('customer.checkout.store');
 
-Route::group(['middleware'=>['auth','customer']],function(){
+Route::group(['middleware'=>['customer']],function(){
    Route::get('/dashboard','frontend\DashboardController@dashboard')->name('dashboard');
    Route::get('/customer.edit.profile','frontend\DashboardController@editProfile')->name('customer.edit.profile');
    Route::post('/customer.update.profile','frontend\DashboardController@updateProfile')->name('customer.update.profile');
