@@ -95,12 +95,10 @@
 
 
                                         <td class="product-grandtotal">
-
                                                 <input type="hidden" name="product_id" class="product_id" value="{{$cart->id}}">
                                                 <input type="text" name="coupon" class="coupon_code" placeholder="Coupon code">
-                                                <h5 id="error" style="color:red"></h5>
-                                                <h6 id="success" style="color:green"></h6>
-
+                                                <h5 class="coupon_error_message" style="color:red"></h5>
+                                                <h6 class="coupon_success_message" style="color:green"></h6>
                                         </td>
                                     </tr>
                                     @php
@@ -253,10 +251,9 @@
             });
         });
 
-        var selected_product_id = null;
+        var selected_coupon_field = null;
         $(".coupon_code").click(function() {
-            selected_product_id = $(this).parent().find('.product_id').val();
-            //console.log(selected_product_id)
+            selected_coupon_field = $(this);
         });
 
         $('.coupon_code').autocomplete({
@@ -264,7 +261,7 @@
                 console.log(request.term);
                 var formData = new FormData();
                 formData.append('coupon_code', request.term)
-                formData.append('product_id', selected_product_id)
+                formData.append('product_id', selected_coupon_field.parent().find('.product_id').val())
                 $.ajax({
                     method: 'POST',
                     url: "{{route('coupon.check')}}",
@@ -274,6 +271,13 @@
                     contentType: false,
                     success:function(data){
                         console.log(data)
+                        if(data.error){
+                            selected_coupon_field.parent().find('.coupon_error_message').text(data.error);
+                            selected_coupon_field.parent().find('.coupon_success_message').text("");
+                        }else if(data.success){
+                            selected_coupon_field.parent().find('.coupon_success_message').text(data.success);
+                            selected_coupon_field.parent().find('.coupon_error_message').text("");
+                        }
                     },
                 })
             },

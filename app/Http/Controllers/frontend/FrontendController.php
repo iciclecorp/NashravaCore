@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\frontend;
+use App\Model\OrderDetail;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
@@ -134,31 +135,37 @@ class FrontendController extends Controller
         $product_id     =   $request->product_id;
         $coupon         =   Coupon::where('coupon_code',$coupon_code)->first();
         if(!$coupon){
-            return response()->json( ['errors' => 'Coupon not fount']);
+            //return response()->json( ['error' => 'Coupon not fount']);
+            return response()->json( ['error' => 'Invalid Coupon']);
         }else{
             //check user
             if (!in_array(auth()->user()->email ?? '', explode(",",$coupon->users))){
-                return response()->json( ['errors' => 'Coupon is not for you']);
+                //return response()->json( ['error' => 'Coupon is not for you']);
+                return response()->json( ['error' => 'Invalid Coupon']);
             }
 
             //check product
             if (!in_array($product_id, explode(",",$coupon->products))){
-                return response()->json( ['errors' => 'Coupon is not for this product']);
+                //return response()->json( ['error' => 'Coupon is not for this product']);
+                return response()->json( ['error' => 'Invalid Coupon']);
             }
 
             //check status
             if ($coupon->status != 1){
-                return response()->json( ['errors' => 'Coupon is not activated']);
+                //return response()->json( ['error' => 'Coupon is not activated']);
+                return response()->json( ['error' => 'Invalid Coupon']);
             }
 
             //check expire date
-            if (Carbon::parse($coupon->expiry_date)->format('Y-m-d') >= Carbon::today()){
-                return response()->json( ['errors' => 'In Valid Date']);
+            if (!Carbon::parse($coupon->expiry_date)->format('Y-m-d') >= Carbon::today()){
+                //return response()->json( ['error' => 'In Valid Date']);
+                return response()->json( ['error' => 'Invalid Coupon']);
             }
 
             //check multi time or single time || Multiple Times | Single Times
-            if ($coupon->coupon_type == 'Single Times'){
-                return response()->json( ['errors' => 'In Valid Date']);
+            if ($coupon->coupon_type == 'Single Times' && OrderDetail::where('coupon_id', $coupon->id)->where('customer_id', auth()->user()->id ?? '')->first()){
+                //return response()->json( ['error' => 'Coupon already used']);
+                return response()->json( ['error' => 'Invalid Coupon']);
             }
 
             //After all condition check this coupon is valid

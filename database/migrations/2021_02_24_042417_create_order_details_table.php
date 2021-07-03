@@ -20,6 +20,8 @@ class CreateOrderDetailsTable extends Migration
             $table->integer('color_id');
             $table->integer('size_id');
             $table->integer('quantity');
+            $table->foreignId('coupon_id')->nullable();
+            $table->foreignId('customer_id')->nullable();
             $table->timestamps();
         });
     }
