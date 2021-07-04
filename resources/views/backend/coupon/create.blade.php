@@ -38,6 +38,17 @@
                 <h3>{{__('back_blade.view_coupon_add')}}
                   <a class="btn btn-success btn-sm float-right" href="{{route('coupons.index')}}"><i class="fa fa-list"></i>&nbsp;&nbsp;&nbsp;{{__('back_blade.view_coupon_list')}}</a>
                 </h3>
+
+                  @if ($errors->any())
+                      <br>
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
               </div><!-- /.card-header -->
                <div class="card-body">
                 <form  method="post" action="{{route('coupons.store')}}" class="form-horizontal" id="myForm" enctype="multipart/form-data">
@@ -59,13 +70,13 @@
                             <div class='form-group col-md-12'style="display:none;" id="couponField">
                             <input type="text" name="coupon_code" id="coupon_code" class="form-control form-control-sm" placeholder="Enter Coupon Code">
                             </div>
-                           
+
                              <label for="coupon_type" class="col-md-4">Coupon Type</label>
                             <div class=" form-group col-md-12 d-flex justify-content-between align-items-center">
                                  <span><input type="radio" name="coupon_type"  value="Multiple Times">&nbsp;&nbsp;Multiple Times</span>&nbsp;&nbsp;&nbsp;&nbsp;
                                   <span><input type="radio" name="coupon_type" value="Single Times">&nbsp;&nbsp;Single Times</span>
                             </div>
-                            
+
                         </div>
                       </div>
                     </div>
@@ -85,8 +96,8 @@
                             <label for="amount_type" class="col-md-4">Amount</label>
                             <div class='form-group col-md-12'>
                             <input type="text" name="amount" id="amount" class="form-control form-control-sm" placeholder="Enter Amount" required>
-                            </div>            
-                          </div>    
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -107,7 +118,7 @@
                                         <option value="{{$product->id}}">{{$product->product_name}}</option>
                                       @endforeach
                                   </select>
-                                </div>            
+                                </div>
                               </div><br/><br/>
                               <div class=" form-row col-md-12">
                                 <label for="user" class="col-md-4">User</label>
@@ -117,9 +128,9 @@
                                         <option value="{{$user['email']}}">{{$user['email']}}</option>
                                       @endforeach
                                   </select>
-                                </div>            
+                                </div>
                               </div>
-                            <div style="height:96px"></div>  
+                            <div style="height:96px"></div>
                       </div>
                     </div>
                   </div>
@@ -135,7 +146,7 @@
                         <div class="col-md-10" style="text-align: center">
                           <button type="submit" class="btn btn-primary ">Save</button>
                         </div>
-                       </section>  
+                       </section>
                       </div>
                     </form>
               <!-- /.card-body -->
@@ -201,7 +212,7 @@ $(function () {
     $('#automatic_coupon').click(function(){
          $('#couponField').hide();
     });
-      
+
     $('#manual_coupon').click(function(){
          $('#couponField').show();
     });

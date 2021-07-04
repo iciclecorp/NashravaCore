@@ -164,11 +164,17 @@
 
                                         
                                         <div class="product-cart-wishlist"> 
+                                        <?php if($product->qty==0){?>
+                                            <span class="add-to-cart">
+                                            <a href="javascript:void(0)" class="cart" ><i aria-hidden="true" class="fa fa-frown-o"></i><span>Out of Stock</span></a>
+                                            </span>
+                                                    <?php }else{?>
                                             <span class="add-to-cart">
                                             <a href="#" class="cart" onclick="myFunc()"><i aria-hidden="true" class="fa fa-plus"></i><span>Add to Cart</span></a>
                                             </span>
 </form>
-                                            <!-- Start Wish List  -->
+                                                    <?php }?>                        
+                                                      <!-- Start Wish List  -->
                                             <span class="listview-wishlist"> 
                                              <a href="javascript:void(0)" data-id="{{$product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
                                             </span>
@@ -412,7 +418,8 @@ $.ajax({
         
       })
 	  
-	
+      $(".header-cart").load("  .header-cart >*");
+
 	  
    },
    error: function (xhr) {
@@ -465,7 +472,7 @@ $.ajax({
         
       })
 	  
-	
+
 	  
    },
    error: function (xhr) {

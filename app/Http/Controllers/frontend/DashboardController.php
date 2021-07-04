@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
@@ -10,7 +11,6 @@ use App\Model\Payment;
 use App\Model\Category;
 use App\Model\Brand;
 use Auth;
-use Session;
 use App\Model\Shipping;
 use App\Model\Product;
 use DB;
@@ -93,16 +93,15 @@ class DashboardController extends Controller
                      $order_details->color_id = $content->options->color_id ?? '0';
                      $order_details->size_id = $content->options->size_id ?? '0';
                      $order_details->quantity= $content->qty;
+                     $order_details->coupon_id= collect(Session::get('coupon'))->where('product_id', $content->id)->first()['coupon_id'] ?? null;
+                     $order_details->customer_id= Auth::user()->id;
                      $order_details->save();
                   }
-
-
                 }
               }
-
             });
           }
-
+            Session::put('coupon', []);
             Cart::destroy();
 
             return redirect()->route('customer.order.list')->with('success','Data save successfully');

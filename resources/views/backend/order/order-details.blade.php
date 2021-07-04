@@ -31,12 +31,12 @@
             <div class="card">
               <div class="card-header">
                 <h3> Order Details Information </h3>
-              
+
                  <span style="margin-right:3px;"><a class="btn btn-primary btn-sm float-right" href="{{route('order.approve.list')}}"><i class="fa fa-plus-circle"></i>&nbsp;&nbsp; Approved Order List</a></span>
-          
-            
+
+
                       <span><a class="btn btn-success btn-sm float-right" href="{{route('order.pending.list')}}"><i class="fa fa-plus-circle"></i>&nbsp;&nbsp; Pending Order List</a></span>
-                 
+
               </div><!-- /.card-header -->
               <div class="card-body">
             <table class="txt-center myTable" width="100%" border="1">
@@ -49,7 +49,7 @@
                     <span><strong>Address:</strong>House# 03(4th floor), Road# 19, Sector# 13, Uttara, Dhaka-1230.</span><br/>
                    <span><strong>Phone Number: </strong>01309286974</span><br/>
                     <span><strong>Email:</strong>support@nashrava.co</span>
-                   
+
                  </td>
                  <td width="30%" style="padding-left: 5px; text-align: center">
                    <strong>Order No: # {{$order->order_no}}</strong>
@@ -73,7 +73,7 @@
                   <strong >Mobile No :&nbsp;</strong>{{$order->shipping->del_mobile_no}}<br/>
                   <strong >Email :&nbsp;</strong>{{$order->shipping->del_email}}<br/>
                   <strong >Address :&nbsp;</strong>{{$order->shipping->del_address}}<br/>
-                 
+
                 </td>
                </tr>
                <tr>
@@ -98,11 +98,12 @@
                  {{$details->size->size_name ?? 'No Size'}}
                 </td>
                 <td style="padding-left: 5px;">
-                   @php
-                      $sub_total = $details->quantity * $details->product->price;
-                  @endphp
-                  {{$details->quantity}} x {{$details->product->price}} = {{$sub_total}}
-
+                    @if($details->coupon_id)
+                        {{$details->quantity}} x <del> {{$details->product->price - $details->product->discount ?? 0}} = {{ $details->quantity * $details->product->price - $details->product->discount ?? 0}} </del> <br>
+                        {{$details->quantity}} x  {{ discount_price($details->customer_id,$details->product_id,$details->coupon_id) }} = {{ $details->quantity * discount_price($details->customer_id,$details->product_id,$details->coupon_id) }}
+                    @else
+                        {{$details->quantity}} x  {{$details->product->price - $details->product->discount ?? 0}} = {{ $details->quantity * $details->product->price - $details->product->discount ?? 0 }}
+                    @endif
                 </td>
                </tr>
                @endforeach
@@ -110,7 +111,7 @@
                 <td colspan="3" style="text-align: right;padding-right: 5px;"><strong>Grand Total</strong></td>
                 <td style="padding-left: 5px;">{{$order->order_total_amount}}</td>
                </tr>
-            </table>    
+            </table>
                <!-- /.card-body -->
               </div>
             </div>

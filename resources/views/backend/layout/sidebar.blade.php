@@ -409,6 +409,13 @@
                     <p style="{{ Request::is('*/setting') ? 'color:#faf619;' : '' }}">Application Setting</p>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a href="{{route('page.setting')}}" class="nav-link {{ Request::is('admin/page/setting') ? 'active' : '' }}">
+                  <i class="fas fa-copy nav-icon"></i>
+                  <p style="color:#ffffff;">Page Settings</p>
+                </a>
+              </li>
         </ul>
       </nav>
      @endif

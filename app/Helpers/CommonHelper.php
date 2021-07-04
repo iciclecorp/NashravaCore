@@ -1,8 +1,12 @@
 <?php
 
+use App\Model\Coupon;
+use App\Model\OrderDetail;
 use App\StaticOption;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Session;
 
 if (!function_exists('random_code')){
 
@@ -45,4 +49,66 @@ if (!function_exists('random_code')){
         return false;
     }
 
+    //Use for front and session data
+    function remove_from_coupon_session($product_id){
+        if (!Session::get('coupon')){
+            Session::put('coupon', []);
+        }
+        $old_coupon_session_items = Session::get('coupon');
+        Session::put('coupon', []);
+        $execute = false;
+        try {
+            foreach ($old_coupon_session_items as $old_coupon_session_item){
+                if ($old_coupon_session_item['product_id'] == $product_id && $execute == false){
+                    $execute = true;
+                    continue;
+                }
+                $request = new \Illuminate\Http\Request;
+                $request->session()->push('coupon', $old_coupon_session_item);
+            }
+            return response()->json( ['error' => 'Invalid Coupon']);
+        }catch (\Exception $exception){
+            return response()->json( ['error' => $exception->getMessage()]);
+        }
+    }
+    //Use for front and session data
+    function get_discount_price_by_product_id($product_id){
+        $product = \App\Model\Product::find($product_id);
+        $price = $product->price;
+        if (Session::get('coupon'))
+        foreach (Session::get('coupon') as $coupon){
+            if ($coupon['product_id'] == $product_id){
+                $coupon = Coupon::find($coupon['coupon_id']);
+                if($coupon->amount_type == 'Percentage'){
+                    $price =  $product->price - ($product->price * ($coupon->amount/100));
+                }else{
+                    $price = $product->price - $coupon->amount;
+                }
+            }
+        }
+
+        if($product->discount > 0){
+            $price = $price - $product->discount;
+        }
+        return $price;
+    }
+
+    //Global discount check for backend site
+    function discount_price($user_id, $product_id, $coupon_id){
+        $coupon = Coupon::find($coupon_id);
+        $product = \App\Model\Product::find($product_id);
+        $price = $product->price;
+        if (in_array(\App\User::find($user_id)->email, explode(",",$coupon->users)) && in_array($product_id, explode(",",$coupon->products))){
+            if($coupon->amount_type == 'Percentage'){
+                $price = $product->price - ($product->price * ($coupon->amount/100));
+            }else{
+                $price = $product->price - $coupon->amount;
+            }
+        }
+
+        if($product->discount > 0){
+            $price = $price - $product->discount;
+        }
+        return $price;
+    }
 }
