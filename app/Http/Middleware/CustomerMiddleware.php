@@ -17,9 +17,9 @@ class CustomerMiddleware
     public function handle($request, Closure $next)
     {
         if(Auth::check() && Auth::user()->user_type == 'customer'){
-        return $next($request);
-    }else{
-        return redirect()->back();
-    }
+            return $next($request);
+        }else{
+            return redirect()->route('customer.login');
+        }
     }
 }

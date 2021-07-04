@@ -49,6 +49,26 @@
                               <input type="text" name="slider_name" class="form-control" value="{{$data->slider_name}}">
                              
                           </div>
+                          <div class="form-group col-md-6">
+                          <label for="name">Headline Text</label>
+                          <input type="text" class="form-control" name="highlight" value="{{$data->highlight}}">
+                         
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="name">Subtitle Text</label>
+                          <input type="text" class="form-control" name="shorttext" value="{{$data->short_text}}">
+                          
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="name">Shop Now URL </label>
+                          <input type="text" class="form-control" name="shopnow_url" value="{{$data->shopnow_url}}">
+                          
+                      </div>
+                      <div class="form-group col-md-6">
+                          <label for="name">Explore URL</label>
+                          <input type="text" class="form-control" name="explore_url" value="{{$data->explore_url}}">
+                          
+                      </div>
                         
                        <div class="form-group col-md-6">
                            <label for="image">Image</label>

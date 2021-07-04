@@ -44,6 +44,8 @@
                                 <option value=" ">Select User Type</option>
                                 <option value="admin">Admin</option>
                                 <option value="user">User</option>
+                                <option value="customer">Customer</option>
+
                             </select>
                           <font style="color:red">{{($errors->has('user_type'))?($errors->first('user_type')):' '}}</font>
                       </div>

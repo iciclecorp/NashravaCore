@@ -33,7 +33,6 @@ class CategoryController extends Controller
     {  
        $this->validate($request,[
           'category_name' => 'required|unique:categories,category_name',
-          'category_image' => 'required',
        ]);
        $category_info = new Category();
        $category_info->fill($request->all());

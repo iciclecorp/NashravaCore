@@ -28,6 +28,8 @@ class CreateProductsTable extends Migration
             $table->LongText('details');
             $table->tinyInteger('status')->default('1'); 
             $table->tinyInteger('best_status')->default('0'); 
+            $table->tinyInteger('offers')->default('0'); 
+            $table->boolean('new_arrival')->default('0');
             $table->timestamps();
         });
     }

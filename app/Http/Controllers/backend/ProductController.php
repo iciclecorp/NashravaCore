@@ -340,4 +340,24 @@ class ProductController extends Controller
   
         return redirect()->route('product.index')->with('success','Status change successfully.');
     }
+
+
+    public function newarrival_index()
+    {
+       return view('backend.newarrivals.index',[
+          'products' => Product::orderBy('id','desc')->get() 
+       ]);
+    }
+    public function newarrivalChangeStatus($id) {
+      $product = Product::findOrFail($id);
+      if($product->new_arrival  == 0 ){
+      $product->new_arrival  = '1';
+      }else{
+      $product->new_arrival  = '0';   
+      }
+      $product->save();
+
+      return redirect()->route('newarrival.index')->with('success','Status change successfully.');
+  }
+
 }

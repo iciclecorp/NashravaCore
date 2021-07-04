@@ -20,10 +20,10 @@
 <div id="breadcrumb-area">
         <div class="container">
             <div class="row">
-                <div class="col-md-12"> 
+                <div class="col-md-12">
                     <div class="breadcrumbs">
-                        <a href="index.html">Home</a> <span class="separator">&gt;</span> <span>Payment</span>
-                    </div>					   
+                        <a href="{{url('/')}}">Home</a> <span class="separator">&gt;</span> <span>Payment</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -68,30 +68,37 @@
 										<div class="row">
 										<td class="product-thumbnail">
 											<figure>
-												<a href="product-simple.html">
+												<a href="#">
 													<img src="{{url($item->options->image)}}" width="100" height="100"
 													alt="product">
 												</a>
-											
+
 											</figure>
 										</td>
 										<td class="product-name">
 											<div class="product-name-section">
-												<a href="product-simple.html">{{ $item->name }}</a>
+												<a href="#">{{ $item->name }}</a>
 											</div>
 										</td>
 										<td class="product-subtotal">
-
-											<span class="amount">BDT. {{$item->price}}</span>
+                                            @if(get_discount_price_by_product_id($item->id) != $item->price)
+											<del> BDT. {{$item->price}} </del>
+                                            <br> BDT. {{ get_discount_price_by_product_id($item->id) }}
+                                            @else BDT. {{$item->price}} @endif
 										</td>
 										<td class="product-quantity" style="text-align: center">
 										   {{$item->qty}}
 										</td>
 										<td class="product-price">
-											BDT.{{$item->subtotal}}
+                                            @if($item->qty * get_discount_price_by_product_id($item->id) != $item->subtotal)
+											<del> BDT.{{$item->subtotal}} </del>
+                                            <br> BDT. {{ $item->qty * get_discount_price_by_product_id($item->id) }}
+                                            @else
+                                                BDT.{{$item->subtotal}}
+                                            @endif
 										</td>
 										@php
-							            $total += $item->subtotal;
+							            $total += $item->qty * get_discount_price_by_product_id($item->id);
 							            @endphp
 									   </div>
 									</tr>
@@ -102,13 +109,13 @@
 									</tr>
 								</tbody>
 							</table>
-						
+
 						</div>
 						<aside class="col-lg-4 sticky-sidebar-wrapper">
 							<div class="sticky-sidebar" data-sticky-options="{'bottom': 20}">
 								<div class="summary mb-4">
 									<h3 class="summary-title text-left" >Select  Payment  Type</h3>
-									
+
 								<!-- 	<div class="shipping-address pb-4">
 										<label>Shipping to CA.</label>
 										<div class="select-box">
@@ -135,7 +142,7 @@
 											</td>
 											<td>
 												<p class="summary-total-price">BDT. {{$total}}</p>
-											</td>												
+											</td>
 										</tr>
 									</table>
 									<div>
@@ -194,7 +201,7 @@
 												<label> Bkash No is:<b style="color:red;">01792985242</b></label>
 												<input type="text" name="transaction_no" placeholder="Write Bkash Transaction No" class="form-control" style="border:2px solid green" >
 											</div>
-										
+
 									   <button href="#" class="btn btn-primary mt-4">Submit Payment</button>
 
 									 </form>
@@ -203,22 +210,22 @@
 							</div>
 						</aside>
 					</div>
-				</div>  
-		</div>	
+				</div>
+		</div>
 <script type="text/javascript">
-	
+
 	 $(document).on('change','#payment_methods',function(){
            var payment_method = $(this).val();
            console.log(payment_method);
            if(payment_method == 'Bkash'){
            	$('.show_field').show();
-           	
+
            }else{
             $('.show_field').hide();
            }
-           
+
         });
-</script>	
+</script>
 @endsection
 
 @section('js')
@@ -255,7 +262,7 @@ $(function () {
   });
 });
 
- 
+
 </script>
-  
+
 @endsection

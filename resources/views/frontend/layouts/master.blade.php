@@ -33,7 +33,9 @@
 		<link rel="stylesheet" href="{{asset('public/frontend/style.css')}}">
 		<link rel="stylesheet" href="{{asset('public/frontend/css/colors.css')}}">
 		<!-- responsive css -->
-        <link rel="stylesheet" href="{{asset('public/frontend/css/responsive.css')}}">
+		<link rel="stylesheet" href="{{asset('public/frontend/css/responsive.css')}}">
+		<link rel="stylesheet" href="{{ asset('public/backend/plugins/sweetalert2/sweetalert2.min.css') }}">
+
 		<!-- modernizr css -->
         <script src="{{asset('public/frontend/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 
@@ -68,7 +70,77 @@
 	<script src="{{asset('public/frontend/js/wow.min.js')}}"></script>
 	<!-- plugins js -->
 	<script src="{{asset('public/frontend/js/plugins.js')}}"></script>
+	<script src="{{ asset('public/backend/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+
 	<!-- main js -->
 	<script src="{{asset('public/frontend/js/main.js')}}"></script>
+	<script>
+/*			function target_popup(form) {
+    window.open('', 'formpopup', 'width=1200,height=700,resizeable,scrollbars');
+    form.target = 'formpopup';
+}*/
+		$(function () {
+                    
+                    var id = $(this).data("id");
+                    
+                    var fieldArray = [];
+                    var $this = $(this);
+                    var cpid=JSON.parse(localStorage.getItem('cpids'))
+var  clickCounter = localStorage.getItem('clickCounter')
+   clickCounter = clickCounter ? parseInt(clickCounter) : 0;
+   //clickCounter = clickCounter || 0
+   $('.compare').text(clickCounter);
+   $('#cpid').val(cpid);
+
+    $( ".comp" ).click(function(){
+   //var clickCounter = $this.data('clickCounter') || 0;
+   // here you know how many clicks have happened before the current one
+  
+   clickCounter++;
+   //$(this).data('clickCounter', clickCounter);
+		if(clickCounter){
+			Swal.fire({
+        text: 'Added to Compare',
+		type: 'success',
+		timer: 2000,
+		showCancelButton: false,
+  showConfirmButton: false
+        
+      })
+
+		if(!cpid){
+			fieldArray.push($(this).data("id"));
+
+
+		}
+		else{
+			fieldArray.push(cpid);
+			fieldArray.push($(this).data("id"));
+
+
+		}
+		var compare=fieldArray.length;
+
+        $('.compare').text(clickCounter);
+		$('#cpid').val(fieldArray);
+        
+		localStorage.setItem("clickCounter",clickCounter);
+        localStorage.setItem('cpids', JSON.stringify(fieldArray))
+
+
+		}
+        
+
+              
+                      
+                    });
+
+
+		});
+
+	
+
+
+		</script>
     </body>
 </html>
