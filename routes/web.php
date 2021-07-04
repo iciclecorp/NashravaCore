@@ -35,6 +35,11 @@ Route::get('/price-wise-product-list','frontend\ProductFilterController@pricePro
 Route::get('/product-details/{slug}','frontend\FrontendController@productDetails')->name('product.details');
 
 Route::get('/search','PageController@search')->name('search');
+Route::get('/about_us','PageController@about')->name('about.page');
+Route::get('/terms_n_conditions','PageController@terms')->name('terms.page');
+Route::get('/delivery_charge','PageController@delivery')->name('delivery.page');
+
+
 
 // //cart route
 // Route::get('/shop', 'CartController@shop');
@@ -200,5 +205,10 @@ Route::get('/delete-cart/{rowId}','backend\CartController@deleteCart')->name('de
 Route::resource('cart','backend\CartDeleteController');
 Route::get('setting','backend\ApplicationController@index')->name('application.setting');
 Route::post('setting','backend\ApplicationController@update');
+
+
+Route::get('page/setting','backend\PageController@index')->name('page.setting');
+Route::post('page/setting','backend\PageController@update');
+
 });
 

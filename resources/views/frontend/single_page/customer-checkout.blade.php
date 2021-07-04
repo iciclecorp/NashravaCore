@@ -109,7 +109,10 @@
 									<div class="summary mb-4">
 										<table class="order-table">
 											@php
-			                                   $contents = Cart::content();
+											$pricetotal=0;
+											$pricediscount=0;
+			                                 $contents = Cart::content();
+											   
 							                @endphp
 											<thead>
 												<tr>
@@ -125,12 +128,22 @@
                                                             to {{ get_discount_price_by_product_id($content->id) }} @endif
                                                     </td>
 												</tr>
+												@php
+												$pricetotal+=$content->qty * $content->price;
+												$pricediscount+=$content->qty * get_discount_price_by_product_id($content->id);
+
+												@endphp
 												@endforeach
 
 												<tr class="order-total">
 													<td>Total:</td>
-													<td>BDT. {{$content->qty * $content->price}}
-                                                        @if($content->qty * get_discount_price_by_product_id($content->id) != $content->qty * $content->price) to {{$content->qty * get_discount_price_by_product_id($content->id) }} @endif
+													<td>BDT. {{$pricetotal}}
+                                                        
+                                                    </td>
+													<td>With Discount:</td>
+													<td>BDT. 
+														 {{$pricediscount}}
+														 
                                                     </td>
 												</tr>
 											</tbody>

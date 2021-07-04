@@ -150,7 +150,7 @@
                                         <p class="cart-total total">Total <span class="amount">{{$total}}</span></p>
                                 <span>
 
-                                    @if(Auth::user()->id != NULL)
+                                    @if(Auth::user())
                                         <a href="{{route('view.cart')}}" class="btn-checkout"><span>Checkout</span></a>
                                     @else
                                         <a href="{{route('customer.login')}}" class="btn-checkout"><span>Checkout</span></a>

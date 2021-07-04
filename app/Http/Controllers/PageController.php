@@ -39,4 +39,47 @@ class PageController extends Controller
          
        return view('frontend.single_page.search',$data);  
    }
+
+
+   public function about(){
+    // return ($cat_product)->toArray();
+    return view('frontend.single_page.page',[
+
+       'categories' => Category::orderBy('id','desc')->get(),
+       'page_name' =>'About Us',
+       'page_text' =>'aboutus',
+
+       'sub_categories' => SubCategory::orderBy('id','desc')->get(),
+       'brands' => Brand::orderBy('id','desc')->get(),
+    ]);
+}
+public function terms(){
+    // return ($cat_product)->toArray();
+    return view('frontend.single_page.page',[
+
+       'categories' => Category::orderBy('id','desc')->get(),
+       'page_name' =>'Terms & Conditions',
+       'page_text' =>'terms',
+
+       'sub_categories' => SubCategory::orderBy('id','desc')->get(),
+       'brands' => Brand::orderBy('id','desc')->get(),
+    ]);
+}
+
+
+public function delivery(){
+    // return ($cat_product)->toArray();
+    return view('frontend.single_page.page',[
+
+       'categories' => Category::orderBy('id','desc')->get(),
+       'page_name' =>'Delivery Details & Charges',
+       'page_text' =>'delivery',
+
+       'sub_categories' => SubCategory::orderBy('id','desc')->get(),
+       'brands' => Brand::orderBy('id','desc')->get(),
+    ]);
+}
+
+
+
 }

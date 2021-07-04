@@ -416,6 +416,13 @@
                     <p style="<?php echo e(Request::is('*/setting') ? 'color:#faf619;' : ''); ?>">Application Setting</p>
                 </a>
             </li>
+
+            <li class="nav-item">
+                <a href="<?php echo e(route('page.setting')); ?>" class="nav-link <?php echo e(Request::is('admin/page/setting') ? 'active' : ''); ?>">
+                  <i class="fas fa-copy nav-icon"></i>
+                  <p style="color:#ffffff;">Page Settings</p>
+                </a>
+              </li>
         </ul>
       </nav>
      <?php endif; ?>

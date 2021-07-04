@@ -41,6 +41,7 @@
                                 <th class="product-name">Size & Color</th>
                                 <th class="product-subtotal">Price</th>
                                 <th class="product-quantity">Quantity</th>
+                                <th class="product-quantity">Edit</th>
 
                                 <th class="product-grandtotal">SubTotal</th>
                                 <th class="product-grandtotal">Coupon</th>
@@ -57,7 +58,7 @@
                                 @foreach(Cart::content() as $cart)
                                     @php
                                         $count++;
-                                        $subtotal += $cart->price * $cart->qty;
+                                        $subtotal = $cart->price * $cart->qty;
                                     @endphp
                                     <tr class="cg">
                                         <td class="product-remove"><a href="{{ route('del.cart', $cart->rowId) }}"><i
@@ -76,22 +77,32 @@
                                         <td class="product-subtotal">BDT. {{$cart->price }}</td>
 
 
-                                        <input type="hidden" name="id" id="id" value="{{$cart->id}}">
+                                        <input type="hidden" name="id" class="id" value="{{$cart->id}}">
 
-                                        <input type="hidden" name="price" id="price" value="{{$cart->price}}">
+                                        <input type="hidden" name="price" class="price" value="{{$cart->price}}">
                                         <td class="product-quantity">
 
+                                          
+                                        <form method="POST" class="preview_form{{$count}}" >    
+                                            
+                                            <input type="hidden" name="rowId" id="rowId{{$count}}" value="{{ $cart->rowId }}">
+                                            <input type="hidden" name="price" id="price{{$count}}" value="{{ $cart->price }}">
+
                                             <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box qty" type="text" id="qty"
-                                                       name="qtybutton" value="{{$cart->qty}}"
-                                                       onchange="myCart(this.form)">
+                                            
+
+                                                <input class="cart-plus-minus-box" type="text" id="qty{{$count}}"
+                                                       name="qtybutton" value="{{$cart->qty}}">
+                                               
                                             </div>
-
-
+                                            
                                         </td>
+                                        <td class="product-remove"><a href="javascript:void(0)" class="edit{{$count}}"><i class="fa fa-edit"></i></a>
+                                        </td>
+                                        </form>
                                         <td class="product-subtotal">BDT.<span
-                                                class="oldsubtotal{{ $cart->rowId}}"> {{$subtotal }}</span><span
-                                                class="subtotal{{ $cart->rowId}}"></span></td>
+                                                class="oldsubtotal{{ $count}}"> {{$subtotal }}</span><span
+                                                class="subtotal{{ $count}}"></span></td>
 
 
                                         <td class="product-grandtotal">
@@ -106,13 +117,10 @@
                                     @endphp
                                 @endforeach
                                 <tr>
-                                    <td colspan="6" style="text-align: right;">Grand Sub Total</td>
-                                    <td class="product-grandtotal"><strong>BDT. {{ $subtotals}}</strong></td>
+                                    <td colspan="7" style="text-align: right;">Grand Sub Total</td>
+                                    <td class="product-grandtotal grandtotal"><strong>BDT. {{ $subtotals}}</strong></td>
                                 </tr>
-                                <tr>
-                                    <td colspan="6" style="text-align: right;">With Discount</td>
-                                    <td><strong>BDT. {{ $subtotals}}</strong></td>
-                                </tr>
+                               
                                 </tbody>
                             @else
                                 <tbody>
@@ -131,8 +139,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="update-cart-area">
-                        <a href="{{route('product.list')}}" class="lucian-border-btn">CONTINUE SHOPPING</a>
-                        <input type="submit" class="lucian-border-btn" value="UPDATE SHOPPING CART">
+                       <!-- <input type="submit" class="lucian-border-btn" value="UPDATE SHOPPING CART">-->
                     </div>
                 </div>
             </div>
@@ -202,19 +209,21 @@
                             <tbody>
                             <tr>
                                 <td class="subtotal">Subtotal</td>
-                                <td>BDT. {{ $subtotals}}</td>
+                                <td  class="grandtotal">BDT. {{ $subtotals}}</td>
                             </tr>
                             <!--  <tr>
                                  <td class="shipping">Shiping</td>
                                  <td>Free</td>
                              </tr> -->
                             <tr>
-                                <td class="grandtotal">Grandtotal</td>
-                                <td>BDT. {{ $subtotals}}</td>
+                                <td>Grandtotal</td>
+                                <td  class="grandtotal">BDT. {{ $subtotals}}</td>
                             </tr>
                             </tbody>
                         </table>
                         <!-- End Table -->
+                        <a href="{{route('product.list')}}" class="lucian-border-btn">CONTINUE SHOPPING</a>
+
                         @if(@Auth::user()->id != NULL && Session::get('shipping_id') == NULL)
                             <a href="{{route('customer.checkout')}}" class="lucian-gray-btn">Proceed to checkout</a>
                         @elseif(@Auth::user()->id != NULL && Session::get('shipping_id') != NULL)
@@ -234,21 +243,48 @@
     <script>
         $(document).ready(function () {
 
-            $('.qtybutton').on('click', function () {
-                var rowCount = $('.cg').length;
-                var id = $("#id").val();
-                var qty = $("#qty" + id).val();
+            <?php for($i=1;$i<=5;$i++){?>   
+
+$('.edit<?php echo $i;?>').on('click', function () {
+    var rowId = $("#rowId<?php echo $i;?>").val();
+    var qty = $("#qty<?php echo $i;?>").val();
+    var price = $("#price<?php echo $i;?>").val();
 
 
-                var price = $("#price" + id).val();
-                alert(rowCount);
 
-                alert(price);
-                var total = qty * price;
+    
+    
 
-                $('.subtotal' + id).text(total);
-                $('.oldsubtotal' + id).hide();
-            });
+    $.ajax({
+ headers: {
+'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+},  
+type:"POST",
+url: "{{route('edit.cart')}}",
+data:{rowId:rowId,qty:qty,price:price},
+
+success:function(data){
+
+console.log(data);
+$('.subtotal<?php echo $i;?>').text(data.price);
+                $('.oldsubtotal<?php echo $i;?>').hide();
+
+                $(".grandtotal").load("  .grandtotal >*");
+
+  
+},
+error:function(error){
+ console.log(error)
+ alert("not send");
+},
+
+
+});
+
+
+
+});
+<?php }?>
         });
 
         var selected_coupon_field = null;

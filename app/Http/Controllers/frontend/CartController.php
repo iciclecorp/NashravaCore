@@ -89,7 +89,20 @@ class CartController extends Controller
   }
 
   public function updateCart(Request $request){
+    $cart = Cart::content()->where('rowId',$request->rowId);
+    if($cart->isNotEmpty()){
+        $price=$request->price*$request->qty;
           Cart::update($request->rowId,$request->qty);
-          return redirect()->route('view.cart')->with('success','Product Updated Successfully');
+          
+          
+          
+          return response()->json(['success'=>'Product Updated Successfully','price'=>$price,'qty'=>$request->qty]);
+
+    }
+    else{
+        return response()->json(['error'=>'Product Not Updated Successfully','row'=>$request->rowId,'qty'=>$request->qty]);
+
+
+    }
   }
 }
