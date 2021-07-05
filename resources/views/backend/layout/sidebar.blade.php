@@ -131,7 +131,7 @@
                 </a>
               </li>
             </ul>
-            
+
           </li>
            <li class="nav-item has-treeview  @if (Request::is('admin/invoice') )
            menu-open
@@ -282,9 +282,9 @@
               </li>
             </ul>
 
-            
+
           </li>
-           <li class="nav-item has-treeview @if (Request::is('admin/purchase/daily/report') || Request::is('admin/stock/report') || Request::is('admin/invoice/daily/report') ||  Request::is('admin/local/invoice/daily/report') ) 
+           <li class="nav-item has-treeview @if (Request::is('admin/purchase/daily/report') || Request::is('admin/stock/report') || Request::is('admin/invoice/daily/report') ||  Request::is('admin/local/invoice/daily/report') )
 
            menu-open
           @endif" id="side_report" >
@@ -324,6 +324,14 @@
                 <a href="{{route('local.invoice.report')}}" class="nav-link {{ Request::is('admin/local/invoice/daily/report') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p style="color:#faf619;">Local Selling Report</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item ">
+                <a href="{{route('local.due.daily.report')}}" class="nav-link {{ Request::is('admin/local/customer/daily/due/report') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p style="color:#faf619;">Due Report</p>
                 </a>
               </li>
             </ul>
