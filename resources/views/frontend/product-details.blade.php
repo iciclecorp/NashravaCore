@@ -197,8 +197,8 @@
                                 <div class="description-tab-menu">
                                     <ul role="tablist" class="clearfix">
                                         <li class="active" role="presentation"><a data-toggle="tab" role="tab" aria-controls="description" href="#description" aria-expanded="true">Description</a></li>
-                                       <!-- <li role="presentation" class=""><a data-toggle="tab" role="tab" aria-controls="specification" href="#specification" aria-expanded="false">information</a></li>
-                                        <li role="presentation" class=""><a data-toggle="tab" role="tab" aria-controls="review" href="#review" aria-expanded="false">Reviews</a></li>-->
+                                        <li role="presentation" class=""><a data-toggle="tab" role="tab" aria-controls="specification" href="#specification" aria-expanded="false">Measurement</a></li>
+                                       <!-- <li role="presentation" class=""><a data-toggle="tab" role="tab" aria-controls="review" href="#review" aria-expanded="false">Reviews</a></li>-->
                                   </ul>
                                 </div>
                                 <!-- End Description Menu -->
@@ -213,12 +213,49 @@
                                     </div>
                                     <!-- End Tab Panel -->
                                     <!-- Start Tab Panel -->
-                                   <!-- <div id="specification" class="tab-pane" role="tabpanel">
-                                        <p>Veniam quasi voluptatem facere nesciunt laborum, quibusdam amet totam fugit, blanditiis doloribus alias eveniet dolore pariatur dolores aliquid!</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex consectetur minima quod officiis magni, aspernatur. Ea consectetur ab in, consequatur alias, quo sit. Optio vitae cupiditate, consectetur veritatis cumque odio magnam voluptates voluptas eligendi, minima tenetur voluptatum dolor autem, doloribus expedita obcaecati.</p>
+                                   <div id="specification" class="tab-pane" role="tabpanel">
+
+                                   <table class="table table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Position</th>
+      <th scope="col">X-Small</th>
+      <th scope="col">Small</th>
+
+      <th scope="col">Medium</th>
+      <th scope="col">Large</th>
+      <th scope="col">X-Large</th>
+      <th scope="col">XX-Large</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+  <?php 
+$measures=App\Model\ProductMeasurement::where('product_id',$product->id)->get();
+
+foreach($measures as $measure){
+    $sz=App\Model\SizeMeasurement::where('id',$measure->size_id)->first();
+
+  ?>
+    <tr>
+      <th scope="row">{{$sz->measurement}}</th>
+      <td>{{$measure->x_small}}</td>
+      <td>{{$measure->small}}</td>
+      <td>{{$measure->medium}}</td>
+      <td>{{$measure->large}}</td>
+      <td>{{$measure->x_large}}</td>
+      <td>{{$measure->xx_large}}</td>
+
+
+
+    </tr>
+<?php }?>
+  </tbody>
+</table>
                                     </div>
                                    
-                                    <div id="review" class="tab-pane" role="tabpanel">
+                                    <!-- <div id="review" class="tab-pane" role="tabpanel">
                                         <p>Similique animi consequatur pariatur voluptas tempore, dolores obcaecati dolorum quia odit harum. Quos nemo, minima totam quidem ipsum labore.</p>
                                         <ul>
                                             <li>Minus placeat eligendi neque doloribus sed ratione repellendus a illo similique, sint quisquam perferendis eum nam nihil dolor fugit blanditiis, explicabo, recusandae hic qui exercitationem aspernatur excepturi voluptate unde. </li>
