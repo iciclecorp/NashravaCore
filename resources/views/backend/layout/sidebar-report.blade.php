@@ -23,7 +23,7 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2" >
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-           <li class="nav-item has-treeview @if (Request::is('admin/purchase/daily/report') || Request::is('admin/stock/report') || Request::is('admin/invoice/daily/report') || Request::is('admin/local/invoice/daily/report')) 
+           <li class="nav-item has-treeview @if (Request::is('admin/purchase/daily/report') || Request::is('admin/stock/report') || Request::is('admin/invoice/daily/report') || Request::is('admin/local/invoice/daily/report'))
            menu-open
           @endif" id="side_report" >
             <a href="#" class="nav-link">
@@ -65,6 +65,14 @@
                 </a>
               </li>
             </ul>
+               <ul class="nav nav-treeview">
+                   <li class="nav-item ">
+                       <a href="{{route('local.due.daily.report')}}" class="nav-link {{ Request::is('admin/local/customer/daily/due/report') ? 'active' : '' }}">
+                           <i class="far fa-circle nav-icon"></i>
+                           <p style="color:#faf619;">Due Report</p>
+                       </a>
+                   </li>
+               </ul>
           </li>
         </ul>
       </nav>

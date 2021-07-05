@@ -25,76 +25,93 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-         
+
            <!-- ./col -->
          <div class="col-lg-3 col-6" >
             <!-- small box -->
              <a href="{{route('purchase.report')}}" class="small-box-footer">
-             <div class="card"> 
+             <div class="card">
              <div class="card-body" style="font-weight: bold;text-align: center">
               <div class="small-box bg-info">
               <div class="inner" style="text-align: center">
-                
+
                 <i class="ion ion-bag"></i>
-             
+
               </div>
             </div>
             Purchase Report Module
            </div>
-           </div> 
+           </div>
             </a>
           </div>
            <!-- ./col -->
            <div class="col-lg-3 col-6">
             <!-- small box -->
              <a href="{{route('stock.report')}}" data-id="2" id="product" class="small-box-footer">
-             <div class="card"> 
+             <div class="card">
              <div class="card-body" style="font-weight: bold;text-align: center">
               <div class="small-box bg-success">
               <div class="inner" style="text-align: center">
-                
+
                 <i class="ion ion-bag"></i>
-             
+
               </div>
             </div>
              Stock Report Module
            </div>
-           </div> 
+           </div>
             </a>
           </div>
            <div class="col-lg-3 col-6">
             <!-- small box -->
              <a href="{{route('invoice.report')}}" data-id="2" id="product" class="small-box-footer">
-             <div class="card"> 
+             <div class="card">
              <div class="card-body" style="font-weight: bold;text-align: center">
               <div class="small-box bg-warning">
               <div class="inner" style="text-align: center">
-                
+
                 <i class="ion ion-bag"></i>
-             
+
               </div>
             </div>
              Selling Report Module
            </div>
-           </div> 
+           </div>
             </a>
           </div>
 
            <div class="col-lg-3 col-6">
             <!-- small box -->
              <a href="{{route('local.invoice.report')}}" data-id="2" id="product" class="small-box-footer">
-             <div class="card"> 
+             <div class="card">
              <div class="card-body" style="font-weight: bold;text-align: center">
               <div class="small-box bg-danger">
               <div class="inner" style="text-align: center">
-                
+
                 <i class="ion ion-bag"></i>
-             
+
               </div>
             </div>
              Local Selling Report Module
            </div>
-           </div> 
+           </div>
+            </a>
+          </div>
+           <div class="col-lg-3 col-6">
+            <!-- small box -->
+             <a href="{{route('local.due.daily.report')}}" data-id="2" id="product" class="small-box-footer">
+             <div class="card">
+             <div class="card-body" style="font-weight: bold;text-align: center">
+              <div class="small-box bg-danger">
+              <div class="inner" style="text-align: center">
+
+                <i class="ion ion-bag"></i>
+
+              </div>
+            </div>
+            Due Report Module
+           </div>
+           </div>
             </a>
           </div>
           <!-- ./col -->
@@ -102,7 +119,7 @@
         <!-- /.row -->
         <!-- Main row -->
         <div class="row">
-        
+
           <!-- right col -->
         </div>
         <!-- /.row (main row) -->
@@ -111,4 +128,3 @@
     <!-- /.content -->
   </div>
   @endsection
- 
