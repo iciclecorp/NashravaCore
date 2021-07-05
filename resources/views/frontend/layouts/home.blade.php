@@ -2,11 +2,10 @@
  @section('content')
  @include('frontend.layouts.slider')
  <!-- Start Category Search Bar -->
-    <div class="cartegory-search-bar last-in2">
+   <!-- <div class="cartegory-search-bar last-in2">
         <div class="container">
             <div class="row">
                 <div class="hidden-xs col-sm-4 col-sm-4 col-md-3">
-                    <!-- Start Category Menu Area -->
                     <div class="category-menu-area">
                         <ul class="category-menu">
                             <li><span class="cat-heading">categories</span>
@@ -15,9 +14,8 @@
 
                                     <li class="arrow">
                                         <a href="{{route('category.wise.product',$category->id)}}"><i class="fa fa-minus" aria-hidden="true"></i> {{$category->category_name}}</a>
-                                        <!--  MEGA MENU START -->
                                         <?php
-                                         $subcategories=App\Model\SubCategory::where('category_id',$category->id)->get();
+                                        $subcategories=App\Model\SubCategory::where('category_id',$category->id)->get();
                                        ?>
                                        <ul>
                                      @foreach($subcategories as $subcategory)
@@ -34,10 +32,8 @@
                                @endforeach
                         </ul>
                     </div>
-                    <!-- End Category Menu Area -->
                 </div>
                 <div class="col-xm-12 col-sm-8 col-md-6 col-md-offset-3">
-                    <!-- Start Serach Box Area -->
                     <div class="search-box-area">
 
                     <form action="{{route('search')}}" method="get" onkeypress="this.form.submit()">
@@ -54,7 +50,6 @@
                             $sum = 0;
 
                         @endphp
-                    <!-- End Serach Box Area -->
                     <div class="nav-cart-area">
                         <div class="cart-inner">
                             <a class="backet-area"><span class="added-total">{{ $count}}</span></a>
@@ -79,7 +74,6 @@
                                     @endphp
                                    	@endforeach
                                 </ul>
-                               <!-- <p class="cart-total">Shiping <span class="amount">$5.00</span></p>-->
                                 <p class="cart-total total">Total <span class="amount">{{$total}}</span></p>
                                 <span>
                                     @if(Auth::user())
@@ -94,10 +88,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- End Category Search Bar -->
     <!-- Start Quick Category Area -->
-    <div id="quick-category-area" class="padtop20 padbot25">
+    <div id="quick-category-area" class="padtop10 padbot25">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -146,7 +140,7 @@
     </div>
     <!-- End Quick Category Area -->
     <!-- Start New Products -->
-    <section id="new-products-area" class="padtop20 padbot25 lst">
+    <section id="new-products-area" class="padtop10 padbot25 lst">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -216,7 +210,7 @@
     </section>
     <!-- End New Products -->
     <!-- Start Best Seller -->
-    <section id="best-seller-area" class="padtop30 padbot25">
+    <section id="best-seller-area" class="padtop10 padbot25">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">

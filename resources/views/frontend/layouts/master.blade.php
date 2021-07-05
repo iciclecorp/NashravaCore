@@ -40,6 +40,17 @@
         <script src="{{asset('public/frontend/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 
         @yield('css')
+		<style>
+		#new-products-area .single-product .product-thumb img{
+			height:345px !important;
+		}
+		#best-seller-area .single-product .product-thumb img{
+			height:345px !important;
+		}
+		.products-gridview-inner .single-product .product-thumb img{
+			height:320px !important;
+		}
+		</style>
     </head>
     <body class="home2">
 	<!--[if lt IE 8]>

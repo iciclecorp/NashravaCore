@@ -207,6 +207,9 @@
                                             <li class="active home"><a href="{{url('/')}}">Home</a>
 
                                             </li>
+                                            <li><a href="{{route('about.page')}}">About Us</a>
+
+                                            </li>
                                             <li class="drop mega-menu hidden-xs hidden-sm"><a href="#">Category</a> <!-- Women -->
                                                 <!-- Start Mega Menu -->
                                                 <div class="mega-wrap" style=" background: #fff url({{ asset(get_static_option('banner_image')) }}) no-repeat scroll right top;">

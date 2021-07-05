@@ -86,20 +86,22 @@
         <div class="footer-bottom-area">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6"> 
+                    <div class="col-md-4"> 
                         <!-- Start Copyright Text -->
                         <div class="copy-right-text"> 
                             <p>Copyright &copy; 2021 <a href="#" target="_blank">Nashrava</a> All Rights Reserved</p>
                         </div>
                         <!-- End Copyright Text -->
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <!-- Start Cards -->
                         <div class="card-buttons"> 
                             <img src="{{asset('public/frontend/img/cart/cards.png')}}" alt="" />
                         </div>
-                         <span>Developed and Designed By ICICLE CORPORATION</span>
                         <!-- End Cards -->
+                    </div>
+                    <div class="col-md-4">
+                        <span style="float:right;">Site By ICICLE CORPORATION</span>
                     </div>
                 </div>
             </div>

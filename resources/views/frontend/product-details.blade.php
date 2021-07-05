@@ -124,12 +124,14 @@
                                          @csrf
                                           <input type="hidden" name="pid" id="pid" value="{{$product->id}}">
                                                 <div class="search-cat">
+                                               
                                                 <select name="size_id" id="size_id" class="form-control form-control-sm" required>
                                                         <option value="">Select Size</option>
                                                         @foreach($product_sizes as $size)
-                                                            <option value="{{$size->size_id}}">{{$size->size->size_name}}</option>
+                                                            <option value="{{$size->size_id}}">{{$size->size->size_name ?? ''}}</option>
                                                             @endforeach
                                                     </select>
+                                                   
                                                 </div>
                                             </div>
                                             <div class="size-area">
@@ -139,7 +141,7 @@
                                                 <select name="color_id" id="color_id" class="form-control form-control-sm" required>
                                                 <option value="" >Select Color</option>
                                                 @foreach($product_colors as $color)
-                                                <option value="{{$color->color_id}}">{{$color->color->color_name}}</option>
+                                                <option value="{{$color->color_id}}">{{$color->color->color_name ?? ''}}</option>
                                                 @endforeach
                                             </select>
                                             <font style="color:red">

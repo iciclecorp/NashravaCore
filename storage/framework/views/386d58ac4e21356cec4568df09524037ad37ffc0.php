@@ -209,6 +209,9 @@
                                             <li class="active home"><a href="<?php echo e(url('/')); ?>">Home</a>
 
                                             </li>
+                                            <li><a href="<?php echo e(route('about.page')); ?>">About Us</a>
+
+                                            </li>
                                             <li class="drop mega-menu hidden-xs hidden-sm"><a href="#">Category</a> <!-- Women -->
                                                 <!-- Start Mega Menu -->
                                                 <div class="mega-wrap" style=" background: #fff url(<?php echo e(asset(get_static_option('banner_image'))); ?>) no-repeat scroll right top;">
