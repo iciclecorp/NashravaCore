@@ -92,7 +92,7 @@
             <div class="header-bottom-area" style="background:#000000; padding:10px;">
                 <div class="container">
                     <div class="row">
-                        <div class="hidden-xs col-sm-4 col-md-3">
+                        <div class="col-xs-6 col-sm-4 col-md-3">
                             <!-- Start Search Form -->
                             <div class="search-box-area header-search">
 
@@ -103,7 +103,7 @@
                             </div>
                             <!-- End Search Form -->
                         </div>
-                        <div class="col-xs-4 col-sm-4 col-md-6">
+                        <div class="col-xs-2 col-sm-4 col-md-6">
                             <div class="logo-area">
                                 <!-- Start Logo -->
                                 <div class="logo">
@@ -118,12 +118,12 @@
                             $sum = 0;
 
                         ?>
-                        <div class="col-xs-8 col-sm-4 col-md-3">
+                        <div class="col-xs-2 col-sm-4 col-md-3">
                             <!-- Start Cart Area -->
                             <div class="cart-inner header-cart">
                                 <a class="backet-area">
                                     <span class="added-total"><?php echo e($count); ?></span>
-                                    shopping cart
+                                    <span class="mobileno">shopping cart</span>
                                 </a>
                                 <!-- Start Cart Dropdown -->
                                 <div class="cart-items-area">
@@ -236,10 +236,28 @@
                                                 </div>
                                                 <!-- End Mega Menu -->
                                             </li>
+                                            <li class="drop mobileyes"><a href="#">Category</a> <!-- Pages -->
+                                                <ul>
+                                                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php
+                                         $subcategories=App\Model\SubCategory::where('category_id',$category->id)->get();
+                                       ?>
+                                  <li><a href="<?php echo e(route('category.wise.product',$category->id)); ?>"><?php echo e($category->category_name); ?></a>
+                                  <ul class="sub-menu-2">
+                                  <?php $__currentLoopData = $subcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $subcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+<li><a href="<?php echo e(route('sub.category.wise.product',$subcategory->id)); ?>"><?php echo e($subcategory->sub_category_name); ?></a></li>
+<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                                        </ul>
+</li>
+                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+</ul></li>
                                             <li class="drop"><a href="#">Brands</a> <!-- Pages -->
                                                 <ul>
                                                 <?php $__currentLoopData = $brands; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                   <li><a href="<?php echo e(route('brand.wise.product',$brand->id)); ?>"><?php echo e($brand->brand_name); ?></a></li>
+                                  
+                                  
                                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 </ul></li>
 <li><a href="<?php echo e(url('/newarrivals')); ?>">Flash Deals</a></li>

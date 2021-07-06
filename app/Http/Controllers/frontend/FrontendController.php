@@ -33,8 +33,8 @@ class FrontendController extends Controller
 
     return view('frontend.layouts.home',[
 
-         'products' => Product::orderBy('id','desc')->get(),
-         'best_sell_products' => Product::where('best_status','1')->orderBy('id','desc')->get(),
+         'products' => Product::orderBy('id','desc')->paginate(4),
+         'best_sell_products' => Product::where('best_status','1')->orderBy('id','desc')->paginate(4),
          'offers' => Product::where('offers','1')->orderBy('id','desc')->get(),
          'categories' => Category::orderBy('id','desc')->get(),
          'featured_categories' => Category::Where('status' , '1')->orderBy('id','desc')->get(),

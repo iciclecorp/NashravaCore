@@ -34,7 +34,7 @@ class ContactController extends Controller
 
         $data = ['name' => $request->get('name') , 'email' => $request->get('email') , 'messageBody' => $request->get('message_body') ];
 
-        Mail::send('emails.email', $data, function ($message) use ($data)
+        Mail::send('frontend.emails.email', $data, function ($message) use ($data)
         {
             $message->from($data['email'], $data['name']);
             $message->to('info@nashrava.co', 'Admin')

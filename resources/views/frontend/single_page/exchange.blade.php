@@ -85,6 +85,29 @@ To guarantee that you are fully satisfied with your purchases, we are happy to e
                                     <textarea placeholder="Reason for Exchange" class="form-field text-box" name="message_body"></textarea>
                                 </div>
                                 <h3>List of Product you want to return</h3>
+                                <div class=" col-sm-6 col-md-6">
+                                <input type="text" placeholder="Style Number" class="form-field" name="phone">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Emial Field -->
+                                    <input type="text" placeholder="Size" class="form-field" name="email">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Emial Field -->
+                                    <input type="text" placeholder="Color" class="form-field" name="email">
+                                </div>
+                                <h3>List of Product you want in Exchange</h3>
+                                <div class=" col-sm-6 col-md-6">
+                                <input type="text" placeholder="Style Number" class="form-field" name="phone">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Emial Field -->
+                                    <input type="text" placeholder="Size" class="form-field" name="email">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Emial Field -->
+                                    <input type="text" placeholder="Color" class="form-field" name="email">
+                                </div>
                                 <div class="col-sm-12 col-md-12">
                                     <!-- Your Message Field -->
                                     <textarea placeholder="Your Message" class="form-field text-box" name="message_body"></textarea>
@@ -95,6 +118,16 @@ To guarantee that you are fully satisfied with your purchases, we are happy to e
                                 </div>
                             </div>
                         </form>
+                            
+                            </p>
+                            <p>
+                            Exchange Conditions:
+ADDITIONAL DELIVERY CHARGE FOR EXCHANGE For exchange customer must receive the delivery, make the payment and keep the product unused.
+ </p>Customer Care Team should be informed by calling: 01309286974 within 3 days of receiving the delivery. Customer has to mention size and color of desired product that they want to exchange with. We will send the exchanged product. </br>
+ While receiving the new product customer has to return the previous product to deliverymanplus delivery charge. In case of exchanging with a product of higher value, additional amount must be paid during exchange delivery. If customer is from out of Dhaka, unfortunately customer must pay additional delivery charge of Shundarban/ S.A Paribahan to return the product to our office.</br>
+  NashraVa will bear the cost of resending the exchanged product. The product must be returned to our office first via any courier service. After receiving the product we will send the exchanged product. Customer can exchange any ordered product for 1 time only.
+</p>
+<p>Returned product must be in unused condition with no marks and all packaging intact, including the shoe box.We will not accept any used /damaged product.
                             
                             </p>
                         </div>

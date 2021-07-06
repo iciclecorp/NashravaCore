@@ -41,14 +41,48 @@
 
         <?php echo $__env->yieldContent('css'); ?>
 		<style>
-		#new-products-area .single-product .product-thumb img{
-			height:345px !important;
-		}
-		#best-seller-area .single-product .product-thumb img{
-			height:345px !important;
-		}
+		
 		.products-gridview-inner .single-product .product-thumb img{
 			height:320px !important;
+		}
+		.view-more{
+			background: #F36523 none repeat scroll 0 0;
+    border-radius: 12px;
+    color: #ffffff !important;
+    display: inline-block;
+   
+    height: 35px;
+    line-height: 26px;
+    margin-right: 8px;
+    padding: 5px 20px
+		}
+		.p-short-des{
+    content: "\a";
+    white-space: pre-line;
+   
+}
+.mobileyes{
+	display:none !important;
+}
+		@media  only screen and (max-width: 600px) {
+			#new-products-area .products-gridview-inner .single-product .product-thumb img{
+			height:170px !important;
+		}
+		
+		#best-seller-area .products-gridview-inner .single-product .product-thumb img{
+			height:170px !important;
+		}
+
+		.mobileyes{
+	display:block !important;
+}
+
+.mobileno{
+	display:none !important;
+}
+.cart-inner.header-cart{
+	width:70px !important;
+}
 		}
 		</style>
     </head>

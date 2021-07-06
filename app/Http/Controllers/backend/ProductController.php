@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
@@ -24,15 +25,15 @@ use App\Model\Purchase;
 
 class ProductController extends Controller
 {
-    
+
     public function index()
     {
        return view('backend.product.index',[
-          'products' => Product::orderBy('id','desc')->get() 
+          'products' => Product::orderBy('id','desc')->get()
        ]);
     }
 
-   
+
     public function create()
     {
         return view('backend.product.create',[
@@ -46,11 +47,11 @@ class ProductController extends Controller
 
         ]);
 
-    }   
+    }
 
-    
+
     public function store(Request $request)
-    {   
+    {
 
       DB::transaction(function() use($request){
       /*  $this->validate($request,[
@@ -77,7 +78,6 @@ class ProductController extends Controller
         }
 
         if($product->save()){
-    
            $files = $request->sub_image;
             if(!empty($files)){
               foreach ($files as $file) {
@@ -88,66 +88,91 @@ class ProductController extends Controller
               $subimage = new ProductSubImage();
               $subimage->product_id = $product->id;
               $subimage->sub_image = $imgName;
-              $subimage->save(); 
+              $subimage->save();
 
               }
             }
 
-          
-          /*product color table data insert*/
-          $colors = $request->color_id;
-          if(!empty($colors)){
-            foreach ($colors as $color) {
-            $product_color = new ProductColor();
-            $product_color->product_id = $product->id;
-            $product_color->color_id= $color;
 
-            $product_color->save(); 
+//          /*product color table data insert*/
+//          $colors = $request->color_id;
+//          if(!empty($colors)){
+//            foreach ($colors as $color) {
+//            $product_color = new ProductColor();
+//            $product_color->product_id = $product->id;
+//            $product_color->color_id= $color;
+//
+//            $product_color->save();
+//
+//            }
+//           }
 
+            $total_qty_counter =  0;
+            foreach (Color::all() as $color){
+                //dd($request->input(Str::slug($color->color_name, '_').'_quantity'));
+                for ($counter = $request->input(Str::slug($color->color_name, '_').'_quantity');  $counter >= 1; $counter--){
+                   $total_qty_counter ++;
+                }
             }
-           }  
 
-           /*product size table data insert*/
-
-          $sizes = $request->size_id;
-          if(!empty($sizes)){
-            foreach ($sizes as $size) {
-            $product_size = new ProductSize();
-            $product_size->product_id = $product->id;
-            $product_size->size_id = $size;
-
-            $product_size->save(); 
-
+            if($total_qty_counter > $product->qty){
+                return back()->withErrors(['Please use correct quantity', 'Total product QTY is: '.$product->qty.' But you use :'.$total_qty_counter.' in color and size section']);
             }
-          } 
-           
+
+
+          foreach (Color::all() as $color){
+              //dd($request->input(Str::slug($color->color_name, '_').'_quantity'));
+              for ($counter = $request->input(Str::slug($color->color_name, '_').'_quantity');  $counter >= 1; $counter--){
+                  $product_color = new ProductColor();
+                  $product_color->product_id = $product->id;
+                  $product_color->color_id= $color->id;
+                  $product_color->save();
+
+                  $product_size = new ProductSize();
+                  $product_size->product_id = $product->id;
+                  $product_size->size_id = $request->input(Str::slug($color->color_name, '_').'_size');
+                  $product_size->save();
+              }
+          }
+
+//           /*product size table data insert*/
+//          $sizes = $request->size_id;
+//          if(!empty($sizes)){
+//            foreach ($sizes as $size) {
+//            $product_size = new ProductSize();
+//            $product_size->product_id = $product->id;
+//            $product_size->size_id = $size;
+//            $product_size->save();
+//            }
+//          }
+
         } else {
             return redirect()->back()->with('error','Sorry! Product Does not Created Successfully');
         }
 
-      });  
+      });
         return redirect()->back()->with('success','Product Created Successfully');
-       
+
     }
 
-    
+
     public function show($id)
     {
-        
+
       return view('backend.product.show',[
          'product_details' => Product::findOrFail($id)
       ]);
 
     }
 
-    
+
     public function edit($id)
     {
         $product = Product::findOrFail($id);
         $color_array = ProductColor::select('color_id')->where('product_id',$product->id)->orderBY('id','asc')->get()->toArray();
         $size_array = ProductSize::select('size_id')->where('product_id',$product->id)->orderBY('id','asc')->get()->toArray();
         return view('backend.product.edit',[
-           'product' => $product, 
+           'product' => $product,
            'categories' => Category::all(),
            'brands' => Brand::all(),
            'colors' => Color::all(),
@@ -159,7 +184,7 @@ class ProductController extends Controller
         ]);
     }
 
-   
+
     public function update(Request $request, $id)
     {
 
@@ -177,9 +202,9 @@ class ProductController extends Controller
               'price' => 'required',
               'qty' => 'required',
               'details' => 'required',
-               
+
             ]);
-         
+
 
         $product = Product::findOrFail($id);
         $product->fill($request->all());
@@ -217,7 +242,7 @@ class ProductController extends Controller
               $subimage = new ProductSubImage();
               $subimage->product_id = $product->id;
               $subimage->sub_image = $imgName;
-              $subimage->save(); 
+              $subimage->save();
 
               }
             }
@@ -225,18 +250,18 @@ class ProductController extends Controller
            /*product color table data updated*/
               $colors = $request->color_id;
               if(!empty($colors)){
-                
-                  ProductColor::where('product_id',$id)->delete(); 
+
+                  ProductColor::where('product_id',$id)->delete();
               }
 
                if(!empty($colors)){
               foreach ($colors as $color) {
-               
+
                $mycolor = new ProductColor();
                $mycolor->product_id = $product->id;
                $mycolor->color_id = $color;
-        
-               $mycolor->save(); 
+
+               $mycolor->save();
 
               }
             }
@@ -245,35 +270,35 @@ class ProductController extends Controller
 
                $sizes = $request->size_id;
                if(!empty($sizes)){
-                
-                  ProductSize::where('product_id',$id)->delete(); 
+
+                  ProductSize::where('product_id',$id)->delete();
               }
 
               if(!empty($sizes)){
               foreach ($sizes as $size) {
-               
+
                $mysize = new ProductSize();
                $mysize->product_id = $product->id;
                $mysize->size_id = $size;
-        
-               $mysize->save(); 
+
+               $mysize->save();
 
               }
             }
-   
 
 
-           
+
+
         } else {
             return redirect()->back()->with('error','Sorry! Product Does not Updated Successfully');
         }
 
-      });  
+      });
 
-       return redirect()->route('product.index')->with('success','Product Updated Successfully');  
+       return redirect()->route('product.index')->with('success','Product Updated Successfully');
     }
 
-   
+
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
@@ -281,7 +306,7 @@ class ProductController extends Controller
                  $this->deleteFile($product->image);
             }
 
-        
+
         $subimage = ProductSubImage::where('product_id',$product->id)->get()->toArray();
           if(!empty($subimage)){
 
@@ -290,14 +315,14 @@ class ProductController extends Controller
                     unlink('public/upload/product_image/product_sub_images/'.$value['sub_image']);
                   }
               }
-              
+
             }
         ProductSubImage::where('product_id',$product->id)->delete();
         ProductColor::where('product_id',$product->id)->delete();
         ProductSize::where('product_id',$product->id)->delete();
         $product->delete();
         return redirect()->route('product.index')->with('success','Product Deleted Successfully');
-        
+
     }
 
     private function deleteFile($path)
@@ -311,10 +336,10 @@ class ProductController extends Controller
         if($product->best_status == 0 ){
         $product->best_status = '1';
         }else{
-        $product->best_status = '0';   
+        $product->best_status = '0';
         }
         $product->save();
-  
+
         return redirect()->route('product.index')->with('success','Status change successfully.');
     }
 
@@ -323,10 +348,10 @@ class ProductController extends Controller
         if($product->featured == 0 ){
         $product->featured = '1';
         }else{
-        $product->featured = '0';   
+        $product->featured = '0';
         }
         $product->save();
-  
+
         return redirect()->route('product.index')->with('success','Status change successfully.');
     }
     public function offersChangeStatus($id) {
@@ -334,10 +359,10 @@ class ProductController extends Controller
         if($product->offers  == 0 ){
         $product->offers  = '1';
         }else{
-        $product->offers  = '0';   
+        $product->offers  = '0';
         }
         $product->save();
-  
+
         return redirect()->route('product.index')->with('success','Status change successfully.');
     }
 
@@ -345,7 +370,7 @@ class ProductController extends Controller
     public function newarrival_index()
     {
        return view('backend.newarrivals.index',[
-          'products' => Product::orderBy('id','desc')->get() 
+          'products' => Product::orderBy('id','desc')->get()
        ]);
     }
     public function newarrivalChangeStatus($id) {
@@ -353,7 +378,7 @@ class ProductController extends Controller
       if($product->new_arrival  == 0 ){
       $product->new_arrival  = '1';
       }else{
-      $product->new_arrival  = '0';   
+      $product->new_arrival  = '0';
       }
       $product->save();
 

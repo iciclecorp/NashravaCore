@@ -58,6 +58,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+            @include('frontend.layouts.flash')
+
                 <!-- Start Contact Form Content -->
                 <div class="contact-form-content">
                     <!-- Start Comment Form -->
