@@ -157,7 +157,7 @@ foreach($sizes as $size){
 	$(document).ready(function(){
         var fieldArray = [];
                     var $this = $(this);
-                    var rmvids=JSON.parse(localStorage.getItem('rmvids'))
+                    var rmvids=JSON.parse(sessionStorage.getItem('rmvids'))
                     if(rmvids){
                         $.each(rmvids, function(index, value){
                             
@@ -170,7 +170,7 @@ foreach($sizes as $size){
 			var id = $(this).data("id");
             $(".rmv"+id).hide(200);
             fieldArray.push($(this).data("id"));
-            localStorage.setItem('rmvids', JSON.stringify(fieldArray))
+            sessionStorage.setItem('rmvids', JSON.stringify(fieldArray))
 
 
 

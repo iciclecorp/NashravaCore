@@ -96,8 +96,8 @@
                     
                     var fieldArray = [];
                     var $this = $(this);
-                    var cpid=JSON.parse(localStorage.getItem('cpids'))
-var  clickCounter = localStorage.getItem('clickCounter')
+                    var cpid=JSON.parse(sessionStorage.getItem('cpids'))
+var  clickCounter = sessionStorage.getItem('clickCounter')
    clickCounter = clickCounter ? parseInt(clickCounter) : 0;
    //clickCounter = clickCounter || 0
    $('.compare').text(clickCounter);
@@ -135,8 +135,8 @@ var  clickCounter = localStorage.getItem('clickCounter')
         $('.compare').text(clickCounter);
 		$('#cpid').val(fieldArray);
         
-		localStorage.setItem("clickCounter",clickCounter);
-        localStorage.setItem('cpids', JSON.stringify(fieldArray))
+		sessionStorage.setItem("clickCounter",clickCounter);
+        sessionStorage.setItem('cpids', JSON.stringify(fieldArray))
 
 
 		}
