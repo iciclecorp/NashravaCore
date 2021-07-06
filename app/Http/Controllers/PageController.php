@@ -8,7 +8,6 @@ use App\Model\Category;
 use App\Model\SubCategory;
 use App\Model\Brand;
 use App\Model\ProductSubImage;
-use App\Model\ProductColor;
 use App\Model\ProductSize;
 use App\Model\Slider;
 use App\Model\ProductMeasurement;

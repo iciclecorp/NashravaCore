@@ -10,10 +10,7 @@ class OrderDetail extends Model
 
          return $this->belongsTo(Product::class,'product_id','id');    	
     }
-    public function color(){
-
-         return $this->belongsTo(Color::class,'color_id','id');    	
-    }
+    
     public function size(){
 
          return $this->belongsTo(Size::class,'size_id','id');    	

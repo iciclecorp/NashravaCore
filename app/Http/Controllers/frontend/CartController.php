@@ -6,10 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Product;
 use App\Model\ProductSubImage;
-use App\Model\ProductColor;
 use App\Model\ProductSize;
 use App\Model\Size;
-use App\Model\Color;
 use App\Model\Category;
 use App\Model\Brand;
 
@@ -25,14 +23,12 @@ class CartController extends Controller
     public function addToCart(Request $request){
 
         $this->validate($request,[
-           'color' => 'required',
            'size' => 'required',
         ]);
 
         $product = Product::find($request->input('id'));
-        if($request->input('size_id') && $request->input('color_id')){
+        if($request->input('size_id')){
             $product_size = Size::where('id',$request->input('size_id'))->first();
-            $product_color = Color::where('id',$request->input('color_id'))->first();
             //  return ($product_size)->toArray();
 
             Cart::add([
@@ -44,8 +40,6 @@ class CartController extends Controller
                  'options' => [
                        'size_id' => $request->input('size_id'),
                        'size_name' => $product_size->size_name,
-                       'color_id' => $request->input('color_id'),
-                       'color_name' => $product_color->color_name,
                        'image' => $product->image
                  ],
             ]);
@@ -60,8 +54,6 @@ class CartController extends Controller
                 'options' => [
                     // 'size_id' => $request->input('size_id'),
                     // 'size_name' => $product_size->size_name,
-                    // 'color_id' => $request->input('color_id'),
-                    // 'color_name' => $product_color->color_name,
                     'image' => $product->image
                 ],
 

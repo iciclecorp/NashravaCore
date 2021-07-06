@@ -21,10 +21,6 @@ class Product extends Model
     	return $this->belongsTo(Brand::class,'brand_id','id');
     }
 
-    public function color(){
-        return $this->hasOne(ProductColor::class,'product_id','id');
-    }
-
     public function size(){
         return $this->belongsTo(Brand::class,'size_id','id');
     }

@@ -13,7 +13,6 @@ use App\Model\Coupon;
 use App\Model\SubCategory;
 use App\Model\Brand;
 use App\Model\ProductSubImage;
-use App\Model\ProductColor;
 use App\Model\ProductSize;
 use App\Model\Slider;
 use App\Model\ProductMeasurement;
@@ -85,14 +84,12 @@ class FrontendController extends Controller
            $product = Product::where('slug',$slug)->first();
            $sub_image = ProductSubImage::where('product_id' , $product->id)->get();
            $product_size = ProductSize::where('product_id', $product->id)->get();
-           $product_color = ProductColor::where('product_id',$product->id)->get();
            $all_products = Product::orderBy('id','desc')->get();
            $product_measurments = ProductMeasurement::where('product_id',$product->id)->get();
 
            return view('frontend.product-details',[
                 'product' => $product,
                 'sub_images' => $sub_image,
-                'product_colors' =>  $product_color,
                 'product_sizes' =>  $product_size,
                 'categories' => Category::orderBy('id','desc')->get(),
                 'brands' => Brand::orderBy('id','desc')->get(),

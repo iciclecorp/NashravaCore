@@ -90,8 +90,6 @@ class DashboardController extends Controller
                      $order_details = new OrderDetail();
                      $order_details->order_id = $order->id;
                      $order_details->product_id = $content->id;
-                     $order_details->color_id = $content->options->color_id ?? '0';
-                     $order_details->size_id = $content->options->size_id ?? '0';
                      $order_details->quantity= $content->qty;
                      $order_details->coupon_id= collect(Session::get('coupon'))->where('product_id', $content->id)->first()['coupon_id'] ?? null;
                      $order_details->customer_id= Auth::user()->id;

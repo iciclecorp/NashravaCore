@@ -11,11 +11,9 @@ use Illuminate\Support\Str;
 use App\Model\Category;
 use App\Model\Brand;
 use App\Model\Size;
-use App\Model\Color;
 use App\Model\SubCategory;
 use App\Model\Product;
 use App\Model\ProductSubImage;
-use App\Model\ProductColor;
 use App\Model\ProductSize;
 use App\User;
 use Auth;
@@ -40,7 +38,6 @@ class ProductController extends Controller
 
            'categories' => Category::all(),
            'brands' => Brand::all(),
-           'colors' => Color::all(),
            'sizes' => Size::all(),
            'sub_categories' => SubCategory::all(),
            'purchases' => Purchase::orderBY('id','desc')->get(),
@@ -92,60 +89,6 @@ class ProductController extends Controller
 
               }
             }
-
-
-//          /*product color table data insert*/
-//          $colors = $request->color_id;
-//          if(!empty($colors)){
-//            foreach ($colors as $color) {
-//            $product_color = new ProductColor();
-//            $product_color->product_id = $product->id;
-//            $product_color->color_id= $color;
-//
-//            $product_color->save();
-//
-//            }
-//           }
-
-            $total_qty_counter =  0;
-            foreach (Color::all() as $color){
-                //dd($request->input(Str::slug($color->color_name, '_').'_quantity'));
-                for ($counter = $request->input(Str::slug($color->color_name, '_').'_quantity');  $counter >= 1; $counter--){
-                   $total_qty_counter ++;
-                }
-            }
-
-            if($total_qty_counter > $product->qty){
-                return back()->withErrors(['Please use correct quantity', 'Total product QTY is: '.$product->qty.' But you use :'.$total_qty_counter.' in color and size section']);
-            }
-
-
-          foreach (Color::all() as $color){
-              //dd($request->input(Str::slug($color->color_name, '_').'_quantity'));
-              for ($counter = $request->input(Str::slug($color->color_name, '_').'_quantity');  $counter >= 1; $counter--){
-                  $product_color = new ProductColor();
-                  $product_color->product_id = $product->id;
-                  $product_color->color_id= $color->id;
-                  $product_color->save();
-
-                  $product_size = new ProductSize();
-                  $product_size->product_id = $product->id;
-                  $product_size->size_id = $request->input(Str::slug($color->color_name, '_').'_size');
-                  $product_size->save();
-              }
-          }
-
-//           /*product size table data insert*/
-//          $sizes = $request->size_id;
-//          if(!empty($sizes)){
-//            foreach ($sizes as $size) {
-//            $product_size = new ProductSize();
-//            $product_size->product_id = $product->id;
-//            $product_size->size_id = $size;
-//            $product_size->save();
-//            }
-//          }
-
         } else {
             return redirect()->back()->with('error','Sorry! Product Does not Created Successfully');
         }
@@ -169,16 +112,13 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::findOrFail($id);
-        $color_array = ProductColor::select('color_id')->where('product_id',$product->id)->orderBY('id','asc')->get()->toArray();
         $size_array = ProductSize::select('size_id')->where('product_id',$product->id)->orderBY('id','asc')->get()->toArray();
         return view('backend.product.edit',[
            'product' => $product,
            'categories' => Category::all(),
            'brands' => Brand::all(),
-           'colors' => Color::all(),
            'sizes' => Size::all(),
            'sub_categories' => SubCategory::all(),
-           'color_array' =>  $color_array,
            'size_array' => $size_array,
            'purchases' => Purchase::orderBY('id','desc')->get(),
         ]);
@@ -246,24 +186,6 @@ class ProductController extends Controller
 
               }
             }
-
-           /*product color table data updated*/
-              $colors = $request->color_id;
-              if(!empty($colors)){
-
-                  ProductColor::where('product_id',$id)->delete();
-              }
-
-               if(!empty($colors)){
-              foreach ($colors as $color) {
-
-               $mycolor = new ProductColor();
-               $mycolor->product_id = $product->id;
-               $mycolor->color_id = $color;
-
-               $mycolor->save();
-
-              }
             }
 
              /*product size table data updated*/
@@ -318,7 +240,6 @@ class ProductController extends Controller
 
             }
         ProductSubImage::where('product_id',$product->id)->delete();
-        ProductColor::where('product_id',$product->id)->delete();
         ProductSize::where('product_id',$product->id)->delete();
         $product->delete();
         return redirect()->route('product.index')->with('success','Product Deleted Successfully');
