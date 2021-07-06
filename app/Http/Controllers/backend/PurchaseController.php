@@ -136,8 +136,8 @@ class PurchaseController extends Controller
         $purchase->save();
          
 
-        $product = Product::where('id',$request->product_id)->first();
-        $product->quantity = $request->buying_qty;
+        $product = Product::where('product_name',$request->product_id)->first();
+        $product->qty = $request->buying_qty;
         $product->save();
 
         return redirect()->route('purchase.index')->with('success','purchase update successfully');
