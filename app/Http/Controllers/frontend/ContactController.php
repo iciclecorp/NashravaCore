@@ -37,7 +37,7 @@ class ContactController extends Controller
         Mail::send('emails.email', $data, function ($message) use ($data)
         {
             $message->from($data['email'], $data['name']);
-            $message->to('moumitasub@gmail.com', 'Admin')
+            $message->to('info@nashrava.co', 'Admin')
                 ->subject('Contact Us Message');
         });
 

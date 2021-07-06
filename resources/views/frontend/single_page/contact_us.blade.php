@@ -95,30 +95,7 @@
     </div>
 </div>
 <!-- End Main Content -->
-<div id="google-ma-area">
-        <div class="contact-map">
-            <div id="googleMap" style="width:100%;height:575px;"></div>
-        </div>
-        <!-- End Map -->
-    </div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAZsgXqdL5ngsj3P4jOYEm-DaeuPyxy6MA"></script>
-    <script>
-        function initialize() {
-          var mapOptions = {
-            zoom: 15,
-            scrollwheel: false,
-            center: new google.maps.LatLng(23.81033, 90.41252)
-          };
-          var map = new google.maps.Map(document.getElementById('googleMap'),
-              mapOptions);
-          var marker = new google.maps.Marker({
-            position: map.getCenter(),
-            animation:google.maps.Animation.BOUNCE,
-            icon: 'img/contact/marker.png',
-            map: map
-          });
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
+
+   
 
 @endsection

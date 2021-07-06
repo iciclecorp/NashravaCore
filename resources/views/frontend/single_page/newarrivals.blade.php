@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="banner-inner">
-                        <a class="btn-lucian" href="#">New Arrivals</a>
+                        <a class="btn-lucian" href="#">Flash Deals</a>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@
 
                                                     ?>
 
-                                                    <li><a href="#" class="color-active {{$colorname}}">{{$colorname}}</a></li>
+                                                    <li><a href="#" class="color-active {{$colorname}}">{{$colorname ?? ''}}</a></li>
                                                     @endforeach
 
                                                 </ul>

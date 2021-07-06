@@ -42,24 +42,61 @@
                         <!-- End Thumbnail Image-->
                         <!-- Entry Header -->
                         <header class="entry-header">
-                            <h2 class="entry-title">About Us </h2>
-                            <!-- Start Meta -->
-                            <div class="entry-meta">
-                                <!--<p>/ Posted by <a href="#">Mekirin-design</a> / Man Fashion</p>-->
-                            </div>
-                            <!-- End Meta -->
+                            <h2 class="entry-title">Exchange Policy </h2>
+                            
                         </header>
                         <!-- End Entry Header -->
                         <!-- Start Entry Content -->
                         <div class="entry-content">
                             <p>
-                            NashraVa as a  fashion retailer, inspires authentic self expression through offering brands with variety of product lines. This helps our customers to flaunt their personal style in day to day life.</p><p>
-                                 Our designs are unique and styles are always updating depending on trends and seasons.</p><p>
-                                     Product lines include wide range of contemporary ready to wear fashion which enables an easy access to global fashion for customers at a great value.</p><p>
+                            
+To guarantee that you are fully satisfied with your purchases, we are happy to exchange within 15 days with a valid receipt. 
+</br>Returned item’s condition must be unworn, unused with all price tags plus barcodes intact along with the original packaging.
 
-NashraVa aspires to doing more than selling cloths proudly.</p><p> We are passionately committed to deliver our customers fashion, quality and comfort with most convenient shopping experience by consistently developing it everyday.
+                        
+                            </p>
+                            <h4>Exchange Request Form:</h4>
+                            <p>
+                            <form class="ml-lg-2 pt-8 pb-10 pl-4 pr-4 pl-lg-6 pr-lg-6 grey-section" action="{{ url('contact-us')}}" method="POST">
+                        @csrf
+                            <div class="row comment-form-inner">
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Name Field -->
+                                   
+                                    <input type="text" placeholder="Name" class="form-field" name="name">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Name Field -->
+                                   
+                                    <input type="text" placeholder="Phone" class="form-field" name="phone">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Emial Field -->
+                                    <input type="email" placeholder="Email" class="form-field" name="email">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Name Field -->
+                                   
+                                    <input type="text" placeholder="Order No" class="form-field" name="order_no">
+                                </div>
 
-</p>
+                                <div class="col-sm-12 col-md-12">
+                                    <!-- Your Message Field -->
+                                    <textarea placeholder="Reason for Exchange" class="form-field text-box" name="message_body"></textarea>
+                                </div>
+                                <h3>List of Product you want to return</h3>
+                                <div class="col-sm-12 col-md-12">
+                                    <!-- Your Message Field -->
+                                    <textarea placeholder="Your Message" class="form-field text-box" name="message_body"></textarea>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                    <!-- Submit Button -->
+                                    <button type="submit" class="lucian-gray-btn"><span>Submit</span></button>
+                                </div>
+                            </div>
+                        </form>
+                            
+                            </p>
                         </div>
                         <!-- End Entry Content -->
                        

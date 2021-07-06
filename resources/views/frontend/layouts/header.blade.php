@@ -240,7 +240,7 @@
                                   <li><a href="{{route('brand.wise.product',$brand->id)}}">{{$brand->brand_name}}</a></li>
                                   @endforeach
 </ul></li>
-<li><a href="{{url('/newarrivals')}}">New Arrivals</a></li>
+<li><a href="{{url('/newarrivals')}}">Flash Deals</a></li>
 <li><a href="{{url('/contact')}}">Contact Us</a></li>
 
                                             <!--<li class="drop"><a href="#">Pages</a>
