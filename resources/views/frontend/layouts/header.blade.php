@@ -90,7 +90,7 @@
             <div class="header-bottom-area" style="background:#000000; padding:10px;">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xs-6 col-sm-4 col-md-3">
+                        <div class="hidden-xs col-sm-4 col-md-3">
                             <!-- Start Search Form -->
                             <div class="search-box-area header-search">
 
@@ -116,7 +116,7 @@
                             $sum = 0;
 
                         @endphp
-                        <div class="col-xs-2 col-sm-4 col-md-3">
+                        <div class="hidden-xs col-sm-4 col-md-3">
                             <!-- Start Cart Area -->
                             <div class="cart-inner header-cart">
                                 <a class="backet-area">
