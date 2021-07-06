@@ -134,21 +134,8 @@
                                                    
                                                 </div>
                                             </div>
-                                            <div class="size-area">
-                                                <h4>Color:</h4>
-                                                <div class="search-cat">
-
-                                                <select name="color_id" id="color_id" class="form-control form-control-sm" required>
-                                                <option value="" >Select Color</option>
-                                                @foreach($product_colors as $color)
-                                                <option value="{{$color->color_id}}">{{$color->color->color_name ?? ''}}</option>
-                                                @endforeach
-                                            </select>
-                                            <font style="color:red">
-                                            {{($errors->has('color_id'))?($errors->first('color_id')):' '}}
-
-                                        </font>
-</div>
+                                           
+                                            </div>
                                             </div>
                                             <!-- End Size Area -->
                                             <!-- Start Quantity Area -->
@@ -434,7 +421,6 @@ foreach($measures as $measure){
         <script>
 	function myFunc() {
 var pid = $('#pid').val();
- var color=$('#color_id').val();
  var size = $('#size_id').val();
  var quantity=$('#quantity').val();
 
@@ -445,7 +431,7 @@ $.ajax({
 },  
    type:"POST",
    url: "{{route('insert.cart')}}",
-   data:{id:pid,color:color,size:size,quantity:quantity},
+   data:{id:pid,size:size,quantity:quantity},
 
    success:function(data){
 	Swal.fire({
@@ -488,7 +474,6 @@ event.preventDefault();
         <script>
 	function Single() {
 var pid = $('.pid').val();
- var color=$('#color_id').val();
  var size = $('#size_id').val();
  var quantity=$('#quantity').val();
 
@@ -499,7 +484,7 @@ $.ajax({
 },  
    type:"POST",
    url: "{{route('insert.cart')}}",
-   data:{id:pid,color_id:color,size_id:size,quantity:quantity},
+   data:{id:pid,size_id:size,quantity:quantity},
 
    success:function(data){
 	Swal.fire({

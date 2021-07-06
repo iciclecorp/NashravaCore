@@ -124,23 +124,9 @@
                                      </div>
                                       <form action="{{route('insert.cart')}}" method="post" id="cart">
                                         @csrf
-                                           <label>Color:</label>
+                                         
                                            <div class="colo-siz">
-                                        <div class="product-form product-variations product-color col-md-6">
-                    
-                                        <div class="select-box">
-                                            <select name="color_id" id="color_id" class="form-control form-control-sm" required>
-                                                <option value="" >Select Color</option>
-                                                @foreach($product_colors as $color)
-                                                <option value="{{$color->color_id}}">{{$color->color->color_name}}</option>
-                                                @endforeach
-                                            </select>
-                                            <font style="color:red">
-                                            {{($errors->has('color_id'))?($errors->first('color_id')):' '}}
-
-                                        </font>
-                                        </div>
-                                           </div>
+                                    
                                            <label class="list-inline-item">Size:</label>
                                            <div class="product-form product-variations product-size col-md-6">
                                                 <div class="product-form-group">

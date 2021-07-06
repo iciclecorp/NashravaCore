@@ -238,33 +238,18 @@
                                             </div>
                                             <div class="card" style="border-top:5px solid #007bff;">
                                                 <div class="card-header">
-                                                    <h4>Color & Size</h4>
+                                                    <h4>Size</h4>
                                                 </div>
                                                 <div class="card-body">
                                                     <div class="form-row">
                                                         <div class='form-group col-md-12'>
                                                             <table class="table responsive">
                                                                 <tr>
-                                                                    <th>Color</th>
+                                                                    <th></th>
                                                                     <th>Size</th>
                                                                     <th>Quantity</th>
                                                                 </tr>
-                                                                @foreach($colors as $color)
-                                                                    <tr>
-                                                                        <td><b>{{ $color->color_name }}</b></td>
-                                                                        <td>
-                                                                            <select name="{{ Str::slug($color->color_name, '_').'_size' }}" id="" class="form-control form-control-sm">
-                                                                                <option value="">Select Size</option>
-                                                                                @foreach($sizes as $size)
-                                                                                    <option value="{{$size->id}}">{{$size->size_name}}</option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="number" name="{{ Str::slug($color->color_name, '_').'_quantity' }}" class="form-control form-control-sm" id="" placeholder="Qty" value="0" required="">
-                                                                        </td>
-                                                                    </tr>
-                                                                @endforeach
+                                                                
                                                             </table>
                                                         </div>
                                                     </div>

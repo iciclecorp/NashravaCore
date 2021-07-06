@@ -25,23 +25,6 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-          <div class="col-lg-3 col-6" >
-            <!-- small box -->
-             <a href="{{route('color.index')}}" class="small-box-footer">
-             <div class="card"> 
-             <div class="card-body" style="font-weight: bold;text-align: center">
-              <div class="small-box bg-info">
-              <div class="inner" style="text-align: center">
-                
-                <i class="ion ion-bag"></i>
-             
-              </div>
-            </div>
-              Color Module
-           </div>
-           </div> 
-            </a>
-          </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->

@@ -64,11 +64,6 @@
                  <!-- Start Products List View  -->
 
                         @foreach($products as $cat_product)
-                        <?php 
-                                                $colors=App\Model\ProductColor::where('product_id',$cat_product->id)->get();
-
-
-?>
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                <!-- Start Single Prodcut -->
@@ -88,15 +83,7 @@
                                             <!-- Start Color Buttons -->
                                             <div class="prodcut-color-btn"> 
                                                 <ul>
-                                                @foreach($colors as $color)
-                                                    <?php 
-                                 $colorname=App\Model\Color::where('id',$color->color_id)->get();
-
-
-                                                    ?>
-
-                                                    <li><a href="#" class="{{$colorname}}">{{$colorname}}</a></li>	
-                                                    @endforeach	
+                                               
                                                 </ul>
                                             </div>
                                             <!-- End Color Buttons -->

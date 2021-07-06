@@ -30,21 +30,6 @@
             <!-- Custom tabs (Charts with tabs)-->
             <div class="card">
               <div class="card-header">
-                <h3>Product color information</h3>
-              </div><!-- /.card-header -->
-              <div class="card-body">
-                  <section class="col-md-12">
-                      @foreach(\App\Model\Color::all() as $color)
-                          <button type="button" class="btn btn-secondary" style="background-color: {{ $color->color_name }}">
-                              <b>{{ $color->color_name }}:{{ \App\Model\Product::whereIn('id', $color->products->pluck('product_id'))->sum('qty')}} </b>
-                          </button>
-                      @endforeach
-                  </section>
-              </div>
-            </div>
-            <!-- Custom tabs (Charts with tabs)-->
-            <div class="card">
-              <div class="card-header">
                 <h3>{{__('back_blade.view_product_list')}}
                    <a class="btn btn-success btn-sm float-right" href="{{route('product.create')}}"><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;{{__('back_blade.view_product_add')}}</a>
                 </h3>

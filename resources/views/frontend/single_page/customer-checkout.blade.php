@@ -231,18 +231,12 @@ $(function () {
   });
   $('#detailsForm').validate({
     rules: {
-      color_Id: {
-        required: true,
-      },
      size_id: {
         required: true,
 
       },
     },
     messages: {
-      color_Id: {
-        required: "Please select Color",
-      },
       size_id: {
         required: "Please select Size",
       },

@@ -336,7 +336,7 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item has-treeview @if (Request::is('admin/color') || Request::is('admin/size') || Request::is('admin/size-measurement') || Request::is('admin/coupons') || Request::is('admin/supplier') || Request::is('admin/unit') || Request::is('admin/slider') || Request::is('admin/brand'))
+          <li class="nav-item has-treeview @if Request::is('admin/size') || Request::is('admin/size-measurement') || Request::is('admin/coupons') || Request::is('admin/supplier') || Request::is('admin/unit') || Request::is('admin/slider') || Request::is('admin/brand'))
            menu-open
           @endif" >
             <a href="#" class="nav-link">
@@ -346,13 +346,6 @@
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('color.index')}}" class="nav-link {{ Request::is('admin/color') ? 'active' : '' }}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p style="color:#faf619;">{{__('sidebar.view_color')}}</p>
-                </a>
-              </li>
             </ul>
              <ul class="nav nav-treeview">
               <li class="nav-item">

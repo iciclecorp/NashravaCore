@@ -38,7 +38,7 @@
                                 <th class="product-remove">Remove</th>
                                 <th class="product-thumbnail">Image</th>
                                 <th class="product-name">Product Name</th>
-                                <th class="product-name">Size & Color</th>
+                                <th class="product-name">Size</th>
                                 <th class="product-subtotal">Price</th>
                                 <th class="product-quantity">Quantity</th>
                                 <th class="product-quantity">Edit</th>
@@ -72,7 +72,7 @@
                                         <td class="product-name"><a href="#">{{ $cart->name }}</a>
                                         </td>
                                         <td class="product-edit"><span>Size: {{$cart->options->size_name}}</span><br/>
-                                            <span>Color: {{$cart->options->color_name}}</span>
+                                            
                                         </td>
                                         <td class="product-subtotal">BDT. {{$cart->price }}</td>
 

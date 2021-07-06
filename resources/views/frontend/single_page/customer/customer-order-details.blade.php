@@ -121,10 +121,9 @@
                 </td>
                 <td style="padding-left: 5px;">
                <?php
-                if(!$details->color==0 || !$details->size==0 ){
+                if(!$details->size==0 ){
 
                 ?>
-                 {{$details->color->color_name}}&nbsp; & &nbsp;
                  {{$details->size->size_name}}
 
                 <?php }?>

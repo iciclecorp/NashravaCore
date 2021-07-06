@@ -83,7 +83,6 @@
                                 </td>
                                 <td>
                                     <span>Size: {{$order->size->size_name ?? 'No Size'}}</span><br/>
-                                    <span>Color: {{$order->color->color_name ?? 'No Color'}}</span>
                                 </td>
 
 

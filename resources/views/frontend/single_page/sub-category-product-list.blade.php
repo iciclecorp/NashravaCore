@@ -105,21 +105,9 @@
                                     <!-- End Product Thumbnail -->
                                     <!-- Start Color Buttons -->
                                     <div class="prodcut-color-btn"> 
-                                    <?php 
-                                                $colors=App\Model\ProductColor::where('product_id',$cat_product->id)->get();
-
-
-?>
+                                    
                                                 <ul>
-                                                    @foreach($colors as $color)
-                                                    <?php 
-                                 $colorname=App\Model\Color::where('id',$color->color_id)->get();
-
-
-                                                    ?>
-
-                                                    <li><a href="#" class="color-active {{$colorname}}">{{$colorname}}</a></li>	
-                                                    @endforeach	
+                                                   
                                                     
                                                 </ul>
                                     </div>
@@ -212,15 +200,7 @@
                                             <!-- Start Color Buttons -->
                                             <div class="prodcut-color-btn"> 
                                                 <ul>
-                                                @foreach($colors as $color)
-                                                    <?php 
-                                 $colorname=App\Model\Color::where('id',$color->color_id)->get();
-
-
-                                                    ?>
-
-                                                    <li><a href="#" class="{{$colorname}}">{{$colorname}}</a></li>	
-                                                    @endforeach	
+                                               
                                                 </ul>
                                             </div>
                                             <!-- End Color Buttons -->

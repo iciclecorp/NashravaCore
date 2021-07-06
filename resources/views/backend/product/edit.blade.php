@@ -187,17 +187,9 @@
                         </div>
                          <div class="card" style="border-top:5px solid #007bff;">
                       <div class="card-header"> 
-                          <h4>Color & Size</h4>
+                          <h4>Size</h4>
                       </div>
                       <div class="card-body">
-                        <div class='form-group col-md-12'>
-                            <select name="color_id[]" id="color_id" class="form-control form-control-sm select2" multiple >
-                                <option value="">Select Color</option>
-                                @foreach($colors as $color)
-                                  <option value="{{$color->id}}" {{(@in_array(['color_id'  =>$color->id],$color_array))?"selected":" "}}>{{$color->color_name}}</option>
-                                @endforeach
-                            </select> 
-                        </div>
                         <div class='form-group col-md-12'>
                             <select name="size_id[]" id="size_id" class="form-control form-control-sm select2 " multiple>
                                 <option value="">Select Size</option>

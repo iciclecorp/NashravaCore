@@ -80,14 +80,9 @@
                             style="width:174px;height:100px;border:1px solid #000;"></td>
                       </tr>
                       <tr>
-                        <td width="50%">Colors</td>
+                        <td width="50%"></td>
                         <td width="50%">
-                          @php
-                             $colors = App\Model\ProductColor::where('product_id',$product_details->id)->get();
-                          @endphp
-                          @foreach($colors as $col)
-                               {{$col->color->color_name}},
-                          @endforeach
+                         
                         </td>
                       </tr>
 

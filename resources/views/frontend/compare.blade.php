@@ -47,7 +47,7 @@ a{
                     @foreach($products as $pro)
                     <?php
                 
-                $colors= DB::table('product_colors')->where('product_id',$pro->id)->get();
+                
                 $sizes= DB::table('product_sizes')->where('product_id',$pro->id)->get();
 
                     ?>
@@ -76,19 +76,7 @@ a{
 </tr>
   <tr> 
     <td>
-    <p class="p-short-des">
-    Colors:
-    <?php 
-foreach($colors as $color){
-    $colorname= DB::table('colors')->where('id',$color->color_id)->first();
-
-?>
-{{$colorname->color_name ?? ''}}
-
-    <?php
-}
-    ?>
-    <p>
+  
     </td>
     
       
