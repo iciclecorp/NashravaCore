@@ -132,10 +132,10 @@
                 </td>
                 <td style="padding-left: 5px;">
                     @if($details->coupon_id)
-                    {{$details->quantity}} x <del> {{$details->product->price - $details->product->discount ?? 0}} = {{ $details->quantity * $details->product->price - $details->product->discount ?? 0}} </del> <br>
+                    {{$details->quantity}} x <del> {{$details->product->price - $details->product->discount ?? 0}} = {{ $details->quantity * ($details->product->price - $details->product->discount ?? 0)}} </del> <br>
                     {{$details->quantity}} x  {{ discount_price($details->customer_id,$details->product_id,$details->coupon_id) }} = {{ $details->quantity * discount_price($details->customer_id,$details->product_id,$details->coupon_id) }}
                     @else
-                        {{$details->quantity}} x  {{$details->product->price - $details->product->discount ?? 0}} = {{ $details->quantity * $details->product->price - $details->product->discount ?? 0 }}
+                        {{$details->quantity}} x  {{$details->product->price - $details->product->discount ?? 0}} = {{ $details->quantity * ($details->product->price - $details->product->discount ?? 0) }}
                     @endif
                 </td>
                </tr>

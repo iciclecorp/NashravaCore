@@ -38,7 +38,7 @@
                   <form  method="post" action="{{route('purchase.update',$purchase->id)}}"  id="myForm" enctype="multipart/form-data">
                     @csrf
                     @method('patch')
-                      <input type="hidden" name="product_id" value="{{$purchase->product_id}}">
+                      <input type="hidden" name="product_id" value="{{$purchase->id}}">
                       <div class="row">
                         <div class="form-group col-md-4">
                            <label for="purchase_no">Purchase_no</label>

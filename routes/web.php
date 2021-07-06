@@ -24,6 +24,8 @@ Route::get('/test', function (){
 Route::get('/','frontend\FrontendController@index');
 Route::get('/newarrivals','frontend\FrontendController@newarrivalProductList')->name('newarrivalproduct.list');
 Route::get('/product-list','frontend\ProductFilterController@allProductList')->name('product.list');
+Route::get('/bestseller-list','frontend\ProductFilterController@bestProductList')->name('bestseller.list');
+
 
 Route::get('/category-wise-product-list/{id}','frontend\ProductFilterController@catProductList')->name('category.wise.product');
 

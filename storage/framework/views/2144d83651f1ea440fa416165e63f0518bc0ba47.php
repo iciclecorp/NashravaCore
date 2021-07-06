@@ -105,7 +105,7 @@
           <li class="nav-item">
                 <a href="<?php echo e(route('newarrival.index')); ?>" class="nav-link <?php echo e(Request::is('admin/new_arrival/products') ? 'active' : ''); ?>">
                   <i class="fas fa-copy nav-icon"></i>
-                  <p style="color:#ffffff;">New Arrivals</p>
+                  <p style="color:#ffffff;">Flash Deals</p>
                 </a>
               </li>
           <li class="nav-item has-treeview  <?php if(Request::is('admin/product') || Request::is('admin/product-measurement') ): ?>
@@ -135,7 +135,7 @@
                 </a>
               </li>
             </ul>
-            
+
           </li>
            <li class="nav-item has-treeview  <?php if(Request::is('admin/invoice') ): ?>
            menu-open
@@ -288,9 +288,9 @@
               </li>
             </ul>
 
-            
+
           </li>
-           <li class="nav-item has-treeview <?php if(Request::is('admin/purchase/daily/report') || Request::is('admin/stock/report') || Request::is('admin/invoice/daily/report') ||  Request::is('admin/local/invoice/daily/report') ): ?> 
+           <li class="nav-item has-treeview <?php if(Request::is('admin/purchase/daily/report') || Request::is('admin/stock/report') || Request::is('admin/invoice/daily/report') ||  Request::is('admin/local/invoice/daily/report') ): ?>
 
            menu-open
           <?php endif; ?>" id="side_report" >
@@ -330,6 +330,14 @@
                 <a href="<?php echo e(route('local.invoice.report')); ?>" class="nav-link <?php echo e(Request::is('admin/local/invoice/daily/report') ? 'active' : ''); ?>">
                   <i class="far fa-circle nav-icon"></i>
                   <p style="color:#faf619;">Local Selling Report</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item ">
+                <a href="<?php echo e(route('local.due.daily.report')); ?>" class="nav-link <?php echo e(Request::is('admin/local/customer/daily/due/report') ? 'active' : ''); ?>">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p style="color:#faf619;">Due Report</p>
                 </a>
               </li>
             </ul>

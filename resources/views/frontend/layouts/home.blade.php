@@ -2,11 +2,10 @@
  @section('content')
  @include('frontend.layouts.slider')
  <!-- Start Category Search Bar -->
-    <div class="cartegory-search-bar last-in2">
+   <!-- <div class="cartegory-search-bar last-in2">
         <div class="container">
             <div class="row">
                 <div class="hidden-xs col-sm-4 col-sm-4 col-md-3">
-                    <!-- Start Category Menu Area -->
                     <div class="category-menu-area">
                         <ul class="category-menu">
                             <li><span class="cat-heading">categories</span>
@@ -15,9 +14,8 @@
 
                                     <li class="arrow">
                                         <a href="{{route('category.wise.product',$category->id)}}"><i class="fa fa-minus" aria-hidden="true"></i> {{$category->category_name}}</a>
-                                        <!--  MEGA MENU START -->
                                         <?php
-                                         $subcategories=App\Model\SubCategory::where('category_id',$category->id)->get();
+                                        $subcategories=App\Model\SubCategory::where('category_id',$category->id)->get();
                                        ?>
                                        <ul>
                                      @foreach($subcategories as $subcategory)
@@ -34,10 +32,8 @@
                                @endforeach
                         </ul>
                     </div>
-                    <!-- End Category Menu Area -->
                 </div>
                 <div class="col-xm-12 col-sm-8 col-md-6 col-md-offset-3">
-                    <!-- Start Serach Box Area -->
                     <div class="search-box-area">
 
                     <form action="{{route('search')}}" method="get" onkeypress="this.form.submit()">
@@ -54,7 +50,6 @@
                             $sum = 0;
 
                         @endphp
-                    <!-- End Serach Box Area -->
                     <div class="nav-cart-area">
                         <div class="cart-inner">
                             <a class="backet-area"><span class="added-total">{{ $count}}</span></a>
@@ -79,7 +74,6 @@
                                     @endphp
                                    	@endforeach
                                 </ul>
-                               <!-- <p class="cart-total">Shiping <span class="amount">$5.00</span></p>-->
                                 <p class="cart-total total">Total <span class="amount">{{$total}}</span></p>
                                 <span>
                                     @if(Auth::user())
@@ -94,10 +88,10 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- End Category Search Bar -->
     <!-- Start Quick Category Area -->
-    <div id="quick-category-area" class="padtop20 padbot25">
+    <div id="quick-category-area" class="padtop10 padbot25">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
@@ -146,147 +140,516 @@
     </div>
     <!-- End Quick Category Area -->
     <!-- Start New Products -->
-    <section id="new-products-area" class="padtop20 padbot25 lst">
+    <section id="new-products-area" class="padtop10 padbot25 lst">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+            
+                <div class="col-md-8">
                     <div class="section-title title-box">
                         <h2>What's New</h2>
                     </div>
+                    
+                        
                 </div>
+                <div class="col-sm-4 col-md-4">
+
+                    <ul role="tablist" class="tab-icons pull-right">
+                            <li class="" role="presentation"><a data-toggle="tab" role="tab" aria-controls="grid" title="Grid" href="#grid" aria-expanded="true"><i class="fa fa-th-large"></i></a></li>
+                            <li role="presentation" class="active"><a data-toggle="tab" role="tab" aria-controls="list" title="List" href="#list" aria-expanded="false"><i class="fa fa-th-list"></i></a></li>
+                        </ul>
+                        </div>
             </div>
             <div class="row">
-                <div id="new-product-carousel" class="owl-controls-1">
 
-                    @foreach($products as $product)
-                    <div class="col-md-3">
-                       <!-- Start Single Prodcut -->
-                       <div class="single-product">
-                            <!-- Start Product Thumbnail -->
-                            <div class="product-thumb-area">
-                                <!-- Start Product Image -->
-                                <div class="product-thumb">
-                                    <a href="{{route('product.details',$product->slug)}}"><img src="{{asset($product->image)}}" alt="product" /></a>
-                                    <!--<span class="product-new">New</span>
-                                    <span class="product-Sale">Sale</span>-->
-                                </div>
-                                <!-- End Product Image -->
-                                <!-- Start Product Hidden Info -->
-                                <div class="product-hidden-info">
-                                    <!-- Quick View -->
-                                    <div class="quick-view">
-                                        <a href="{{route('product.details',$product->slug)}}" class="modal-view detail-link quickview" ><i class="fa fa-eye"></i>View Details</a>
-                                        <a href="javascript:void(0)" data-id="{{$product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+            <div class="tab-content">
+                    <!-- Start Grid products -->
+                    <div id="grid" class="tab-pane active in fade" role="tabpanel">
+                        <div class="products-gridview-inner">
+                        @foreach($products as $cat_product)
 
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+                               <!-- Start Single Prodcut -->
+                               <div class="single-product">
+                                    <!-- Start Product Thumbnail -->
+                                    <div class="product-thumb-area">
+                                        <!-- Start Product Image -->
+                                        <div class="product-thumb">
+                                            <a href="{{route('product.details', $cat_product->slug)}}"><img src="{{url($cat_product->image)}}" alt="product" /></a>
+                                          <!--  <span class="product-new">New</span>
+                                            <span class="product-Sale">Sale</span>-->
+                                        </div>
+                                        <!-- End Product Image -->
+
+                                        <!-- Start Product Hidden Info -->
+                                       <div class="product-hidden-info">
+                                            <div class="quick-view">
+                                                <a href="#" class="modal-view detail-link quickview" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i>Quick View</a>
+                                                <a href="javascript:void(0)" data-id="{{$cat_product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+
+                                            </div>
+
+                                            
+                                        </div>
+                                        <!-- End Product Hidden Info -->
                                     </div>
-                                    <!-- End Quick View -->
+                                    <!-- End Product Thumbnail -->
+                                    <!-- Start Color Buttons -->
+                                    <div class="prodcut-color-btn">
+                                    <?php
+                                                $colors=App\Model\ProductColor::where('product_id',$cat_product->id)->get();
 
-                                </div>
-                                <!-- End Product Hidden Info -->
-                            </div>
-                            <!-- End Product Thumbnail -->
 
-                            <!-- Start Product Info -->
-                            <div class="product-short-info">
-                                <!-- Start product short description -->
-                                <p class="p-short-des"><a href="{{route('product.details',$product->slug)}}">{{$product->title}}</a></p>
-                                <!-- End product short description -->
+?>
+                                                <ul>
+                                                    @foreach($colors as $color)
+                                                    <?php
+                                 $colorname=App\Model\Color::where('id',$color->color_id)->get();
 
-                            </div>
-                            <!-- End Product Info -->
-                            <!-- Start Prodcut Price Area -->
-                            <div class="product-price-area">
-                                   @php
-                                     $price = $product->price - $product->discount;
+
+                                                    ?>
+
+                                                    <li><a href="#" class="color-active {{$colorname}}">{{$colorname}}</a></li>
+                                                    @endforeach
+
+                                                </ul>
+                                    </div>
+                                    <!-- End Color Buttons -->
+                                    <!-- Start Product Info -->
+                                    <div class="product-short-info">
+                                        <!-- Start product short description -->
+                                        <p class="p-short-des"><a href="#">{{$cat_product->title}}</a></p>
+                                        <!-- End product short description -->
+                                        <!-- Start Star Rating -->
+                                       <!-- <div class="star-rating">
+                                            <ul>
+                                                <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li class="star"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            </ul>
+                                        </div>-->
+                                        <!-- End Star Rating -->
+                                    </div>
+                                    <!-- End Product Info -->
+                                    <!-- Start Prodcut Price Area -->
+                                    <div class="product-price-area">
+                                    @php
+                                     $price = $cat_product->price - $cat_product->discount;
                                    @endphp
                                 <span class="price">
-                                    <span class="amount">BDT. {{ $price }}</span>@if($product->discount) <span><del>{{$product->price}}</del></span>@endif
+                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@else <span><del>0.00</del></span>@endif
                                 </span>
-                                <span class="add-to-cart"><a href="{{route('product.details',$product->slug)}}"><i class="fa fa-eye" aria-hidden="true"></i>View Details</a></span>
+                                  
+                                <span class="add-to-cart"><a href="{{route('product.details', $cat_product->slug)}}"><i class="fa fa-eye" aria-hidden="true"></i>View Detail</a></span>
+   
                             </div>
-                            <!-- End Prodcut Price Area -->
-                       </div>
-                       <!-- End Single Prodcut -->
+                                    <!-- End Prodcut Price Area -->
+
+                               </div>
+                               <!-- End Single Prodcut -->
+                            </div>
+                           @endforeach
+                        </div>
+                        <!-- Start Product Paginations -->
+                    <div class="prodcuts-pagination">
+                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <span class="view-more">
+                            <span class="amount">
+                                                    <a href="{{route('product.list')}}"   ><span style="color:#ffffff;">View More</span></a>
+                                                </span>
+                                                </span>
+                                <!--<ul class="licuan-pagination">
+                                    <li class="pre-page"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                                    <li class="current"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li class="next-page"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                </ul>-->
+                            </div>
+                        </div>	
+                        <!-- End Product Paginations -->
                     </div>
-                    @endforeach
+                    <!-- End Grid products -->
+                    <!-- Start List products -->
+
+
+
+
+
+
+
+
+
+                    <div id="list" class="tab-pane " role="tabpanel">
+                        <!-- Start Products List View  -->
+                        <div class="products-listview-inner">
+
+                        @foreach($products as $cat_product)
+
+                            <div class="col-xs-6 col-sm-12 col-md-12">
+                               <!-- Start Single Prodcut -->
+                                <div class="single-product">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4 col-md-4">
+                                            <!-- Start Product Thumbnail -->
+                                            <div class="product-thumb-area">
+                                                <!-- Start Product Image -->
+                                                <div class="product-thumb">
+                                                    <a href="{{route('product.details', $cat_product->slug)}}"><img src="{{url($cat_product->image)}}" alt="product" /></a>
+                                                    <span class="product-new">New</span>
+                                                </div>
+                                                <!-- End Product Image -->
+                                            </div>
+                                            <!-- End Product Thumbnail -->
+                                            <!-- Start Color Buttons -->
+                                            <div class="prodcut-color-btn">
+                                                <ul>
+                                                @foreach($colors as $color)
+                                                    <?php
+                                 $colorname=App\Model\Color::where('id',$color->color_id)->get();
+
+
+                                                    ?>
+
+                                                    <li><a href="#" class="{{$colorname}}">{{$colorname}}</a></li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            <!-- End Color Buttons -->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8">
+                                            <!-- Start Product Info -->
+                                            <div class="product-short-info">
+                                                <!-- Start product short description -->
+                                                <p class="p-short-des"><a href="{{route('product.details', $cat_product->slug)}}">{{$cat_product->title}}</a></p>
+                                                <!-- End product short description -->
+                                                <!-- Start Star Rating -->
+                                                <!--<div class="star-rating">
+                                                    <ul>
+                                                        <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                        <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                        <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                        <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                        <li class="star"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                    </ul>
+                                                </div>-->
+                                                <!-- End Star Rating -->
+                                                <div class="product-desc">
+                                                    <p>{{$cat_product->detail}}</p>
+                                                </div>
+                                            </div>
+                                            <!-- End Product Info -->
+                                            <!-- Start Prodcut Price Area -->
+                                            <div class="product-price-area">
+                                            @php
+                                     $price = $cat_product->price - $cat_product->discount;
+                                   @endphp
+                                <span class="price">
+                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@else <span><del>0.00</del></span>@endif
+                                </span>
+                                                <span class="add-to-cart">
+                                                    <a href="{{route('product.details', $cat_product->slug)}}"   ><i class="fa fa-eye" aria-hidden="true"></i><span>View Details</span></a>
+                                                </span>
+
+                                                <!-- Start Wish List  -->
+                                            <span class="listview-wishlist">
+                                           <a href="javascript:void(0)" data-id="{{$cat_product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+                                                </span>
+                                            </div>
+                                            <!-- Start Prodcut Price Area -->
+                                       </div>
+                                   </div>
+                               </div>
+                               <!-- Start Single Prodcut -->
+                            </div>
+
+                               @endforeach
+
+                        </div>
+                        <!-- End Product List View -->
+                        <!-- Start Pagination -->
+                      <div class="licuan-pagination-area">
+                            <div class="col-md-12 text-center">
+                            <span class="view-more">
+                            <span class="amount">
+                                                    <a href="{{route('product.list')}}"   ><span style="color:#ffffff;">View More</span></a>
+                                                </span>
+                                                </span>
+                               <!-- <ul class="licuan-pagination">
+                                    <li class="pre-page"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                                    <li class="current"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li class="next-page"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                </ul>-->
+                            </div>
+                        </div>	
+                        <!-- End Pagination -->
+                    </div>
+                    <!-- End List products -->
                 </div>
-                <!-- End New prodcut carousel -->
             </div>
         </div>
     </section>
     <!-- End New Products -->
     <!-- Start Best Seller -->
-    <section id="best-seller-area" class="padtop30 padbot25">
+    <section id="best-seller-area" class="padtop10 padbot25">
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-8">
                     <!-- Start Section Title -->
                     <div class="section-title title-box">
                         <h2>Best Seller</h2>
                     </div>
                     <!-- End Section Title -->
                 </div>
+                <div class="col-sm-4 col-md-4">
+
+                    <ul role="tablist" class="tab-icons pull-right">
+                            <li class="" role="presentation"><a data-toggle="tab" role="tab" aria-controls="grid" title="Grid" href="#grid1" aria-expanded="true"><i class="fa fa-th-large"></i></a></li>
+                            <li role="presentation" class="active"><a data-toggle="tab" role="tab" aria-controls="list" title="List" href="#list1" aria-expanded="false"><i class="fa fa-th-list"></i></a></li>
+                        </ul>
+                        </div>
             </div>
             <div class="row">
                 <!-- Start Best seller carousel -->
-                <div id="best-seller-carousel" class="owl-controls-1">
-                 @foreach($best_sell_products as $key => $product)
-                    <div class="col-md-3">
-                       <!-- Start Single Prodcut -->
-                       <div class="single-product">
-                            <!-- Start Product Thumbnail -->
-                            <div class="product-thumb-area">
-                                <!-- Start Product Image -->
-                                <div class="product-thumb">
-                                    <a href="{{route('product.details',$product->slug)}}"><img src="{{asset($product->image)}}" alt="product" /></a>
-                                   <!-- <span class="product-new">New</span>
-                                    <span class="product-Sale">Sale</span>-->
-                                </div>
-                                <!-- End Product Image -->
-                                <!-- Start Product Hidden Info -->
-                                <div class="product-hidden-info">
-                                    <!-- Quick View -->
-                                    <div class="quick-view">
-                                        <a href="{{route('product.details',$product->slug)}}" class="modal-view detail-link quickview"><i class="fa fa-eye"></i>View Details</a>
-                                        <a href="javascript:void(0)" data-id="{{$product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+                <div class="tab-content">
+                    <!-- Start Grid products -->
+                    <div id="grid1" class="tab-pane active in fade" role="tabpanel">
+                        <div class="products-gridview-inner">
+                        @foreach($best_sell_products as $key => $cat_product)
 
+                            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3">
+                               <!-- Start Single Prodcut -->
+                               <div class="single-product">
+                                    <!-- Start Product Thumbnail -->
+                                    <div class="product-thumb-area">
+                                        <!-- Start Product Image -->
+                                        <div class="product-thumb">
+                                            <a href="{{route('product.details', $cat_product->slug)}}"><img src="{{url($cat_product->image)}}" alt="product" /></a>
+                                          <!--  <span class="product-new">New</span>
+                                            <span class="product-Sale">Sale</span>-->
+                                        </div>
+                                        <!-- End Product Image -->
+
+                                        <!-- Start Product Hidden Info -->
+                                       <div class="product-hidden-info">
+                                            <div class="quick-view">
+                                                <a href="#" class="modal-view detail-link quickview" data-toggle="modal" data-target="#productModal"><i class="fa fa-eye"></i>Quick View</a>
+                                                <a href="javascript:void(0)" data-id="{{$cat_product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+
+                                            </div>
+
+                                            
+                                        </div>
+                                        <!-- End Product Hidden Info -->
                                     </div>
-                                    <!-- End Quick View -->
-                                    <!-- Start Wish List  -->
-                                    <!-- <div class="wish-list-area">
-                                        <a href="#" class="wish-list"><i aria-hidden="true" class="fa fa-heart-o"></i> Wish List</a>
-                                        <a href="#" class="compare"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
-                                    </div> -->
-                                    <!-- End Wish List  -->
-                                </div>
-                                <!-- End Product Hidden Info -->
-                            </div>
-                            <!-- End Product Thumbnail -->
-                            <!-- Start Product Info -->
-                            <div class="product-short-info">
-                                <!-- Start product short description -->
-                                <p class="p-short-des"><a href="{{route('product.details',$product->slug)}}">{{$product->title}}</a></p>
-                                <!-- End product short description -->
+                                    <!-- End Product Thumbnail -->
+                                    <!-- Start Color Buttons -->
+                                    <div class="prodcut-color-btn">
+                                    <?php
+                                                $colors=App\Model\ProductColor::where('product_id',$cat_product->id)->get();
 
-                            </div>
-                            <!-- End Product Info -->
-                            <!-- Start Prodcut Price Area -->
-                            <div class="product-price-area">
-                                <span class="price">
+
+?>
+                                                <ul>
+                                                    @foreach($colors as $color)
+                                                    <?php
+                                 $colorname=App\Model\Color::where('id',$color->color_id)->get();
+
+
+                                                    ?>
+
+                                                    <li><a href="#" class="color-active {{$colorname}}">{{$colorname}}</a></li>
+                                                    @endforeach
+
+                                                </ul>
+                                    </div>
+                                    <!-- End Color Buttons -->
+                                    <!-- Start Product Info -->
+                                    <div class="product-short-info">
+                                        <!-- Start product short description -->
+                                        <p class="p-short-des"><a href="#">{{$cat_product->title}}</a></p>
+                                        <!-- End product short description -->
+                                        <!-- Start Star Rating -->
+                                       <!-- <div class="star-rating">
+                                            <ul>
+                                                <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li class="star"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            </ul>
+                                        </div>-->
+                                        <!-- End Star Rating -->
+                                    </div>
+                                    <!-- End Product Info -->
+                                    <!-- Start Prodcut Price Area -->
+                                    <div class="product-price-area">
                                     @php
-                                     $price = $product->price - $product->discount;
-                                    @endphp
-                                    <span class="amount">BDT. {{ $price}}</span> @if($product->discount) <span><del>{{$product->discount}}</del></span>@endif
+                                     $price = $cat_product->price - $cat_product->discount;
+                                   @endphp
+                                <span class="price">
+                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@else <span><del>0.00</del></span>@endif
                                 </span>
-                                <span class="add-to-cart"><a href="{{route('product.details',$product->slug)}}"><i class="fa fa-eye"></i>View Details</a></span>
+                                  
+                                <span class="add-to-cart"><a href="{{route('product.details', $cat_product->slug)}}"><i class="fa fa-eye" aria-hidden="true"></i>View Detail</a></span>
+   
                             </div>
-                            <!-- End Prodcut Price Area -->
+                                    <!-- End Prodcut Price Area -->
+
+                               </div>
+                               <!-- End Single Prodcut -->
+                            </div>
+                           @endforeach
                         </div>
-                        <!-- End Single Prodcut -->
+                        <!-- Start Product Paginations -->
+                    <div class="prodcuts-pagination">
+                            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                            <span class="view-more">
+                            <span class="amount">
+                                                    <a href="{{route('bestseller.list')}}"   ><span style="color:#ffffff;">View More</span></a>
+                                                </span>
+                                                </span>
+                                <!--<ul class="licuan-pagination">
+                                    <li class="pre-page"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                                    <li class="current"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li class="next-page"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                </ul>-->
+                            </div>
+                        </div>	
+                        <!-- End Product Paginations -->
                     </div>
-                 @endforeach
+                    <!-- End Grid products -->
+                    <!-- Start List products -->
+
+
+
+
+
+
+
+
+
+                    <div id="list1" class="tab-pane " role="tabpanel">
+                        <!-- Start Products List View  -->
+                        <div class="products-listview-inner">
+
+                        @foreach($best_sell_products as $key => $cat_product)
+
+                            <div class="col-xs-6 col-sm-12 col-md-12">
+                               <!-- Start Single Prodcut -->
+                                <div class="single-product">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4 col-md-4">
+                                            <!-- Start Product Thumbnail -->
+                                            <div class="product-thumb-area">
+                                                <!-- Start Product Image -->
+                                                <div class="product-thumb">
+                                                    <a href="{{route('product.details', $cat_product->slug)}}"><img src="{{url($cat_product->image)}}" alt="product" /></a>
+                                                    <span class="product-new">New</span>
+                                                </div>
+                                                <!-- End Product Image -->
+                                            </div>
+                                            <!-- End Product Thumbnail -->
+                                            <!-- Start Color Buttons -->
+                                            <div class="prodcut-color-btn">
+                                                <ul>
+                                                @foreach($colors as $color)
+                                                    <?php
+                                 $colorname=App\Model\Color::where('id',$color->color_id)->get();
+
+
+                                                    ?>
+
+                                                    <li><a href="#" class="{{$colorname}}">{{$colorname}}</a></li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                            <!-- End Color Buttons -->
+                                        </div>
+                                        <div class="col-xs-12 col-sm-8 col-md-8">
+                                            <!-- Start Product Info -->
+                                            <div class="product-short-info">
+                                                <!-- Start product short description -->
+                                                <p class="p-short-des"><a href="{{route('product.details', $cat_product->slug)}}">{{$cat_product->title}}</a></p>
+                                                <!-- End product short description -->
+                                                <!-- Start Star Rating -->
+                                                <!--<div class="star-rating">
+                                                    <ul>
+                                                        <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                        <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                        <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                        <li class="star yes"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                        <li class="star"><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                    </ul>
+                                                </div>-->
+                                                <!-- End Star Rating -->
+                                                <div class="product-desc">
+                                                    <p>{{$cat_product->detail}}</p>
+                                                </div>
+                                            </div>
+                                            <!-- End Product Info -->
+                                            <!-- Start Prodcut Price Area -->
+                                            <div class="product-price-area">
+                                            @php
+                                     $price = $cat_product->price - $cat_product->discount;
+                                   @endphp
+                                <span class="price">
+                                    <span class="amount">BDT. {{ $price }}</span>@if($cat_product->discount) <span><del>{{$cat_product->price}}</del></span>@else <span><del>0.00</del></span>@endif
+                                </span>
+                                                <span class="add-to-cart">
+                                                    <a href="{{route('product.details', $cat_product->slug)}}"   ><i class="fa fa-eye" aria-hidden="true"></i><span>View Details</span></a>
+                                                </span>
+
+                                                <!-- Start Wish List  -->
+                                            <span class="listview-wishlist">
+                                           <a href="javascript:void(0)" data-id="{{$cat_product->id}}" class="comp"><i aria-hidden="true" class="fa fa-exchange"></i> Compare</a>
+                                                </span>
+                                            </div>
+                                            <!-- Start Prodcut Price Area -->
+                                       </div>
+                                   </div>
+                               </div>
+                               <!-- Start Single Prodcut -->
+                            </div>
+
+                               @endforeach
+
+                        </div>
+                        <!-- End Product List View -->
+                        <!-- Start Pagination -->
+                      <div class="licuan-pagination-area">
+                            <div class="col-md-12 text-center">
+                            <span class="view-more">
+                            <span class="amount">
+                                                    <a href="{{route('bestseller.list')}}"   ><span style="color:#ffffff;">View More</span></a>
+                                                </span>
+                                                </span>
+                               <!-- <ul class="licuan-pagination">
+                                    <li class="pre-page"><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                                    <li class="current"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li class="next-page"><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                                </ul>-->
+                            </div>
+                        </div>	
+                        <!-- End Pagination -->
+                    </div>
+                    <!-- End List products -->
                 </div>
-                <!-- End Best seller carousel -->
             </div>
         </div>
     </section>
