@@ -1,8 +1,8 @@
- @extends('frontend.layouts.master')
+@extends('frontend.layouts.master')
  @section('content')
  @include('frontend.layouts.slider')
  <!-- Start Category Search Bar -->
-   <!-- <div class="cartegory-search-bar last-in2">
+    <div class="cartegory-search-bar last-in2 mobileyes">
         <div class="container">
             <div class="row">
                 <div class="hidden-xs col-sm-4 col-sm-4 col-md-3">
@@ -88,75 +88,75 @@
                 </div>
             </div>
         </div>
-    </div>-->
+    </div>
     <!-- End Category Search Bar -->
     <!-- Start Quick Category Area -->
-    <div id="quick-category-area" class="padtop10 padbot25">
+    <!--<div id="quick-category-area" class="padtop10 padbot25">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    <!-- Start Single Category Item -->
+                    
                     <div class="single-category-item last-in">
                         <div class="category-thumb">
                             <img src="img/category-thumbs/4.png" alt="" />
                             <a href="#" class="btn-lucian">Shoes</a>
                         </div>
                     </div>
-                    <!-- End Single Category Item -->
+                   
                 </div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <!-- Start Single Category Item -->
+                    
                     <div class="single-category-item">
                         <div class="category-thumb">
                             <img src="img/category-thumbs/5.png" alt="" />
                             <a href="#" class="btn-lucian">Men</a>
                         </div>
                     </div>
-                    <!-- End Single Category Item -->
+                    
                 </div>
                 <div class="clearfix hidden-sm"></div>
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-                    <!-- Start Single Category Item -->
+                   
                     <div class="single-category-item">
                         <div class="category-thumb">
                             <img src="img/category-thumbs/6.png" alt="" />
                             <a href="#" class="btn-lucian">Bags</a>
                         </div>
                     </div>
-                    <!-- End Single Category Item -->
+                    
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-                    <!-- Start Single Category Item -->
+                    
                     <div class="single-category-item last-in3">
                         <div class="category-thumb">
                             <img src="img/category-thumbs/7.png" alt="" />
                             <a href="#" class="btn-lucian">Bags</a>
                         </div>
                     </div>
-                    <!-- End Single Category Item -->
+                    
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
     <!-- End Quick Category Area -->
     <!-- Start New Products -->
-    <section id="new-products-area" class="padtop10 padbot25 lst">
+    <section id="new-products-area" class="padtop10 padbot15 lst">
         <div class="container">
             <div class="row">
             
                 <div class="col-md-8">
-                    <div class="section-title title-box">
+                    <div class="section-title title-box" style="padding-bottom:5px;">
                         <h2>What's New</h2>
                     </div>
                     
                         
                 </div>
-                <div class="col-sm-4 col-md-4">
+                <div class="col-sm-2 col-md-4">
 
-                    <ul role="tablist" class="tab-icons pull-right">
+                    <!--<ul role="tablist" class="tab-icons pull-right">
                             <li class="" role="presentation"><a data-toggle="tab" role="tab" aria-controls="grid" title="Grid" href="#grid" aria-expanded="true"><i class="fa fa-th-large"></i></a></li>
                             <li role="presentation" class="active"><a data-toggle="tab" role="tab" aria-controls="list" title="List" href="#list" aria-expanded="false"><i class="fa fa-th-list"></i></a></li>
-                        </ul>
+                        </ul>-->
                         </div>
             </div>
             <div class="row">
@@ -403,17 +403,17 @@
             <div class="row">
                 <div class="col-md-8">
                     <!-- Start Section Title -->
-                    <div class="section-title title-box">
+                    <div class="section-title title-box" style="padding-bottom:5px;">
                         <h2>Best Seller</h2>
                     </div>
                     <!-- End Section Title -->
                 </div>
                 <div class="col-sm-4 col-md-4">
 
-                    <ul role="tablist" class="tab-icons pull-right">
+                    <!--<ul role="tablist" class="tab-icons pull-right">
                             <li class="" role="presentation"><a data-toggle="tab" role="tab" aria-controls="grid" title="Grid" href="#grid1" aria-expanded="true"><i class="fa fa-th-large"></i></a></li>
                             <li role="presentation" class="active"><a data-toggle="tab" role="tab" aria-controls="list" title="List" href="#list1" aria-expanded="false"><i class="fa fa-th-list"></i></a></li>
-                        </ul>
+                        </ul>-->
                         </div>
             </div>
             <div class="row">

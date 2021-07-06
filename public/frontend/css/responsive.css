@@ -27,6 +27,7 @@
   .home3 .main-menu > ul > li.drop > a::after{
     right: -3px;
   }
+    
   /* =========Slider Area =============*/
   .slider-content-wrap {
     width: 940px; 
@@ -101,14 +102,17 @@
     padding-top: 20px;
   }
   .home2 .logo-area{
-    width: 100%;
+    width: 50%;
     display: block;
     margin-bottom: 10px;
     padding-bottom: 10px;
   }
   
   .home2 .menu-area {
-    width: 100%;
+    width: 50%;
+  }
+    .mobileyes{
+    display:block !important;
   }
   .home2 .logo img, .home3 .logo img {
     float: none;
@@ -447,6 +451,9 @@
   .header-bottom-area {
     padding-bottom: 20px;
     padding-top: 30px;
+  }
+    .mobileyes{
+    display:block !important;
   }
   .home1 .header-bottom-area {
     padding-bottom: 10px;
@@ -1258,6 +1265,9 @@
   
   .home2 .menu-area {
     width: 50%;
+  }
+    .mobileyes{
+    display:block;
   }
   .home2 .logo img, .home3 .logo img {
     float: none;
