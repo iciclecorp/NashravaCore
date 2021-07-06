@@ -165,8 +165,6 @@ Route::post('/local/customer/update/invoice/{invoice_id}','backend\CustomerContr
 
 //Size
 Route::resource('size','backend\SizeController');
-//color
-Route::resource('color','backend\ColorController');
 Route::resource('shipping-cost','backend\ShippingCostController');
 //
 Route::resource('coupons','backend\CouponController');
