@@ -77,11 +77,15 @@ a{
   <tr> 
     <td>
     <p class="p-short-des">
+    Colors:
     <?php 
 foreach($colors as $color){
     $colorname= DB::table('colors')->where('id',$color->color_id)->first();
 
-    echo "Color:".$colorname->color_name;
+?>
+{{$colorname->color_name ?? ''}}
+
+    <?php
 }
     ?>
     <p>
@@ -92,13 +96,15 @@ foreach($colors as $color){
     <tr> 
     <td>
     <p class="p-short-des">
+    Sizes:
     <?php 
 foreach($sizes as $size){
     $sizename= DB::table('sizes')->where('id',$size->size_id)->first();
 
-    echo "Sizes:".$sizename->size_name;
-}
+
     ?>
+    {{$sizename->size_name ?? ''}}
+<?php }?>
     <p>
     </td>
     
@@ -151,7 +157,7 @@ foreach($sizes as $size){
 	$(document).ready(function(){
         var fieldArray = [];
                     var $this = $(this);
-                    var rmvids=JSON.parse(localStorage.getItem('rmvids'))
+                    var rmvids=JSON.parse(sessionStorage.getItem('rmvids'))
                     if(rmvids){
                         $.each(rmvids, function(index, value){
                             
@@ -164,7 +170,7 @@ foreach($sizes as $size){
 			var id = $(this).data("id");
             $(".rmv"+id).hide(200);
             fieldArray.push($(this).data("id"));
-            localStorage.setItem('rmvids', JSON.stringify(fieldArray))
+            sessionStorage.setItem('rmvids', JSON.stringify(fieldArray))
 
 
 

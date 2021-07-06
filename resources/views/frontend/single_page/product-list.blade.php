@@ -65,7 +65,7 @@
                 <!-- Start Tab Content -->
                 <div class="tab-content">
                     <!-- Start Grid products -->
-                    <div id="grid" class="tab-pane" role="tabpanel">
+                    <div id="grid" class="tab-pane active in fade" role="tabpanel">
                         <div class="products-gridview-inner">
                         @foreach($products as $cat_product)
 
@@ -182,7 +182,7 @@
 
 
 
-                    <div id="list" class="tab-pane active in fade" role="tabpanel">
+                    <div id="list" class="tab-pane" role="tabpanel">
                         <!-- Start Products List View  -->
                         <div class="products-listview-inner">
 

@@ -90,7 +90,7 @@
             <div class="header-bottom-area" style="background:#000000; padding:10px;">
                 <div class="container">
                     <div class="row">
-                        <div class="hidden-xs col-sm-4 col-md-3">
+                        <div class="col-xs-6 col-sm-4 col-md-3">
                             <!-- Start Search Form -->
                             <div class="search-box-area header-search">
 
@@ -101,7 +101,7 @@
                             </div>
                             <!-- End Search Form -->
                         </div>
-                        <div class="col-xs-4 col-sm-4 col-md-6">
+                        <div class="col-xs-2 col-sm-4 col-md-6">
                             <div class="logo-area">
                                 <!-- Start Logo -->
                                 <div class="logo">
@@ -116,12 +116,12 @@
                             $sum = 0;
 
                         @endphp
-                        <div class="col-xs-8 col-sm-4 col-md-3">
+                        <div class="col-xs-2 col-sm-4 col-md-3">
                             <!-- Start Cart Area -->
                             <div class="cart-inner header-cart">
                                 <a class="backet-area">
                                     <span class="added-total">{{ $count}}</span>
-                                    shopping cart
+                                    <span class="mobileno">shopping cart</span>
                                 </a>
                                 <!-- Start Cart Dropdown -->
                                 <div class="cart-items-area">
@@ -207,6 +207,9 @@
                                             <li class="active home"><a href="{{url('/')}}">Home</a>
 
                                             </li>
+                                            <li><a href="{{route('about.page')}}">About Us</a>
+
+                                            </li>
                                             <li class="drop mega-menu hidden-xs hidden-sm"><a href="#">Category</a> <!-- Women -->
                                                 <!-- Start Mega Menu -->
                                                 <div class="mega-wrap" style=" background: #fff url({{ asset(get_static_option('banner_image')) }}) no-repeat scroll right top;">
@@ -231,13 +234,31 @@
                                                 </div>
                                                 <!-- End Mega Menu -->
                                             </li>
+                                            <li class="drop mobileyes"><a href="#">Category</a> <!-- Pages -->
+                                                <ul>
+                                                @foreach($categories as $category)
+                                                <?php
+                                         $subcategories=App\Model\SubCategory::where('category_id',$category->id)->get();
+                                       ?>
+                                  <li><a href="{{route('category.wise.product',$category->id)}}">{{$category->category_name}}</a>
+                                  <ul class="sub-menu-2">
+                                  @foreach($subcategories as $subcategory)
+
+<li><a href="{{route('sub.category.wise.product',$subcategory->id)}}">{{$subcategory->sub_category_name}}</a></li>
+@endforeach
+                                                        </ul>
+</li>
+                                  @endforeach
+</ul></li>
                                             <li class="drop"><a href="#">Brands</a> <!-- Pages -->
                                                 <ul>
                                                 @foreach($brands as $brand)
                                   <li><a href="{{route('brand.wise.product',$brand->id)}}">{{$brand->brand_name}}</a></li>
+                                  
+                                  
                                   @endforeach
 </ul></li>
-<li><a href="{{url('/newarrivals')}}">New Arrivals</a></li>
+<li><a href="{{url('/newarrivals')}}">Flash Deals</a></li>
 <li><a href="{{url('/contact')}}">Contact Us</a></li>
 
                                             <!--<li class="drop"><a href="#">Pages</a>

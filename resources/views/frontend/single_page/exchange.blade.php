@@ -42,24 +42,94 @@
                         <!-- End Thumbnail Image-->
                         <!-- Entry Header -->
                         <header class="entry-header">
-                            <h2 class="entry-title">About Us </h2>
-                            <!-- Start Meta -->
-                            <div class="entry-meta">
-                                <!--<p>/ Posted by <a href="#">Mekirin-design</a> / Man Fashion</p>-->
-                            </div>
-                            <!-- End Meta -->
+                            <h2 class="entry-title">Exchange Policy </h2>
+                            
                         </header>
                         <!-- End Entry Header -->
                         <!-- Start Entry Content -->
                         <div class="entry-content">
                             <p>
-                            NashraVa as a  fashion retailer, inspires authentic self expression through offering brands with variety of product lines. This helps our customers to flaunt their personal style in day to day life.</p><p>
-                                 Our designs are unique and styles are always updating depending on trends and seasons.</p><p>
-                                     Product lines include wide range of contemporary ready to wear fashion which enables an easy access to global fashion for customers at a great value.</p><p>
+                            
+To guarantee that you are fully satisfied with your purchases, we are happy to exchange within 15 days with a valid receipt. 
+</br>Returned item’s condition must be unworn, unused with all price tags plus barcodes intact along with the original packaging.
 
-NashraVa aspires to doing more than selling cloths proudly.</p><p> We are passionately committed to deliver our customers fashion, quality and comfort with most convenient shopping experience by consistently developing it everyday.
+                        
+                            </p>
+                            <h4>Exchange Request Form:</h4>
+                            <p>
+                            <form class="ml-lg-2 pt-8 pb-10 pl-4 pr-4 pl-lg-6 pr-lg-6 grey-section" action="{{ url('contact-us')}}" method="POST">
+                        @csrf
+                            <div class="row comment-form-inner">
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Name Field -->
+                                   
+                                    <input type="text" placeholder="Name" class="form-field" name="name">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Name Field -->
+                                   
+                                    <input type="text" placeholder="Phone" class="form-field" name="phone">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Emial Field -->
+                                    <input type="email" placeholder="Email" class="form-field" name="email">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Name Field -->
+                                   
+                                    <input type="text" placeholder="Order No" class="form-field" name="order_no">
+                                </div>
 
+                                <div class="col-sm-12 col-md-12">
+                                    <!-- Your Message Field -->
+                                    <textarea placeholder="Reason for Exchange" class="form-field text-box" name="message_body"></textarea>
+                                </div>
+                                <h3>List of Product you want to return</h3>
+                                <div class=" col-sm-6 col-md-6">
+                                <input type="text" placeholder="Style Number" class="form-field" name="phone">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Emial Field -->
+                                    <input type="text" placeholder="Size" class="form-field" name="email">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Emial Field -->
+                                    <input type="text" placeholder="Color" class="form-field" name="email">
+                                </div>
+                                <h3>List of Product you want in Exchange</h3>
+                                <div class=" col-sm-6 col-md-6">
+                                <input type="text" placeholder="Style Number" class="form-field" name="phone">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Emial Field -->
+                                    <input type="text" placeholder="Size" class="form-field" name="email">
+                                </div>
+                                <div class=" col-sm-6 col-md-6">
+                                    <!-- Emial Field -->
+                                    <input type="text" placeholder="Color" class="form-field" name="email">
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                    <!-- Your Message Field -->
+                                    <textarea placeholder="Your Message" class="form-field text-box" name="message_body"></textarea>
+                                </div>
+                                <div class="col-sm-12 col-md-12">
+                                    <!-- Submit Button -->
+                                    <button type="submit" class="lucian-gray-btn"><span>Submit</span></button>
+                                </div>
+                            </div>
+                        </form>
+                            
+                            </p>
+                            <p>
+                            Exchange Conditions:
+ADDITIONAL DELIVERY CHARGE FOR EXCHANGE For exchange customer must receive the delivery, make the payment and keep the product unused.
+ </p>Customer Care Team should be informed by calling: 01309286974 within 3 days of receiving the delivery. Customer has to mention size and color of desired product that they want to exchange with. We will send the exchanged product. </br>
+ While receiving the new product customer has to return the previous product to deliverymanplus delivery charge. In case of exchanging with a product of higher value, additional amount must be paid during exchange delivery. If customer is from out of Dhaka, unfortunately customer must pay additional delivery charge of Shundarban/ S.A Paribahan to return the product to our office.</br>
+  NashraVa will bear the cost of resending the exchanged product. The product must be returned to our office first via any courier service. After receiving the product we will send the exchanged product. Customer can exchange any ordered product for 1 time only.
 </p>
+<p>Returned product must be in unused condition with no marks and all packaging intact, including the shoe box.We will not accept any used /damaged product.
+                            
+                            </p>
                         </div>
                         <!-- End Entry Content -->
                        

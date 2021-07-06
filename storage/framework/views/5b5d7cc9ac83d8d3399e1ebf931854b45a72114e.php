@@ -40,6 +40,51 @@
         <script src="<?php echo e(asset('public/frontend/js/vendor/modernizr-2.8.3.min.js')); ?>"></script>
 
         <?php echo $__env->yieldContent('css'); ?>
+		<style>
+		
+		.products-gridview-inner .single-product .product-thumb img{
+			height:320px !important;
+		}
+		.view-more{
+			background: #F36523 none repeat scroll 0 0;
+    border-radius: 12px;
+    color: #ffffff !important;
+    display: inline-block;
+   
+    height: 35px;
+    line-height: 26px;
+    margin-right: 8px;
+    padding: 5px 20px
+		}
+		.p-short-des{
+    content: "\a";
+    white-space: pre-line;
+   
+}
+.mobileyes{
+	display:none !important;
+}
+		@media  only screen and (max-width: 600px) {
+			#new-products-area .products-gridview-inner .single-product .product-thumb img{
+			height:170px !important;
+		}
+		
+		#best-seller-area .products-gridview-inner .single-product .product-thumb img{
+			height:170px !important;
+		}
+
+		.mobileyes{
+	display:block !important;
+}
+
+.mobileno{
+	display:none !important;
+}
+.cart-inner.header-cart{
+	width:70px !important;
+}
+		}
+		</style>
     </head>
     <body class="home2">
 	<!--[if lt IE 8]>
@@ -85,8 +130,8 @@
                     
                     var fieldArray = [];
                     var $this = $(this);
-                    var cpid=JSON.parse(localStorage.getItem('cpids'))
-var  clickCounter = localStorage.getItem('clickCounter')
+                    var cpid=JSON.parse(sessionStorage.getItem('cpids'))
+var  clickCounter = sessionStorage.getItem('clickCounter')
    clickCounter = clickCounter ? parseInt(clickCounter) : 0;
    //clickCounter = clickCounter || 0
    $('.compare').text(clickCounter);
@@ -124,8 +169,8 @@ var  clickCounter = localStorage.getItem('clickCounter')
         $('.compare').text(clickCounter);
 		$('#cpid').val(fieldArray);
         
-		localStorage.setItem("clickCounter",clickCounter);
-        localStorage.setItem('cpids', JSON.stringify(fieldArray))
+		sessionStorage.setItem("clickCounter",clickCounter);
+        sessionStorage.setItem('cpids', JSON.stringify(fieldArray))
 
 
 		}
