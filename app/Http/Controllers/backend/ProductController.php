@@ -89,6 +89,8 @@ class ProductController extends Controller
 
               }
             }
+            //size_qty_of_{{ Str::slug($size->size_name, '_') }}
+            //https://github.com/iciclecorp/NashravaCore/commit/5f2ab520b00fbed8d20b5fde316eb9fa5ec146eb
         } else {
             return redirect()->back()->with('error','Sorry! Product Does not Created Successfully');
         }
@@ -204,17 +206,10 @@ class ProductController extends Controller
                $mysize->size_id = $size;
 
                $mysize->save();
-
               }
-            }
-
-
-
-
-        } else {
+            }else {
             return redirect()->back()->with('error','Sorry! Product Does not Updated Successfully');
         }
-
       });
 
        return redirect()->route('product.index')->with('success','Product Updated Successfully');

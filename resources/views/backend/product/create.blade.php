@@ -245,11 +245,19 @@
                                                         <div class='form-group col-md-12'>
                                                             <table class="table responsive">
                                                                 <tr>
-                                                                    <th></th>
                                                                     <th>Size</th>
                                                                     <th>Quantity</th>
                                                                 </tr>
-                                                                
+                                                                @foreach($sizes as $size)
+                                                                <tr>
+                                                                    <td>{{ $size->size_name }}</td>
+                                                                    <td>
+                                                                        <input type="number" name="size_qty_of_{{ Str::slug($size->size_name, '_') }}"
+                                                                               class="form-control form-control-sm"
+                                                                               placeholder="QTY" required>
+                                                                    </td>
+                                                                </tr>
+                                                                @endforeach
                                                             </table>
                                                         </div>
                                                     </div>
