@@ -28,4 +28,8 @@ class Product extends Model
     public function purchase(){
         return $this->belongsTo(Purchase::class,'product_name','id');
     }
+
+    public function productSizes(){
+        return $this->hasMany(ProductSize::class,'product_id','id');
+    }
 }

@@ -361,8 +361,7 @@
                         </ul>
                     </li>
                     <li class="nav-item has-treeview @if(Request::is('admin/size') || Request::is('admin/size-measurement') || Request::is('admin/coupons') || Request::is('admin/supplier') || Request::is('admin/unit') || Request::is('admin/slider') || Request::is('admin/brand'))
-           menu-open
-          @endif">
+                        menu-open @endif">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-copy"></i>
                             <p style="color:#ffffff;">
@@ -370,7 +369,7 @@
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
-                </ul>
+               
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
                         <a href="{{route('size.index')}}"

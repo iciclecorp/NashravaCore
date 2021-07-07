@@ -33,6 +33,16 @@
                 <h3>{{__('back_blade.view_product_list')}}
                    <a class="btn btn-success btn-sm float-right" href="{{route('product.create')}}"><i class="fa fa-plus-circle"></i>&nbsp;&nbsp;{{__('back_blade.view_product_add')}}</a>
                 </h3>
+                  @if ($errors->any())
+                      <br>
+                      <div class="alert alert-danger">
+                          <ul>
+                              @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                              @endforeach
+                          </ul>
+                      </div>
+                  @endif
               </div><!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-sm table-bordered table-hover table-responsive" style="color:#00004d">
@@ -57,8 +67,13 @@
                         <td><img src="{{(!empty($product->image))?url($product->image):url('public/upload/no image found.jpg')}}" width="130px" height="80px" ></td>
                         <td>{{$product->brand->brand_name}}</td>
                         <td>{{$product->price}}</td>
-                        <td>{{$product->qty}}</td>
-
+                        <td>
+                            Total: {{$product->qty}} <br>
+                            @foreach(\App\Model\Size::all() as $size)
+                                 {{ $size->size_name }} : {{ $size->productSizes()->where('product_id', $product->id)->count() ?? 0 }}
+                                <br>
+                            @endforeach
+                        </td>
                         <td style="text-align: center;">
                           @if($product->best_status == '1')
                           <a style="color:white;padding-right:17px;border-radius: 5px;"  class="btn btn-success btn-sm" href="{{route('best.change.status',$product->id)}}">Active</a>

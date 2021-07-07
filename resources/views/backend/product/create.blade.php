@@ -254,7 +254,7 @@
                                                                     <td>
                                                                         <input type="number" name="size_qty_of_{{ Str::slug($size->size_name, '_') }}"
                                                                                class="form-control form-control-sm"
-                                                                               placeholder="QTY" required>
+                                                                               placeholder="QTY" required value="{{ old("size_qty_of_".Str::slug($size->size_name, '_')) }}">
                                                                     </td>
                                                                 </tr>
                                                                 @endforeach
