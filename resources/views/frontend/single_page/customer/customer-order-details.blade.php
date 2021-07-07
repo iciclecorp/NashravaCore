@@ -109,7 +109,7 @@
                </tr>
                <tr>
                  <td style="padding-left: 5px;"><strong>Product Name & Image</strong></td>
-                 <td style="padding-left: 5px;"><strong>Color & Size</strong></td>
+                 <td style="padding-left: 5px;"><strong>Size</strong></td>
                  <td style="padding-left: 5px;"><strong>Quantity & Price</strong></td>
                </tr>
                @foreach($order['OrderDetail'] as $details)

@@ -46,7 +46,6 @@ class DashboardController extends Controller
     }
 
     public function paymentStore(Request $request){
-
            if($request->product_id == NULL){
             return redirect()->back()->with('message','Please add any product');
            }else{
@@ -90,6 +89,7 @@ class DashboardController extends Controller
                      $order_details = new OrderDetail();
                      $order_details->order_id = $order->id;
                      $order_details->product_id = $content->id;
+                     $order_details->size_id = $content->options->size_id ?? null;
                      $order_details->quantity= $content->qty;
                      $order_details->coupon_id= collect(Session::get('coupon'))->where('product_id', $content->id)->first()['coupon_id'] ?? null;
                      $order_details->customer_id= Auth::user()->id;

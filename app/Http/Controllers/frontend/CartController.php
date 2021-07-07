@@ -27,40 +27,21 @@ class CartController extends Controller
         ]);
 
         $product = Product::find($request->input('id'));
-        if($request->input('size_id')){
-            $product_size = Size::where('id',$request->input('size_id'))->first();
-            //  return ($product_size)->toArray();
+        $product_size = Size::where('id',$request->input('size'))->first();
+        //  return ($product_size)->toArray();
 
-            Cart::add([
-                 'id' => $product->id,
-                 'qty' => $request->input('quantity'),
-                 'price' => $product->price - $product->discount,
-                 'name' => $product->title,
-                 'weight' => 550,
-                 'options' => [
-                       'size_id' => $request->input('size_id'),
-                       'size_name' => $product_size->size_name,
-                       'image' => $product->image
-                 ],
-            ]);
-        }else{
-            Cart::add([
-
-                'id' => $product->id,
-                'qty' => $request->input('quantity'),
-                'price' => $product->price - $product->discount,
-                'name' => $product->title,
-                'weight' => 550,
-                'options' => [
-                    // 'size_id' => $request->input('size_id'),
-                    // 'size_name' => $product_size->size_name,
-                    'image' => $product->image
-                ],
-
-
-            ]);
-        }
-
+        Cart::add([
+            'id' => $product->id,
+            'qty' => $request->input('quantity'),
+            'price' => $product->price - $product->discount,
+            'name' => $product->title,
+            'weight' => 550,
+            'options' => [
+                'size_id' => $request->input('size'),
+                'size_name' => $product_size->size_name,
+                'image' => $product->image
+            ],
+        ]);
         return redirect()->route('view.cart')->with('success','Product added successfully');
 
     }
@@ -85,9 +66,9 @@ class CartController extends Controller
     if($cart->isNotEmpty()){
         $price=$request->price*$request->qty;
           Cart::update($request->rowId,$request->qty);
-          
-          
-          
+
+
+
           return response()->json(['success'=>'Product Updated Successfully','price'=>$price,'qty'=>$request->qty]);
 
     }
